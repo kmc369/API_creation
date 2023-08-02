@@ -5,9 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "migrate": "DB_FILE=db/dev.db npx sequelize db:migrate",
-    "seed": "DB_FILE=db/dev.db npx sequelize db:seed:all",
-    "dev": "DB_FILE=db/dev.db nodemon app.js",
+  
     "sequelize": "sequelize",
     "sequelize-cli": "sequelize-cli",
     "start": "per-env",

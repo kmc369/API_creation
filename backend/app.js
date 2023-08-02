@@ -5,6 +5,7 @@ const cors = require('cors');
 const csurf = require('csurf');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
+const routes = require('./routes');
 
 const { environment } = require('./config');
 const isProduction = environment === 'production';
@@ -42,9 +43,17 @@ if (!isProduction) {
   );
 
   ///routes 
-  const routes = require('./routes');
+
 
 // ...
 
 app.use(routes);
+
+app.use((_req, _res, next) => {
+  const err = new Error("The requested resource couldn't be found.");
+  err.title = "Resource Not Found";
+  err.errors = { message: "The requested resource couldn't be found." };
+  err.status = 404;
+  next(err);
+});
 module.exports = app;
