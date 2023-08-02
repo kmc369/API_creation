@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // backend/bin/www
 
+//request only work after authetification 
 // Import environment variables
 require('dotenv').config();
 
