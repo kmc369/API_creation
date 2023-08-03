@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class User extends Model {
+  class Spot extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,59 +11,69 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.hasMany(models.Booking,{
-        foreignKey:'userId',
-        onDelete:"CASCADE"
-      })
-      User.hasMany(models.Spot,{
-        foreignKey:'ownerId',
-        onDelete:"CASCADE"
+      Spot.belongsTo(models.User,{
+        foreignKey:'ownerId'
       })
 
-      User.hasMany(models.Review,{
-        foreignKey:'userId',
+      Spot.hasMany(models.Booking,{
+        foreignKey:'spotId',
         onDelete:"CASCADE"
       })
-    
     }
   }
-  User.init({
-    firstName: {
+  Spot.init({
+    ownerId: {
+      type:DataTypes.INTEGER,
+    },
+    address: {
       type:DataTypes.STRING,
       allowNull:false,
       validate:{
-        len:[3,30]
+        len:[3,90]
       }
     },
-    lastName: {
+    city: {
       type:DataTypes.STRING,
       allowNull:false,
       validate:{
-        len:[3,30]
+        len:[3,90]
       }
     },
-    username: {
+    state: {
       type:DataTypes.STRING,
       allowNull:false,
-      unique:true,
       validate:{
-        len:[3,30]
+        len:[3,90]
       }
     },
-    hashedPassword: {
+    country: {
+      type:DataTypes.STRING,
+      allowNull:false,
+      validate:{
+        len:[3,90]
+      }
+    },
+    lat: {
+      type:DataTypes.DECIMAL,
+      
+    },
+    lng: {
+      type:DataTypes.DECIMAL,
+    },
+    name: {
       type:DataTypes.STRING,
       allowNull:false
     },
-    email: {
+    description: {
       type:DataTypes.STRING,
-      unique:true,
-      validate:{
-        isEmail:true
-      }
-    }
+      allowNull:false
+    },
+    price:{
+      type:DataTypes.DECIMAL
+    },
   }, {
     sequelize,
-    modelName: 'User',
+    modelName: 'Spot',
   });
-  return User;
+  return Spot;
 };
