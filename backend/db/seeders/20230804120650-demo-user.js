@@ -32,7 +32,18 @@ module.exports = {
         username: 'FakeUser2',
         hashedPassword: bcrypt.hashSync('password3')
       }
-    ], { validate: true });
+    ], { validate: true }).catch(err => {
+      // if (err instanceof ValidationError) {
+      //   throw err.message
+      // } else {
+      //   for (let error of err.errors) {
+      //     console.log(error.record)
+      //     console.log(error.message)
+      //   };
+      //   throw err.errors;
+      // }
+      // console.log(err)
+    });
   },
 
   async down (queryInterface, Sequelize) {

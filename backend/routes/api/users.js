@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router();
-const express = require('express');
 const bcrypt = require('bcryptjs');
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
