@@ -9,7 +9,7 @@ if (process.env.NODE_ENV === 'production') {
 module.exports = {
   async up (queryInterface, Sequelize) {
 await Review.bulkCreate([
-  [
+  
     {
       spotId: 1,
       userId: 2,
@@ -22,7 +22,7 @@ await Review.bulkCreate([
       review: "The Cozy Apartment was a lovely place to stay. Clean, comfortable, and conveniently located.",
       stars: 4
     }
-  ]
+  
 ], { validate: true }).catch(err => {
  
   console.log(err)
