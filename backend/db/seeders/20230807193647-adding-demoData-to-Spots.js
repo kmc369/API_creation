@@ -31,21 +31,25 @@ module.exports = {
       country: 'USA',
       lat: 40.7128,
       lng: -74.0060,
-      name: 'Cozy Apartment',
+      name: 'Penthouse Apartment',
       description: 'A cozy apartment in the city.',
+      price: 150.00
+    },
+    {
+      ownerId: 3,
+      address: '123 White House',
+      city: 'Washington DC',
+      state: 'Washington Dc',
+      country: 'USA',
+      lat: 40.7128,
+      lng: -74.0060,
+      name: 'Large White House',
+      description: 'Comes with great security.',
       price: 150.00
     }
    ],{ validate: true }).catch(err => {
-    // if (err instanceof ValidationError) {
-    //   throw err.message
-    // } else {
-    //   for (let error of err.errors) {
-    //     console.log(error.record)
-    //     console.log(error.message)
-    //   };
-    //   throw err.errors;
-    // }
-    // console.log(err)
+
+    console.log(err)
   });
 
   },
@@ -54,7 +58,7 @@ module.exports = {
     options.tableName = 'Spots';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      ownerId: { [Op.in]: [1,2] }
+      ownerId: { [Op.in]: [1,2,3] }
     }, {});
   }
 };

@@ -21,7 +21,14 @@ await Review.bulkCreate([
       userId: 1,
       review: "The Cozy Apartment was a lovely place to stay. Clean, comfortable, and conveniently located.",
       stars: 4
+    },
+    {
+      spotId: 2,
+      userId: 3,
+      review: "we Loved the white house, memorable",
+      stars: 5
     }
+    
   
 ], { validate: true }).catch(err => {
  
@@ -33,7 +40,7 @@ await Review.bulkCreate([
     options.tableName = 'Reviews';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      spotId: { [Op.in]: [1,2] }
+      spotId: { [Op.in]: [1,2,3] }
     }, {});
   }
 };
