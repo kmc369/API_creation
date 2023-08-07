@@ -26,7 +26,7 @@ module.exports = {
     url:"https://www.travelandleisure.com/thmb/mKI9Ok0tM6x-OTzE_oWeDpRw_18=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/oval-office-white-house-WHITEHOUSE0320-03c73abdc2ab40f0b4d28c8cbcf50e81.jpg",
     preview:true
   }
-])
+],{ validate: true })
   },
 
   async down (queryInterface, Sequelize) {
