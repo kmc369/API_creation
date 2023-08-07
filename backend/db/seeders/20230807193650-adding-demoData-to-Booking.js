@@ -1,7 +1,7 @@
 'use strict';
 
 /** @type {import('sequelize-cli').Migration} */
-const {Booking} = require('../models')
+const { Booking } = require('../models')
 
 let options = {};
 if (process.env.NODE_ENV === 'production') {
@@ -29,7 +29,10 @@ module.exports = {
         startDate:'2023-11-15',
         endDate:'2023-11-25'
       },
-    ],{ validate: true })
+    ],{ validate: true }).catch(err => {
+   
+      console.log(err)
+    });
   },
 
   async down (queryInterface, Sequelize) {
