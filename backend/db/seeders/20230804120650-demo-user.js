@@ -34,7 +34,7 @@ module.exports = {
       }
     ], { validate: true }).catch(err => {
    
-      console.log(err)
+      // console.log(err)
     });
   },
 
