@@ -103,8 +103,54 @@ router.post('/:spotId/images', async (req, res) => {
       url:url,
       preview:preview
     })
+
   
   return res.json(addImageToSpotImage);
+});
+
+router.put('/:spotId', async (req, res) => {
+  const spot = await Spot.findByPk(req.params.spotId)
+
+  if (!spot) {
+    return res.status(404).json({ message: 'Spot not found' });
+  }
+
+  const{address,city,state,country,lat,lng,name,description,price}=req.body;
+
+  if (address) {
+    spot.address = address;
+  }
+  if (city) {
+    spot.city = city;
+  }
+  if (state) {
+    spot.state = state;
+  }
+  if (country) {
+    spot.country = country;
+  }
+  if (lat) {
+    spot.lat = lat;
+  }
+  if (lng) {
+    spot.lng = lng;
+  }
+  if (name) {
+    spot.name = name;
+  }
+  if (description) {
+    spot.description = description;
+  }
+  if (price) {
+    spot.price = price;
+  }
+
+  // Save the updated spot
+  await spot.save();
+
+
+  
+  return res.json(spot);
 });
 
 
