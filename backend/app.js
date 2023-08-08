@@ -48,7 +48,7 @@ if (!isProduction) {
   ///routes 
   app.use(routes);
   const spotsRouter = require('./routes/spots');
-  app.use('/spots', spotsRouter);
+  app.use('/api/spots', spotsRouter);
 
 // ...
 
