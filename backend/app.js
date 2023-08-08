@@ -5,12 +5,15 @@ const cors = require('cors');
 const csurf = require('csurf');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
-const routes = require('./routes');
+
 
 const { environment } = require('./config');
 const isProduction = environment === 'production';
+const routes = require('./routes');
+
 
 const app = express();
+
 
 //log information about the request
 app.use(morgan('dev'));
@@ -43,11 +46,13 @@ if (!isProduction) {
   );
 
   ///routes 
-
+  app.use(routes);
+  const spotsRouter = require('./routes/spots');
+  app.use('/spots', spotsRouter);
 
 // ...
 
-app.use(routes);
+
 
 app.use((_req, _res, next) => {
   const err = new Error("The requested resource couldn't be found.");
@@ -84,4 +89,7 @@ app.use((err, _req, res, _next) => {
     stack: isProduction ? null : err.stack
   });
 });
+
+
+
 module.exports = app;
