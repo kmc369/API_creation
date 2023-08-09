@@ -7,31 +7,37 @@ const {SpotImage}= require('../db/models')
 // This route handler should be fine as it uses a middleware function
 
 //get All Spots
-router.get('/', async (req, res) => {
+router.get('/spots', async (req, res) => {
+  try{
   const spots = await Spot.findAll();
-
-  res.json(spots);
+  res.statusCode=200
+  return res.json({spots});
+  }catch(error){
+    res.status(500)
+  }
 });
 
 
 //GetSpotsBy Users
 
-router.get('/current', async(req,res)=>{
+router.get('/spots/current', async(req,res)=>{
  
    const currentUser = req.user
-   
+
    if(currentUser){
-   const userSpots = await currentUser.getSpots();
-    return res.json(userSpots);
+   const Spots = await currentUser.getSpots();
+    res.statusCode = 200
+    return res.json({Spots});
+   
    }else{
-   res.json({
-    "message": "Spot couldn't be found"
-  })
-}
+  
+   return res.json({message: "Spot couldn't be found"})
+
+  }
 })
 
 //get details of spot by its id
-router.get('/:spotId', async (req, res) => {
+router.get('/spots/:spotId', async (req, res) => {
   const {spotId} = req.params
   
   try{
@@ -47,7 +53,8 @@ router.get('/:spotId', async (req, res) => {
   })
 
   if(!spot){
-    return res.json({message: "Spot couldn't be found"})
+    res.statusCode = 404
+    return res.json({message:"Spot couldn't be found"})
   }
 
   return res.json(spot)
@@ -63,7 +70,7 @@ router.get('/:spotId', async (req, res) => {
 
 
 //create a spot 
-router.post('/', async(req,res)=>{
+router.post('/spots', async(req,res)=>{
   const{address,city,state,country,lat,lng,name,description,price}=req.body;
   const user = req.user
 
@@ -82,15 +89,23 @@ router.post('/', async(req,res)=>{
     price:price
     
   })
-  
+  res.statusCode=201
   return res.json(newSpot)
 
 
 
  
 }catch(error){
-  console.error('Error:', error);
-  return res.status(500).json({ error: 'Internal server error' });
+  if (error.name === 'SequelizeValidationError') {
+    const validationErrors = {};
+    error.errors.forEach(err => {
+      validationErrors[err.path] = err.message;
+    });
+    res.status(400).json({
+      message: 'Validation error',
+      errors: validationErrors
+    });
+  }
 }
 })
 
