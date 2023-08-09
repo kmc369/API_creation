@@ -48,7 +48,9 @@ if (!isProduction) {
   ///routes 
   app.use(routes);
   const spotsRouter = require('./routes/spots');
+  const ReviewRouter = require('./routes/reviews')
   app.use('/api/spots', spotsRouter);
+  app.use('/api', ReviewRouter);
 
 // ...
 

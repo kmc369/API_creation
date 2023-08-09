@@ -19,9 +19,10 @@ router.get('/', async (req, res) => {
 router.get('/current', async(req,res)=>{
  
    const currentUser = req.user
+   
    if(currentUser){
    const userSpots = await currentUser.getSpots();
-  res.json(userSpots);
+    return res.json(userSpots);
    }else{
    res.json({
     "message": "Spot couldn't be found"
@@ -64,11 +65,13 @@ router.get('/:spotId', async (req, res) => {
 //create a spot 
 router.post('/', async(req,res)=>{
   const{address,city,state,country,lat,lng,name,description,price}=req.body;
+  const user = req.user
 
   try{
 
   const newSpot =  await Spot.create({
     address:address,
+    ownerId:user.id,
     city:city,
     state:state,
     country:country,
@@ -151,6 +154,18 @@ router.put('/:spotId', async (req, res) => {
 
   
   return res.json(spot);
+});
+
+router.delete('/:spotId', async (req, res) => {
+  const spot= await Spot.findByPk(req.params.spotId);
+  console.log(spot)
+  if(!spot) {
+  return res.json({message: "Spot couldn't be found"})
+  }else{
+  await spot.destroy()
+  // res.statusCode(200)
+  return res.json({ message: "Successfully deleted"});
+  }
 });
 
 
