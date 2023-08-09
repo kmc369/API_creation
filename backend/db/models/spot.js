@@ -56,7 +56,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull:false,
       validate:{
         len:[3,90],
-        notEmpty:true
+        
       }
     },
     country: {
