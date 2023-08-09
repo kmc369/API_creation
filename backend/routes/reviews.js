@@ -82,7 +82,39 @@ router.get('/reviews/current', async (req, res) => {
         url:url
     })
 
-    res.json(newImage)
+    return res.json(newImage)
   });
+
+
+  //edit a review
+  router.put('/reviews/:reviewId', async (req, res) => {
+
+    const {reviewId} = req.params
+    const {review, stars} = req.body
+
+    const updatedreview = await Review.findByPk(reviewId);
+    if(!updatedreview){
+        return res.json({message:"review not found"})
+    }
+
+    if(review){
+        updatedreview.review = review;
+    }
+    if(stars){
+        updatedreview.stars = stars;
+    }
+
+    await updatedreview.save();
+
+    res.json(updatedreview)
+  })
+
+  //delete a review 
+  router.delete('/reviews/:reviewId', async (req, res) => {
+    const {reviewId} = req.params
+    const deletedReview = await Review.findByPk(reviewId);
+    deletedReview.destroy();
+    res.json({message: "Successfully deleted"})
+  })  
 
 module.exports = router;
