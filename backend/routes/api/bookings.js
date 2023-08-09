@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { Booking } = require('../db/models')
-const { User } = require('../db/models')
-const {Spot } = require('../db/models')
+const { Booking } = require('../../db/models')
+const { User } = require('../../db/models')
+const {Spot } = require('../../db/models')
 
 //get all the current users bookings
 router.get('/bookings/current', async (req, res) => {

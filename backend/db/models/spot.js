@@ -37,22 +37,26 @@ module.exports = (sequelize, DataTypes) => {
     address: {
       type:DataTypes.STRING,
       allowNull:false,
+    
       validate:{
-        len:[3,90]
+        len:[3,90],
+        notEmpty:true
       }
     },
     city: {
       type:DataTypes.STRING,
       allowNull:false,
       validate:{
-        len:[3,90]
+        len:[3,90],
+        notEmpty:true
       }
     },
     state: {
       type:DataTypes.STRING,
       allowNull:false,
       validate:{
-        len:[3,90]
+        len:[3,90],
+        notEmpty:true
       }
     },
     country: {

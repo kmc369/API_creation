@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { SpotImage } = require('../db/models')
-const { Spot } = require('../db/models')
-const { ReviewImage } = require('../db/models')
+const { SpotImage } = require('../../db/models')
+const { Spot } = require('../../db/models')
+const { ReviewImage } = require('../../db/models')
 //delete image
 router.delete('/spot-images/:imageId',async(req,res)=>{
     const {imageId} = req.params

@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { Spot } = require('../db/models');
-const {User }= require('../db/models')
-const {SpotImage}= require('../db/models')
+const { Spot } = require('../../db/models');
+const {User }= require('../../db/models')
+const {SpotImage}= require('../../db/models')
 
 // This route handler should be fine as it uses a middleware function
 
@@ -41,7 +41,7 @@ router.get('/spots/:spotId', async (req, res) => {
   const {spotId} = req.params
   
   try{
-  const spot = await Spot.findByPk(spotId,{
+  const spots = await Spot.findByPk(spotId,{
     
     include:[{
       model:SpotImage,
@@ -52,12 +52,12 @@ router.get('/spots/:spotId', async (req, res) => {
   
   })
 
-  if(!spot){
+  if(!spots){
     res.statusCode = 404
     return res.json({message:"Spot couldn't be found"})
   }
 
-  return res.json(spot)
+  return res.json({spots})
 }catch(error){
   console.error('Error:', error);
   return res.status(500).json({ error: 'Internal server error' });
@@ -111,22 +111,37 @@ router.post('/spots', async(req,res)=>{
 
 
 //add an image to the spot 
-router.post('/:spotId/images', async (req, res) => {
+router.post('/spots/:spotId/images', async (req, res) => {
   const {url, preview} = req.body
-  const {spotId} = req.params
-
-    const addImageToSpotImage = await SpotImage.create({
-      attributes:['id','url','preview'],
-      spotId:spotId,
+  const currentSpot = await Spot.findByPk(req.params.spotId)
+  if(!currentSpot){
+    res.statusCode = 404
+    return res.json({message: "Spot couldn't be found"})
+  }
+    const addImageToSpotImage = await SpotImage.create(
+      {
+      spotId:currentSpot.id,
       url:url,
       preview:preview
     })
+    const imageWithExcludedAttributes = await SpotImage.findByPk(addImageToSpotImage.id, {
+      attributes: { exclude: ["id", "createdAt", "updatedAt"] },
+    });
+  
+  res.statusCode = 200
+  return res.json(imageWithExcludedAttributes);
 
   
-  return res.json(addImageToSpotImage);
 });
 
-router.put('/:spotId', async (req, res) => {
+
+
+
+//edit spot 
+router.put('/spots/:spotId', async (req, res) => {
+
+
+  try{
   const spot = await Spot.findByPk(req.params.spotId)
 
   if (!spot) {
@@ -165,20 +180,30 @@ router.put('/:spotId', async (req, res) => {
 
   // Save the updated spot
   await spot.save();
-
-
-  
   return res.json(spot);
+  
+}catch(error){
+  if (error.name === 'SequelizeValidationError') {
+    const validationErrors = {};
+    error.errors.forEach(err => {
+      validationErrors[err.path] = err.message;
+    });
+    res.status(400).json({
+      message: 'Validation error',
+      errors: validationErrors
+    });
+  }
+}
 });
 
-router.delete('/:spotId', async (req, res) => {
+router.delete('/spots/:spotId', async (req, res) => {
   const spot= await Spot.findByPk(req.params.spotId);
-  console.log(spot)
   if(!spot) {
+  res.statusCode =404
   return res.json({message: "Spot couldn't be found"})
   }else{
   await spot.destroy()
-  // res.statusCode(200)
+  res.statusCode=200
   return res.json({ message: "Successfully deleted"});
   }
 });
