@@ -7,6 +7,10 @@ const { ReviewImage } = require('../../db/models')
 router.delete('/spot-images/:imageId',async(req,res)=>{
     const {imageId} = req.params
     const deletedSpotImage= await SpotImage.findByPk(imageId);
+    if(!deletedSpotImage){
+        res.statusCode = 404
+        return res.json({message: "Spot Image couldn't be found"})
+    }
     deletedSpotImage.destroy();
     return res.json({message: "Successfully deleted"})
 })
@@ -15,6 +19,10 @@ router.delete('/spot-images/:imageId',async(req,res)=>{
 router.delete('/review-images/:imageId',async(req,res)=>{
     const {imageId} = req.params
     const deletedReviewImage= await ReviewImage.findByPk(imageId);
+    if(!deletedReviewImage){
+        res.statusCode = 404
+        return res.json({message: "Spot Image couldn't be found"})
+    }
     deletedReviewImage.destroy();
     return res.json({message: "Successfully deleted"})
 })
