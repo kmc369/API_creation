@@ -20,7 +20,7 @@ router.get('/reviews/current', async (req, res) => {
           {
               model: Spot,
               attributes: {
-                  exclude: ["createdAt", "updatedAt"]
+                  exclude: ["createdAt", "updatedAt","description"]
               },
               include: [
                   {

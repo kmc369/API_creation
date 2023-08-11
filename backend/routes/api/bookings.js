@@ -80,12 +80,6 @@ router.post('/spots/:spotId/bookings', async (req, res) => {
        return res.json({message: "Spot couldn't be found"})
     }
     //conflicting 
-    
-
-
-
-
-
 
     const newBooking = await Booking.create({
         spotId:spot.id,
@@ -129,49 +123,7 @@ const user = req.user
         return res.json({ message: 'Unauthorized to edit this booking' });
       }
   
-    //   if (editBooking.endDate > new Date()) {
-    //     console.log(new Date())
-    //     console.log(editBooking.endDate)
-    //     return res.status(403).json({ message: "Past bookings can't be modified" });
-    //   }
-        // Check for conflicting bookings
-    // const conflictingBooking = await Booking.findOne({
-    //     where: {
-    //       spotId: editBooking.spotId,
-    //       [Sequelize.Op.and]: [
-    //         {
-    //           id: {
-    //             [Sequelize.Op.ne]: req.params.bookingId,
-    //           },
-    //         },
-    //         {
-    //           [Sequelize.Op.or]: [
-    //             {
-    //               startDate: {
-    //                 [Sequelize.Op.between]: [startDate, endDate],
-    //               },
-    //             },
-    //             {
-    //               endDate: {
-    //                 [Sequelize.Op.between]: [startDate, endDate],
-    //               },
-    //             },
-    //           ],
-    //         },
-    //       ],
-    //     },
-    //   });
-  
-    //   if (conflictingBooking) {
-        
-    //     return res.status(403).json({
-    //       message: 'Sorry, this spot is already booked for the specified dates',
-    //       errors: {
-    //         startDate: 'Start date conflicts with an existing booking',
-    //         endDate: 'End date conflicts with an existing booking',
-    //       },
-    //     });
-    //   }
+
     if(startDate){
         editBooking.startDate = startDate
     }

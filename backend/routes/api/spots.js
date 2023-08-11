@@ -9,44 +9,36 @@ const {Review} = require('../../db/models')
 
 router.get('/spots', async (req, res) => {
   try {
-    let { page = 1, size = 20} = req.query;
+    let { page =1, size=20 } = req.query;
 
-    // Validate query parameters
+    // Validate query parametersß
    
       page= parseInt(page);
       size= parseInt(size);
-
+     
 
      
     if (page < 1 || page > 10) {
-      throw new Error('Page must be between 1 and 10');
+   
+      res.statusCode=401
+      res.message = "Page must be between 1 and 10"
+     throw new Error('Page must be between 1 and 10');
+     
     }
 
     if (size < 1 || size > 20) {
+      res.statusCode=401
+      res.message = "Size must be between 1 and 20"
       throw new Error('Size must be between 1 and 20');
     }
-    // const spots = await Spot.findAll({
-    //   include:[
-    //     {
-    //     model:Review,
-    //     attributes:{
-    //       exclude:["createdAt","updatedAt","review","spotId","userId","id"]
-    //     }, 
-    //     },
-    //     {
-    //       model:SpotImage,
-    //       attributes:{
-    //         exclude:["createdAt","updatedAt","preview","spotId","id"]
-    //       }
-    //     },
-    //   ],
-    //   limit:size,
-    //   offset: (page - 1) * size,
-    // });
+ 
     const spots = await Spot.findAll({
       include: [{ model: Review }, { model: SpotImage }],
+      limit: size,
+      offset: (page-1)*size
      
     });
+
     const Spots = [];
     for (let i = 0; i < spots.length; i++) {
       Spots.push(spots[i].toJSON());
@@ -87,7 +79,7 @@ router.get('/spots', async (req, res) => {
     return res.json(response);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Internal Server Error' });
+    res.status(res.statusCode).json({ message: res.message});
   }
 });
 
@@ -221,8 +213,8 @@ router.post('/spots', async(req,res)=>{
   try{
 
   const newSpot =  await Spot.create({
-    address:address,
     ownerId:user.id,
+    address:address,
     city:city,
     state:state,
     country:country,
@@ -230,9 +222,13 @@ router.post('/spots', async(req,res)=>{
     lng:lng,
     name:name,
     description:description,
-    price:price
+    price:price,
     
   })
+
+
+  
+
   res.statusCode=201
   return res.json(newSpot)
 
@@ -269,7 +265,7 @@ router.post('/spots/:spotId/images', async (req, res) => {
       preview:preview
     })
     const imageWithExcludedAttributes = await SpotImage.findByPk(addImageToSpotImage.id, {
-      attributes: { exclude: ["id", "createdAt", "updatedAt"] },
+      attributes: { exclude: ["spotId", "createdAt", "updatedAt"] },
     });
   
   res.statusCode = 200
