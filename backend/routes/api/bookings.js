@@ -3,23 +3,46 @@ const router = express.Router();
 const { Booking } = require('../../db/models')
 const { User } = require('../../db/models')
 const {Spot } = require('../../db/models')
-
+const {SpotImage}= require('../../db/models')
 //get all the current users bookings
 router.get('/bookings/current', async (req, res) => {
 const user= req.user;
 const Bookings = await Booking.findAll({
     include:
     [{
-        model:Spot 
+        model:Spot ,
+        attributes:{
+            exclude:["createdAt","updatedAt","description"]
+        },
+        include:[
+            {
+                model: SpotImage,
+                attributes: ['url'],
+                where: { preview: true },
+                required: false
+            }
+        ]
     },
-    {
-        model:User
-    }],
+  ],
     where:{
         userId:user.id
     }
 })
-    return res.json({Bookings})
+const formattedBookings = Bookings.map(booking => ({
+    id: booking.id,
+    spotId: booking.spotId,
+    Spot: {
+        ...booking.Spot.toJSON(),
+        previewImage: booking.Spot.SpotImages.length > 0 ? booking.Spot.SpotImages[0].url : null,
+        SpotImages: undefined 
+    },
+    userId: booking.userId,
+    startDate: booking.startDate,
+    endDate: booking.endDate,
+    createdAt: booking.createdAt,
+    updatedAt: booking.updatedAt
+}));
+    return res.json({Bookings:formattedBookings})
 })
 
 //get all bookings for a spot based on spotId
@@ -33,7 +56,10 @@ router.get('/spots/:spotId/bookings', async (req, res) => {
     }
     const Bookings = await Booking.findAll({
         include:{
-            model:User
+            model:User,
+            attributes:{
+                exclude:["hashedPassword", "email", "createdAt", "updatedAt","username"]
+            }
         },
         where:{
             spotId:spot.id
