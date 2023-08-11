@@ -18,7 +18,8 @@ router.post('/',async (req, res, next) => {
             username: credential,
             email: credential
           }
-        }
+        },
+        
       });
   
       if (!user || !bcrypt.compareSync(password, user.hashedPassword.toString())) {
@@ -31,8 +32,11 @@ router.post('/',async (req, res, next) => {
   
       const safeUser = {
         id: user.id,
+        firstName:user.firstName,
+        lastName:user.lastName,
         email: user.email,
         username: user.username,
+      
       };
   
       await setTokenCookie(res, safeUser);
@@ -50,12 +54,15 @@ router.post('/',async (req, res, next) => {
   );
 
   router.get('/',(req, res) => {
-      const { user } = req;
+    const { user } = req;
+   console.log(user)
       if (user) {
         const safeUser = {
           id: user.id,
+          firstName:user.firstName,
+          lastName:user.lastName,
           email: user.email,
-          username: user.username,
+          username: user.username
         };
         return res.json({
           user: safeUser

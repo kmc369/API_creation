@@ -40,7 +40,13 @@ module.exports = (sequelize, DataTypes) => {
     
       validate:{
         len:[3,90],
-        notEmpty:true
+        notEmpty: {
+          args: true,
+          msg: 'Address cannot be empty'
+
+        },
+       
+        
       }
     },
     city: {
@@ -48,7 +54,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull:false,
       validate:{
         len:[3,90],
-        notEmpty:true
+        notEmpty:true,
+    
       }
     },
     state: {
@@ -84,6 +91,7 @@ module.exports = (sequelize, DataTypes) => {
     price:{
       type:DataTypes.DECIMAL
     },
+    
   }, {
     sequelize,
     modelName: 'Spot',

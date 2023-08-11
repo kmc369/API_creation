@@ -3,23 +3,135 @@ const router = express.Router();
 const { Spot } = require('../../db/models');
 const {User }= require('../../db/models')
 const {SpotImage}= require('../../db/models')
-
+const {Review} = require('../../db/models')
 // This route handler should be fine as it uses a middleware function
 
+
+
+
+
+
+
+
 //get All Spots
+// router.get('/spots', async (req, res) => {
+//   try{
+//   const spots = await Spot.findAll();
+//   res.statusCode=200
+//   return res.json({spots});
+//   }catch(error){
+//     res.status(500)
+//   }
+// });
+
 router.get('/spots', async (req, res) => {
-  try{
-  const spots = await Spot.findAll();
-  res.statusCode=200
-  return res.json({spots});
-  }catch(error){
-    res.status(500)
+  try {
+    let { page = 1, size = 20} = req.query;
+
+    // Validate query parameters
+   
+      page= parseInt(page);
+      size= parseInt(size);
+
+
+     
+    if (page < 1 || page > 10) {
+      throw new Error('Page must be between 1 and 10');
+    }
+
+    if (size < 1 || size > 20) {
+      throw new Error('Size must be between 1 and 20');
+    }
+    // const spots = await Spot.findAll({
+    //   include:[
+    //     {
+    //     model:Review,
+    //     attributes:{
+    //       exclude:["createdAt","updatedAt","review","spotId","userId","id"]
+    //     }, 
+    //     },
+    //     {
+    //       model:SpotImage,
+    //       attributes:{
+    //         exclude:["createdAt","updatedAt","preview","spotId","id"]
+    //       }
+    //     },
+    //   ],
+    //   limit:size,
+    //   offset: (page - 1) * size,
+    // });
+    const spots = await Spot.findAll({
+      include: [{ model: Review }, { model: SpotImage }],
+    });
+    const Spots = [];
+    for (let i = 0; i < spots.length; i++) {
+      Spots.push(spots[i].toJSON());
+    }
+    for (let i = 0; i < Spots.length; i++) {
+      const spot = Spots[i];
+      for (let j = 0; j < spot.SpotImages.length; j++) {
+        const image = spot.SpotImages[j];
+        if (image.preview === true) {
+          spot.previewImage = image.url;
+        }
+      }
+      if (!spot.previewImage) {
+        spot.previewImage = "no preview image found";
+      }
+      delete spot.SpotImages;
+      let sumStars = 0;
+      let countReviews = 0;
+      for (let i = 0; i < spot.Reviews.length; i++) {
+        const review = spot.Reviews[i];
+        if (review) {
+          sumStars += review.stars;
+          countReviews++;
+        }
+      }
+      const avgRating = countReviews > 0 ? sumStars / countReviews : 0;
+      spot.avgRating = avgRating;
+      delete spot.Reviews;
+    }
+    res.json({Spots});
+
+   
+    // spots.forEach(spot => {
+    //   let totalStars = 0;
+    //   if (spot.Reviews && spot.Reviews.length > 0) {
+    //     spot.Reviews.forEach(review => {
+    //       totalStars += review.stars;
+    //     });
+    //     const avgStar = totalStars / spot.Reviews.length;
+    //     spot.dataValues.avgRating = avgStar;
+    //   } else {
+    //     spot.dataValues.avgRating = 0; // No reviews, so average is 0
+    //   }
+    // });
+    
+
+
+   
+
+  
+    
+  
+    
+    // const response = {
+    //   Spots: spots,
+    //   page: page,
+    //   size: size,
+     
+    // };
+
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 
 
 //GetSpotsBy Users
-
 router.get('/spots/current', async(req,res)=>{
  
    const currentUser = req.user
@@ -141,16 +253,16 @@ router.post('/spots/:spotId/images', async (req, res) => {
 router.put('/spots/:spotId', async (req, res) => {
 
 
-  try{
   const spot = await Spot.findByPk(req.params.spotId)
-
+  
   if (!spot) {
     return res.status(404).json({ message: 'Spot not found' });
   }
-
+  
   const{address,city,state,country,lat,lng,name,description,price}=req.body;
-
-  if (address) {
+  
+  try{
+  if (address  && address !== '') {
     spot.address = address;
   }
   if (city) {
