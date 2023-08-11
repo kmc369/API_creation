@@ -67,12 +67,12 @@ module.exports = {
         preview: false
       },
       {
-        spotId: 12,
+        spotId: 11,
         url: "https://www.example.com/image12.jpg",
         preview: true
       },
       {
-        spotId: 13,
+        spotId: 11,
         url: "https://www.example.com/image13.jpg",
         preview: true
       },
@@ -97,46 +97,48 @@ module.exports = {
         preview: true
       },
       {
-        spotId: 18,
+        spotId: 3,
         url: "https://www.example.com/image18.jpg",
         preview: false
       },
       {
-        spotId: 19,
+        spotId: 3,
         url: "https://www.example.com/image19.jpg",
         preview: true
       },
       {
-        spotId: 20,
+        spotId: 3,
         url: "https://www.example.com/image20.jpg",
         preview: true
       },
       {
-        spotId: 21,
+        spotId: 18,
         url: "https://www.example.com/image21.jpg",
         preview: false
       },
       {
-        spotId: 22,
+        spotId: 18,
         url: "https://www.example.com/image22.jpg",
         preview: true
       },
       {
-        spotId: 23,
+        spotId: 19,
         url: "https://www.example.com/image23.jpg",
         preview: true
       },
       {
-        spotId: 24,
+        spotId: 19,
         url: "https://www.example.com/image24.jpg",
         preview: false
       },
       {
-        spotId: 25,
+        spotId: 19,
         url: "https://www.example.com/image25.jpg",
         preview: true
       }
-],{ validate: true })
+],{ validate: true }).catch(error=>{
+  // console.log(error)
+})
   },
 
   async down (queryInterface, Sequelize) {
