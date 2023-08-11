@@ -7,23 +7,6 @@ const {Review} = require('../../db/models')
 // This route handler should be fine as it uses a middleware function
 
 
-
-
-
-
-
-
-//get All Spots
-// router.get('/spots', async (req, res) => {
-//   try{
-//   const spots = await Spot.findAll();
-//   res.statusCode=200
-//   return res.json({spots});
-//   }catch(error){
-//     res.status(500)
-//   }
-// });
-
 router.get('/spots', async (req, res) => {
   try {
     let { page = 1, size = 20} = req.query;
@@ -62,6 +45,7 @@ router.get('/spots', async (req, res) => {
     // });
     const spots = await Spot.findAll({
       include: [{ model: Review }, { model: SpotImage }],
+     
     });
     const Spots = [];
     for (let i = 0; i < spots.length; i++) {
@@ -92,38 +76,15 @@ router.get('/spots', async (req, res) => {
       spot.avgRating = avgRating;
       delete spot.Reviews;
     }
-    res.json({Spots});
-
-   
-    // spots.forEach(spot => {
-    //   let totalStars = 0;
-    //   if (spot.Reviews && spot.Reviews.length > 0) {
-    //     spot.Reviews.forEach(review => {
-    //       totalStars += review.stars;
-    //     });
-    //     const avgStar = totalStars / spot.Reviews.length;
-    //     spot.dataValues.avgRating = avgStar;
-    //   } else {
-    //     spot.dataValues.avgRating = 0; // No reviews, so average is 0
-    //   }
-    // });
     
-
-
-   
-
-  
-    
-  
-    
-    // const response = {
-    //   Spots: spots,
-    //   page: page,
-    //   size: size,
+    const response = {
+      Spots: Spots,
+      page: page,
+      size: size,
      
-    // };
+    };
 
-
+    return res.json(response);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal Server Error' });
@@ -136,40 +97,111 @@ router.get('/spots/current', async(req,res)=>{
  
    const currentUser = req.user
 
-   if(currentUser){
-   const Spots = await currentUser.getSpots();
-    res.statusCode = 200
-    return res.json({Spots});
-   
-   }else{
-  
-   return res.json({message: "Spot couldn't be found"})
-
+   const spots = await Spot.findAll({
+    include: [{ model: Review }, 
+      { model: SpotImage }],
+      where:{
+        ownerId:currentUser.id
+      }
+  });
+  const Spots = [];
+  for (let i = 0; i < spots.length; i++) {
+    Spots.push(spots[i].toJSON());
   }
+  for (let i = 0; i < Spots.length; i++) {
+    const spot = Spots[i];
+    for (let j = 0; j < spot.SpotImages.length; j++) {
+      const image = spot.SpotImages[j];
+      if (image.preview === true) {
+        spot.previewImage = image.url;
+      }
+    }
+    if (!spot.previewImage) {
+      spot.previewImage = "no preview image found";
+    }
+    delete spot.SpotImages;
+    let sumStars = 0;
+    let countReviews = 0;
+    for (let i = 0; i < spot.Reviews.length; i++) {
+      const review = spot.Reviews[i];
+      if (review) {
+        sumStars += review.stars;
+        countReviews++;
+      }
+    }
+    const avgRating = countReviews > 0 ? sumStars / countReviews : 0;
+    spot.avgRating = avgRating;
+    delete spot.Reviews;
+  }
+  res.json({Spots});
+
+
 })
 
 //get details of spot by its id
 router.get('/spots/:spotId', async (req, res) => {
-  const {spotId} = req.params
-  
-  try{
-  const spots = await Spot.findByPk(spotId,{
-    
-    include:[{
-      model:SpotImage,
-    },
-    {
-      model:User,
-    }]
-  
-  })
+  const { spotId } = req.params;
 
-  if(!spots){
-    res.statusCode = 404
-    return res.json({message:"Spot couldn't be found"})
-  }
+  try {
+    const spot = await Spot.findByPk(spotId, {
+      include: [
+        {
+          model: SpotImage,
+          attributes: {
+            exclude: ["createdAt", "updatedAt", "spotId"]
+          }
+        },
+        {
+          model: User,
+          attributes: {
+            exclude: ["username", "hashedPassword", "email", "createdAt", "updatedAt"]
+          }
+        },
+        {
+          model: Review, // Assuming your Review model name is "Review"
+          attributes: ["stars"] // Include other review attributes if needed
+        },
+        
+      ]
+    });
 
-  return res.json({spots})
+    if (!spot) {
+      res.statusCode = 404;
+      return res.json({ message: "Spot couldn't be found" });
+    }
+
+    // Calculate average star rating and number of reviews
+    let totalStarRating = 0;
+    let numReviews = 0;
+
+    if (spot.Reviews && spot.Reviews.length > 0) {
+      numReviews = spot.Reviews.length;
+      totalStarRating = spot.Reviews.reduce((sum, review) => sum + review.stars, 0);
+    }
+
+    const avgStarRating = numReviews > 0 ? totalStarRating / numReviews : 0;
+
+    const spotDetails = {
+      id: spot.id,
+      ownerId: spot.ownerId,
+      address: spot.address,
+      city:spot.city,
+      state:spot.state,
+      country:spot.country,
+      lat:spot.lat,
+      lng:spot.lng,
+      name:spot.name,
+      description:spot.description,
+      price:spot.price,
+      createdAt:spot.createdAt,
+      updatedAt:spot.updatedAt,
+      numReviews: numReviews,
+      avgStarRating: avgStarRating,
+      SpotImages: spot.SpotImages,
+      Owner: spot.User
+    };
+
+    return res.json(spotDetails);
 }catch(error){
   console.error('Error:', error);
   return res.status(500).json({ error: 'Internal server error' });
