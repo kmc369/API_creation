@@ -73,7 +73,10 @@ router.get('/reviews/current', async (req, res) => {
     const Reviews = await Review.findAll({
         include:[
         {
-            model:User
+            model:User,
+            attributes: {
+              exclude: ["username", "hashedPassword", "email", "createdAt", "updatedAt"]
+          }
         },
         {
         model:ReviewImage
@@ -143,9 +146,15 @@ router.get('/reviews/current', async (req, res) => {
     }
     const{url} = req.body
     const newImage = await ReviewImage.create({
-        reviewId:review.id,
-        url:url
+    
+      reviewId:review.id,
+      url:url,
     })
+
+    const filteredImage = {
+      id: newImage.id,
+      url: newImage.url
+  };
 
     const imageCount = await ReviewImage.count({
         where: { reviewId: review.id }
@@ -156,7 +165,7 @@ router.get('/reviews/current', async (req, res) => {
     if (imageCount > maxImageCount) {
       return res.status(403).json({ message: "Maximum number of images for this resource was reached" });
     }
-    return res.json(newImage)
+    return res.json(filteredImage)
   });
 
 
