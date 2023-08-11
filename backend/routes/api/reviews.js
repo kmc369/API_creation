@@ -4,38 +4,63 @@ const { Review} = require('../../db/models')
 const { Spot } = require('../../db/models')
 const { ReviewImage }= require('../../db/models')
 const { User } = require('../../db/models')
-
+const {SpotImage}= require('../../db/models')
 //get reviews by user
 router.get('/reviews/current', async (req, res) => {
-    const user = req.user;
+  const user = req.user;
 
-     const Reviews = await Review.findAll({
-      
-        include:[
-        {
-            model:User,
-           
-        },
-        {
-            model:Spot,
-            attributes:{
-                exclude:["createdAt","updatedAt"]
-            }
-        },
-        {
-            model:ReviewImage,
-            attributes:['id','url']
-        }],
-        where :{
-            userId:user.id
-        }
-   
-     })
- 
-     res.statusCode = 200
-    return res.json({Reviews});
-  });
+  const Reviews = await Review.findAll({
+      include: [
+          {
+              model: User,
+              attributes: {
+                  exclude: ["username", "hashedPassword", "email", "createdAt", "updatedAt"]
+              }
+          },
+          {
+              model: Spot,
+              attributes: {
+                  exclude: ["createdAt", "updatedAt"]
+              },
+              include: [
+                  {
+                      model: SpotImage,
+                      attributes: ['url'],
+                      where: { preview: true },
+                      required: false
+                  }
+              ]
+          },
+          {
+              model: ReviewImage,
+              attributes: ['id', 'url']
+          }
+      ],
+      where: {
+          userId: user.id
+      }
+  })
 
+  const newReviews = Reviews.map(review => ({
+      id: review.id,
+      userId: review.userId,
+      spotId: review.spotId,
+      review: review.review,
+      stars: review.stars,
+      createdAt: review.createdAt,
+      updatedAt: review.updatedAt,
+      User: review.User,
+      Spot: {
+          ...review.Spot.toJSON(),
+          previewImage: review.Spot.SpotImages.length > 0 ? review.Spot.SpotImages[0].url : null,
+          SpotImages: undefined 
+      },
+      ReviewImages: review.ReviewImages
+  }));
+
+  res.statusCode = 200;
+  return res.json({ Reviews: newReviews });
+})
 
  // get reviews by spot id
   router.get('/spots/:spotId/reviews', async (req, res) => {
