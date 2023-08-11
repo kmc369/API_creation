@@ -11,21 +11,131 @@ module.exports = {
  
     await SpotImage.bulkCreate([
       
-  {
-    spotId: 1,
-    url:"https://a0.muscache.com/im/pictures/b744fa93-dfab-4b1e-b453-780a07c30ddc.jpg?im_w=720",
-    preview: true
-  },
-  {
-    spotId: 2,
-    url: "https://galeriemagazine.com/wp-content/uploads/2019/01/Dining_3-1920x1200.jpg",
-    preview: false
-  },
-  {
-    spotId:3,
-    url:"https://www.travelandleisure.com/thmb/mKI9Ok0tM6x-OTzE_oWeDpRw_18=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/oval-office-white-house-WHITEHOUSE0320-03c73abdc2ab40f0b4d28c8cbcf50e81.jpg",
-    preview:true
-  }
+      {
+        spotId: 1,
+        url: "https://www.example.com/image1.jpg",
+        preview: true
+      },
+      {
+        spotId: 2,
+        url: "https://www.example.com/image2.jpg",
+        preview: false
+      },
+      {
+        spotId: 3,
+        url: "https://www.example.com/image3.jpg",
+        preview: true
+      },
+      {
+        spotId: 4,
+        url: "https://www.example.com/image4.jpg",
+        preview: false
+      },
+      {
+        spotId: 5,
+        url: "https://www.example.com/image5.jpg",
+        preview: true
+      },
+      {
+        spotId: 6,
+        url: "https://www.example.com/image6.jpg",
+        preview: true
+      },
+      {
+        spotId: 7,
+        url: "https://www.example.com/image7.jpg",
+        preview: false
+      },
+      {
+        spotId: 8,
+        url: "https://www.example.com/image8.jpg",
+        preview: true
+      },
+      {
+        spotId: 9,
+        url: "https://www.example.com/image9.jpg",
+        preview: false
+      },
+      {
+        spotId: 10,
+        url: "https://www.example.com/image10.jpg",
+        preview: true
+      },
+      {
+        spotId: 11,
+        url: "https://www.example.com/image11.jpg",
+        preview: false
+      },
+      {
+        spotId: 12,
+        url: "https://www.example.com/image12.jpg",
+        preview: true
+      },
+      {
+        spotId: 13,
+        url: "https://www.example.com/image13.jpg",
+        preview: true
+      },
+      {
+        spotId: 14,
+        url: "https://www.example.com/image14.jpg",
+        preview: false
+      },
+      {
+        spotId: 15,
+        url: "https://www.example.com/image15.jpg",
+        preview: true
+      },
+      {
+        spotId: 16,
+        url: "https://www.example.com/image16.jpg",
+        preview: false
+      },
+      {
+        spotId: 17,
+        url: "https://www.example.com/image17.jpg",
+        preview: true
+      },
+      {
+        spotId: 18,
+        url: "https://www.example.com/image18.jpg",
+        preview: false
+      },
+      {
+        spotId: 19,
+        url: "https://www.example.com/image19.jpg",
+        preview: true
+      },
+      {
+        spotId: 20,
+        url: "https://www.example.com/image20.jpg",
+        preview: true
+      },
+      {
+        spotId: 21,
+        url: "https://www.example.com/image21.jpg",
+        preview: false
+      },
+      {
+        spotId: 22,
+        url: "https://www.example.com/image22.jpg",
+        preview: true
+      },
+      {
+        spotId: 23,
+        url: "https://www.example.com/image23.jpg",
+        preview: true
+      },
+      {
+        spotId: 24,
+        url: "https://www.example.com/image24.jpg",
+        preview: false
+      },
+      {
+        spotId: 25,
+        url: "https://www.example.com/image25.jpg",
+        preview: true
+      }
 ],{ validate: true })
   },
 
