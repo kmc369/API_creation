@@ -40,9 +40,11 @@ router.get('/spots', async (req, res) => {
     });
 
     const Spots = [];
+   
     for (let i = 0; i < spots.length; i++) {
       Spots.push(spots[i].toJSON());
     }
+  
     for (let i = 0; i < Spots.length; i++) {
       const spot = Spots[i];
       for (let j = 0; j < spot.SpotImages.length; j++) {
@@ -55,8 +57,12 @@ router.get('/spots', async (req, res) => {
         spot.previewImage = "no preview image found";
       }
       delete spot.SpotImages;
+     
+      
       let sumStars = 0;
       let countReviews = 0;
+     
+
       for (let i = 0; i < spot.Reviews.length; i++) {
         const review = spot.Reviews[i];
         if (review) {
@@ -64,9 +70,17 @@ router.get('/spots', async (req, res) => {
           countReviews++;
         }
       }
-      const avgRating = countReviews > 0 ? sumStars / countReviews : 0;
+      let avgRating = 0;
+    
+      if (countReviews > 0) {
+        avgRating = Math.round(sumStars / countReviews*100)/100;
+      }
       spot.avgRating = avgRating;
       delete spot.Reviews;
+    
+      // const avgRating = countReviews > 0 ? sumStars / countReviews : 0;
+      // spot.avgRating = avgRating;
+      // delete spot.Reviews;
     }
     
     const response = {

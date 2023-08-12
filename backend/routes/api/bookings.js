@@ -80,6 +80,18 @@ router.post('/spots/:spotId/bookings', async (req, res) => {
        return res.json({message: "Spot couldn't be found"})
     }
     //conflicting 
+    const existingBooking = await Booking.findOne({
+        where: {
+          spotId: spot.Id,
+          startDate: {
+            [Op.between]: [startDate, endDate]
+          }
+        }
+      });
+  
+      if (existingBooking) {
+        return res.status(403).json({ message: 'Sorry, this spot is already booked for the specified dates' });
+      }
 
     const newBooking = await Booking.create({
         spotId:spot.id,

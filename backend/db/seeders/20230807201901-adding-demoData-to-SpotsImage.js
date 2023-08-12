@@ -27,72 +27,72 @@ module.exports = {
         preview: true
       },
       {
-        spotId: 4,
+        spotId: 2,
         url: "https://www.example.com/image4.jpg",
         preview: false
       },
       {
-        spotId: 5,
+        spotId: 3,
         url: "https://www.example.com/image5.jpg",
         preview: true
       },
       {
-        spotId: 6,
+        spotId: 2,
         url: "https://www.example.com/image6.jpg",
         preview: true
       },
       {
-        spotId: 7,
+        spotId: 3,
         url: "https://www.example.com/image7.jpg",
         preview: false
       },
       {
-        spotId: 8,
+        spotId: 3,
         url: "https://www.example.com/image8.jpg",
         preview: true
       },
       {
-        spotId: 9,
+        spotId: 3,
         url: "https://www.example.com/image9.jpg",
         preview: false
       },
       {
-        spotId: 10,
+        spotId: 3,
         url: "https://www.example.com/image10.jpg",
         preview: true
       },
       {
-        spotId: 11,
+        spotId: 3,
         url: "https://www.example.com/image11.jpg",
         preview: false
       },
       {
-        spotId: 11,
+        spotId: 2,
         url: "https://www.example.com/image12.jpg",
         preview: true
       },
       {
-        spotId: 11,
+        spotId: 2,
         url: "https://www.example.com/image13.jpg",
         preview: true
       },
       {
-        spotId: 14,
+        spotId: 1,
         url: "https://www.example.com/image14.jpg",
         preview: false
       },
       {
-        spotId: 15,
+        spotId: 1,
         url: "https://www.example.com/image15.jpg",
         preview: true
       },
       {
-        spotId: 16,
+        spotId: 1,
         url: "https://www.example.com/image16.jpg",
         preview: false
       },
       {
-        spotId: 17,
+        spotId: 1,
         url: "https://www.example.com/image17.jpg",
         preview: true
       },
@@ -112,30 +112,11 @@ module.exports = {
         preview: true
       },
       {
-        spotId: 18,
+        spotId: 1,
         url: "https://www.example.com/image21.jpg",
         preview: false
       },
-      {
-        spotId: 18,
-        url: "https://www.example.com/image22.jpg",
-        preview: true
-      },
-      {
-        spotId: 19,
-        url: "https://www.example.com/image23.jpg",
-        preview: true
-      },
-      {
-        spotId: 19,
-        url: "https://www.example.com/image24.jpg",
-        preview: false
-      },
-      {
-        spotId: 19,
-        url: "https://www.example.com/image25.jpg",
-        preview: true
-      }
+     
 ],{ validate: true }).catch(error=>{
   // console.log(error)
 })

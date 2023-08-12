@@ -105,6 +105,16 @@ router.get('/reviews/current', async (req, res) => {
   return res.status(404).json({ message: "Spot couldn't be found" });
 }
 
+const existingReview = await Review.findOne({
+  where: {
+    userId: user.Id,
+    spotId: spot.Id
+  }
+});
+if (existingReview) {
+  return res.status(500).json({ message: 'User already has a review for this spot' });
+}
+
    
    const newReview = await Review.create({
     spotId:spot.id,
