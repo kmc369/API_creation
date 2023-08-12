@@ -12,7 +12,7 @@ await Review.bulkCreate([
   
   {
     spotId: 2,
-    userId: 3,
+    userId: 2,
     review: "The Weston exceeded my expectations. The staff was friendly, and the views from the room were breathtaking!",
     stars: 4
   },

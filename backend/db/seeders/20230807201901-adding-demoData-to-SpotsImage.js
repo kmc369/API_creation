@@ -62,7 +62,7 @@ module.exports = {
         preview: true
       },
       {
-        spotId: 3,
+        spotId: 2,
         url: "https://www.example.com/image11.jpg",
         preview: false
       },
