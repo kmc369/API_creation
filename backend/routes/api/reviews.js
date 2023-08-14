@@ -66,6 +66,7 @@ router.get('/reviews/current', async (req, res) => {
   router.get('/spots/:spotId/reviews', async (req, res) => {
    
     const spot = await Spot.findByPk(req.params.spotId);
+    const user = req.user;
     if(!spot){
         res.statusCode = 404
        return res.json({message: "Spot couldn't be found"})
@@ -101,31 +102,26 @@ router.get('/reviews/current', async (req, res) => {
    const user = req.user
    const {review,stars} = req.body
    const spot = await Spot.findByPk(req.params.spotId);
-    if (!spot) {
+
+  if (!spot) {
+ 
   return res.status(404).json({ message: "Spot couldn't be found" });
 }
 
-const existingReview = await Review.findOne({
-  where: {
-    userId: user.Id,
-    spotId: spot.Id
-  }
-});
-if (existingReview) {
-  return res.status(500).json({ message: 'User already has a review for this spot' });
-}
 
-   
-   const newReview = await Review.create({
-    spotId:spot.id,
-    userId:user.id,
-    review:review,
-    stars:stars
-   })
-   res.statusCode = 201
-   return res.json(newReview)
+
+const newReview = await Review.create({
+  spotId:spot.id,
+  userId:user.id,
+  review:review,
+  stars:stars
+})
+
+
+res.statusCode = 201
+return res.json(newReview)
 }catch(error){
-
+  
     if (error.name === 'SequelizeValidationError') {
             const validationErrors = {};
             error.errors.forEach(err => {
@@ -140,9 +136,9 @@ if (existingReview) {
             res.status(500).json({
               message: 'An error occurred'
             });
-        }
+         }
 
-    }
+   }
   });
 
 
