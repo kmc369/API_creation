@@ -1,11 +1,11 @@
-import { TextField, Button } from '@mui/material';
+// import { TextField, Button } from '@mui/material';
 import { motion } from 'framer-motion';
 import { useEffect} from 'react';
 
-import {login} from "../../store/sessions"
+import {login} from "../../store/session"
 
 import React, { useState } from "react";
-import * as sessionActions from "../../store/sessions";
+import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 
@@ -40,7 +40,7 @@ export default function LoginFormPage(){
             transition={{ duration: 0.5 }}
             className="animated-form" >
                  <p>Login</p>
-                <TextField
+                <input
                  value={credential}
                  onChange={(e)=>setCredential(e.target.value)}
                  type="text"
@@ -53,7 +53,7 @@ export default function LoginFormPage(){
                  transition={{ delay: 0.2, duration: 0.5 }}
                  
                  />
-              <TextField
+              <input
                 value={password}
                 onChange={(e)=>setPassword(e.target.value)}
                 type="password" 
@@ -66,12 +66,12 @@ export default function LoginFormPage(){
                 transition={{ delay: 0.4, duration: 0.5 }} 
                 />
                 {errors.credential && <p>{errors.credential}</p>}
-                <Button
+                <button
                 type="submit"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6, duration: 0.5 }}
-                >Submit </Button>
+                >Submit</button >
             </motion.form>
 
             

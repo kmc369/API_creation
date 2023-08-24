@@ -1,8 +1,8 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import { restoreCSRF, csrfFetch } from '../store/csrf';
-import sessionsReducer from "./sessions";
-import * as sessionActions from '../store/sessions';
+import sessionsReducer from "./session";
+import * as sessionActions from '../store/session';
 
 const rootReducer = combineReducers({
   // add reducer functions here
