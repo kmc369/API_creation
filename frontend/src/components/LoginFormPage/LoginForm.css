@@ -1,0 +1,37 @@
+.animated-form {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.9); /* Grayish opacity background */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Slightly elevated appearance */
+    z-index: 1; /* Higher z-index to make it pop out */
+    height:294px;
+    width:366px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:25px;
+    margin:auto
+    
+  }
+
+
+
+
+  
+  .animated-form h1 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+
+  
+  .animated-form button {
+    margin-top: 15px;
+    
+  }
