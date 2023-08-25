@@ -1,8 +1,6 @@
 // import { TextField, Button } from '@mui/material';
 import { motion } from 'framer-motion';
-import { useEffect} from 'react';
 
-import {login} from "../../store/session"
 
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
@@ -32,13 +30,14 @@ function LoginFormModal() {
     return (
     <div>
            
-            <motion.form  onSubmit={handleSubmit}
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5 }}
-            className="animated-form" >
-                 <p>Login</p>
+           <motion.div // Wrap with motion.div for animation
+                className={`Login-form-container `} 
+                initial={{ opacity: 0, transform: "translate(-50%, -50%) scale(0.5)" }}
+                animate={{ opacity: 1, transform: "translate(-50%, -50%) scale(1)" }}
+                transition={{ duration: 0.3 }}
+              >
+              <form  onSubmit={handleSubmit}>
+                 <h1>Login</h1>
                 <input
                  value={credential}
                  onChange={(e)=>setCredential(e.target.value)}
@@ -71,7 +70,8 @@ function LoginFormModal() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6, duration: 0.5 }}
                 >Submit</button >
-            </motion.form>
+              </form>
+            </motion.div>
 
             
         
