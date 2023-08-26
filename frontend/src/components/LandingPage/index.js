@@ -7,13 +7,13 @@ import { useSelector } from 'react-redux';
 export default function LandingPage(){
     const dispatch = useDispatch()
     const spots = useSelector(state=>(state.landing.spots))
-    console.log("spots is " ,spots)
     useEffect(()=>{
         dispatch(LandingActions.getAllSpotsThunk())
     },[dispatch])
   
    
-    if(!spots) return null
+    if(!spots) return <h1>undefined</h1>
+
     const values = Object.values(spots)
     return (
         <>
