@@ -1,6 +1,6 @@
 import { csrfFetch } from "./csrf"
 
-const GET_SPOTS = '/spots'
+const GET_SPOTS = '/getAllSpots'
 
 const getSpots = (spots)=>{
     return {
@@ -18,7 +18,7 @@ export const getAllSpotsThunk = ()=> async (dispatch) =>{
     if(response.ok){
         const data = await response.json()
         dispatch(getSpots(data))
-        console.log(data)
+        // console.log(data)
         return data
     }
     }catch(error){
