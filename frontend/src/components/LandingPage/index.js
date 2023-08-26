@@ -29,8 +29,8 @@ export default function LandingPage(){
                 <p>{element.city}</p>
                 
         </div>
-        ))}
-    </div>
+        ))} 
+     </div>
     </>
     
     );
