@@ -18,20 +18,20 @@ module.exports = {
         username: 'Demo-lition',
         hashedPassword: bcrypt.hashSync('password')
       },
-      {
-        firstName:'Jane',
-        lastName:'Doe',
-        email: 'Jane@user.io',
-        username: 'FakeUser1',
-        hashedPassword: bcrypt.hashSync('password2')
-      },
-      {
-        firstName:'Olivia',
-        lastName:'Pope',
-        email: 'OPope@user.io',
-        username: 'FitzLover123',
-        hashedPassword: bcrypt.hashSync('password3')
-      }
+      // {
+      //   firstName:'Jane',
+      //   lastName:'Doe',
+      //   email: 'Jane@user.io',
+      //   username: 'FakeUser1',
+      //   hashedPassword: bcrypt.hashSync('password2')
+      // },
+      // {
+      //   firstName:'Olivia',
+      //   lastName:'Pope',
+      //   email: 'OPope@user.io',
+      //   username: 'FitzLover123',
+      //   hashedPassword: bcrypt.hashSync('password3')
+      // }
     ], { validate: true }).catch(err => {
    
       // console.log(err)

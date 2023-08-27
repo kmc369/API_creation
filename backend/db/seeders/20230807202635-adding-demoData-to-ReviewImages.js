@@ -10,24 +10,24 @@ module.exports = {
   await ReviewImage.bulkCreate([
       {
         reviewId: 1,
-        url: "https://example.com/review_image1.jpg"
+        url: "https://i.pinimg.com/736x/88/bc/e6/88bce6d9f31b39af0d0cd1e5b47e74ad.jpg"
       },
       {
         reviewId: 2,
-        url: "https://example.com/review_image2.jpg"
+        url: "https://i.pinimg.com/736x/88/bc/e6/88bce6d9f31b39af0d0cd1e5b47e74ad.jpg"
       },
-      {
-        reviewId: 1,
-        url: "https://example.com/review_image2.jpg"
-      },
-      {
-        reviewId: 2,
-        "url": "https://example.com/review_image4.jpg"
-      },
-      {
-        reviewId: 1,
-        "url": "https://example.com/review_image5.jpg"
-      },
+      // {
+      //   reviewId: 1,
+      //   url: "https://example.com/review_image2.jpg"
+      // },
+      // {
+      //   reviewId: 2,
+      //   "url": "https://example.com/review_image4.jpg"
+      // },
+      // {
+      //   reviewId: 1,
+      //   "url": "https://example.com/review_image5.jpg"
+      // },
 
      
   ], { validate: true }).catch(err => {
