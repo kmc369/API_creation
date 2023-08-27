@@ -12,10 +12,15 @@ export default function LandingPage(){
     },[dispatch])
   
    
-    if(!spots) return <h1>undefined</h1>
+    if(!spots) return null
 
-    const values = Object.values(spots)
+    let values 
+    if(spots !== undefined){
+     values = Object.values(spots)
+
+    }
     return (
+
         <>
       <h1>hello</h1>
         <div className='landingPageContainer'>
