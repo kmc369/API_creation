@@ -18,35 +18,35 @@ module.exports = {
         endDate: "2023-08-20"
       },
       {
-        spotId: 2,
-        userId: 2,
-        startDate: "2023-11-15",
-        endDate: "2023-11-25"
-      },
-      {
-        spotId: 2,
-        userId: 2,
+        spotId: 1,
+        userId: 1,
         startDate: "2023-11-15",
         endDate: "2023-11-25"
       },
       {
         spotId: 1,
         userId: 1,
-        startDate: "2023-09-01",
-        endDate: "2023-09-10"
+        startDate: "2023-11-15",
+        endDate: "2023-11-25"
       },
-      {
-        spotId: 5,
-        userId: 3,
-        startDate: "2023-10-12",
-        endDate: "2023-10-18"
-      },
-      {
-        spotId: 3,
-        userId: 3,
-        startDate: "2023-07-05",
-        endDate: "2023-07-15"
-      },
+      // {
+      //   spotId: 1,
+      //   userId: 1,
+      //   startDate: "2023-09-01",
+      //   endDate: "2023-09-10"
+      // },
+      // {
+      //   spotId: 5,
+      //   userId: 3,
+      //   startDate: "2023-10-12",
+      //   endDate: "2023-10-18"
+      // },
+      // {
+      //   spotId: 3,
+      //   userId: 3,
+      //   startDate: "2023-07-05",
+      //   endDate: "2023-07-15"
+      // },
       
     
     ],{ validate: true }).catch(err => {
