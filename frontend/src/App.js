@@ -15,7 +15,7 @@ function App() {
 
   return (
     <>
-    
+       {document.title = "airbnb"}
       <Navigation isLoaded={isLoaded} />
       {isLoaded && 
       <Switch>

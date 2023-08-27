@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
 export default function LandingPage(){
+      
     const dispatch = useDispatch()
     const spots = useSelector(state=>(state.landing.spots))
     useEffect(()=>{
@@ -12,26 +13,27 @@ export default function LandingPage(){
     },[dispatch])
   
    
-    if(!spots) return null
-
-    let values 
-    if(spots !== undefined){
-     values = Object.values(spots)
-
+    if (Object.values(spots).length === 0) {
+        return null
     }
+
+    const values = Object.values(spots);
+    
     return (
 
         <>
-      <h1>hello</h1>
-        <div className='landingPageContainer'>
+      
+        <div id='landingPageContainer'>
         {console.log('values in the render', values)}
       
         {values[0].map((element, index) => (
           
-            <div key={index}>
-                <p>{element.state}</p> 
-                <p>{element.address}</p>
-                <p>{element.city}</p>
+            <div className="spot" key={index}>
+                <img src={element.previewImage} alt='image'></img>
+                <p>{element.state}, {element.city}</p> 
+                <p>{element.name}</p>
+                <p>${element.price} /night</p>
+             
                 
         </div>
         ))} 
