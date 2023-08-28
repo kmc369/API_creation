@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion';
 
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
@@ -27,6 +27,22 @@ function LoginFormModal() {
         }
       });
   };
+
+  useEffect(()=>{
+    const error = {}
+    if(credential.length<4){
+      error.credential = "NAME MUST BE GREATER THAN FOUR CHARACTERS"
+    }
+
+    if(password.length<6){
+      error.password = "PASSWORD MUST BE GREATER THAN 6 CHARACTERS"
+    }
+
+    setErrors(error)
+  },[credential,password])
+
+
+
     return (
     <div>
            
@@ -66,10 +82,15 @@ function LoginFormModal() {
                 {errors.credential && <p>{errors.credential}</p>}
                 <button
                 type="submit"
+                disabled={Object.keys(errors).length>0}
+                className={`submit-button ${Object.keys(errors).length > 0 ? "disabled-button" : "enabled-button"}`}
+                style={{ backgroundColor: Object.keys(errors).length > 0 ? 'rgb(187, 186, 186)' : 'rgb(0, 123, 255)' }}
+
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6, duration: 0.5 }}
                 >Submit</button >
+               
               </form>
             </motion.div>
 

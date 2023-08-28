@@ -9,13 +9,15 @@ import { Route } from "react-router-dom";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  document.title = "airbnb"
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
+
   return (
     <>
-       {document.title = "airbnb"}
+      
       <Navigation isLoaded={isLoaded} />
       {isLoaded && 
       <Switch>

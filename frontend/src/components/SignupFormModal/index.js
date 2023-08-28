@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as sessionActions from "../../store/session";
@@ -16,6 +16,40 @@ function SignupFormModal() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
+
+  useEffect(()=>{
+    const errorOBJ = {}
+
+    if(!email){
+      errorOBJ.email = "CAN NOT BE EMPTY"
+    }
+
+    if(!username){
+      errorOBJ.username = "CAN NOT BE EMPTY"
+    }
+
+    if(!firstName){
+      errorOBJ.firstName = "CAN NOT BE EMPTY"
+    }
+
+
+    if(!lastName){
+      errorOBJ.lastName = "CAN NOT BE EMPTY"
+    }
+
+
+    if(!password){
+      errorOBJ.password = "CAN NOT BE EMPTY"
+    }
+
+
+    if(!confirmPassword){
+      errorOBJ.confirmPassword = "CAN NOT BE EMPTY"
+    }
+
+      setErrors(errorOBJ)
+    
+  },[email,username,firstName,lastName,password,confirmPassword])
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -54,69 +88,75 @@ function SignupFormModal() {
 
       <form onSubmit={handleSubmit}>
       <h1>Sign Up</h1>
-        <label>
-          Email
+    
           <input
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            placeholder="Email"
           />
-        </label>
+       
         {errors.email && <p>{errors.email}</p>}
-        <label>
-          Username
+    
           <input
             type="text"
+            placeholder="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
           />
-        </label>
+       
         {errors.username && <p>{errors.username}</p>}
-        <label>
-          First Name
+      
+        
           <input
             type="text"
+            placeholder="First Name"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             required
           />
-        </label>
+       
         {errors.firstName && <p>{errors.firstName}</p>}
-        <label>
-          Last Name
+       
           <input
             type="text"
+            placeholder="Last Name"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             required
           />
-        </label>
+       
         {errors.lastName && <p>{errors.lastName}</p>}
-        <label>
-          Password
+      
+         
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            placeholder="Password"
           />
-        </label>
+   
         {errors.password && <p>{errors.password}</p>}
-        <label>
-          Confirm Password
+        
           <input
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
+            placeholder="Confirm Password"
           />
-        </label>
+    
         {errors.confirmPassword && (
-          <p>{errors.confirmPassword}</p>
+         <p>{errors.confirmPassword}</p>
         )}
-        <button type="submit">Sign Up</button>
+        <button 
+        disabled={Object.keys(errors).length>0}
+        className={`submit-button ${Object.keys(errors).length > 0 ? "disabled-button" : "enabled-button"}`}
+        style={{ backgroundColor: Object.keys(errors).length > 0 ? 'rgb(187, 186, 186)' : 'rgb(0, 123, 255)' }}
+        type="submit">Sign Up</button>
       </form>
 
       </motion.div>

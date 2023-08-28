@@ -52,7 +52,7 @@
   
   .signup-form-container p {
     color: #ff0000;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
   }
   
   .signup-form-container button {
@@ -62,9 +62,30 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+ 
   }
   
   .signup-form-container button:hover {
     background-color: #0056b3;
+  }
+
+  .enabled-button {
+    background-color: #007bff; 
+    color: #ffffff; 
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+ 
+  }
+
+  .disabled-button {
+    background-color: rgb(187, 186, 186);
+    color: rgb(115, 114, 114);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+ 
   }
