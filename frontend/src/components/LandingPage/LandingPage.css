@@ -5,20 +5,40 @@
     gap:20px;
 }
 
-.spot{
 
-}
 
 img{
     height: 233px;
     width: 311px;
     border-radius: 7px;
-    z-index: 4;
+    z-index: 2;
     cursor: pointer;
+
 }
-p{
-    
+
+p{ 
     height:3px;
+}
+
+.tooltip{
+    color:#ff385c;
+    background-color:rgb(203, 203, 203) ;
+    padding: 1rem;
+    width: max-content;
+    position: relative;
+    bottom:60px;
+    left:20px;
+    border-radius: 3px;
+    text-align: center;
+    opacity: 0.8;
 
 
 }
+
+.fa-star{
+    font-size: 15px;
+    margin-right: 2px;
+    margin-left: 30px;
+    
+}
+

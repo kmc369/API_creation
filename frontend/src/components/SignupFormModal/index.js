@@ -24,8 +24,8 @@ function SignupFormModal() {
       errorOBJ.email = "CAN NOT BE EMPTY"
     }
 
-    if(!username){
-      errorOBJ.username = "CAN NOT BE EMPTY"
+    if(!username || username.length<4){
+      errorOBJ.username = "TO SHORT"
     }
 
     if(!firstName){
@@ -38,14 +38,16 @@ function SignupFormModal() {
     }
 
 
-    if(!password){
-      errorOBJ.password = "CAN NOT BE EMPTY"
+    if(!password || password.length<6){
+      errorOBJ.password = "TO SHORT"
     }
 
 
-    if(!confirmPassword){
-      errorOBJ.confirmPassword = "CAN NOT BE EMPTY"
+    if(!confirmPassword || password!==confirmPassword){
+      errorOBJ.confirmPassword = "PASSWORDS MUST MATCH"
+    
     }
+ 
 
       setErrors(errorOBJ)
     

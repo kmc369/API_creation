@@ -3,11 +3,14 @@ import { useEffect } from 'react';
 import * as LandingActions from '../../store/landing'
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { Tooltip } from './tooltip';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 export default function LandingPage(){
-      
+    const history = useHistory()
     const dispatch = useDispatch()
     const spots = useSelector(state=>(state.landing.spots))
+    
     useEffect(()=>{
         dispatch(LandingActions.getAllSpotsThunk())
     },[dispatch])
@@ -18,25 +21,28 @@ export default function LandingPage(){
     }
 
     const values = Object.values(spots);
+
+
     
     return (
-
+      
         <>
-      
+       
         <div id='landingPageContainer'>
-        {console.log('values in the render', values)}
       
+       
         {values[0].map((element, index) => (
-          
-            <div className="spot" key={index}>
+       
+            <div className="spot" key={index} onClick={()=>{history.push(`/spots/${element.id}`)}}>
+                <Tooltip text={element.name}>
                 <img src={element.previewImage} alt='image'></img>
-                <p>{element.state}, {element.city}</p> 
-                <p>{element.name}</p>
-                <p>${element.price} /night</p>
-             
-                
+                </Tooltip>
+                <p className='city-star'>{element.state}, {element.city} <i class="fa-solid fa-star"></i>{element.avgRating}</p> 
+                <p>${element.price} night</p>
+
         </div>
         ))} 
+     
      </div>
     </>
     
