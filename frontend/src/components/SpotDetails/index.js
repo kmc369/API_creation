@@ -23,7 +23,7 @@ export default function SpotDetails() {
     return null
   }
 
-  // console.log("the review Details are " ,reviewDetails)
+ 
 
 
  function formatReviewCount(count) {
@@ -37,6 +37,18 @@ export default function SpotDetails() {
   }
 }
 
+function dateFormat(timestamp){
+
+  const date = new Date(timestamp);
+
+const months = [
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
+const monthYearFormat = `${months[date.getUTCMonth()]} ${date.getUTCFullYear()}`;
+return monthYearFormat;
+}
 
 
 
@@ -68,9 +80,17 @@ export default function SpotDetails() {
     </div>
 
     <div className='reviewsContainer'>
-    <h1><i class="fa-solid fa-star"></i>{spotDetail.avgStarRating}  {formatReviewCount(spotDetail.numReviews)}</h1>
-        
-    </div>
+  <h1><i className="fa-solid fa-star"></i>{spotDetail.avgStarRating} {formatReviewCount(spotDetail.numReviews)}</h1>
+  {reviewDetails.Reviews
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) 
+    .map((element, index) => (
+      <div key={element.id}> 
+        <h3>{element.User.firstName} </h3>
+        <p>{dateFormat(element.createdAt)}</p>
+        <p>{element.review}</p>
+      </div>
+    ))}
+</div>
     </>
   )
 }
