@@ -70,17 +70,15 @@ router.get('/spots', async (req, res) => {
           countReviews++;
         }
       }
-      let avgRating = 0;
+      let avgRating = 0.0;
     
       if (countReviews > 0) {
-        avgRating = Math.round(sumStars / countReviews*100)/100;
+        avgRating = (sumStars / countReviews).toFixed(1);
       }
       spot.avgRating = avgRating;
       delete spot.Reviews;
     
-      // const avgRating = countReviews > 0 ? sumStars / countReviews : 0;
-      // spot.avgRating = avgRating;
-      // delete spot.Reviews;
+     
     }
     
     const response = {
@@ -192,7 +190,7 @@ router.get('/spots/:spotId', async (req, res) => {
     // const avgStarRating = numReviews > 0 ? totalStarRating / numReviews : 0;
     let avgStarRating;
     if (numReviews > 0) {
-      avgStarRating = (totalStarRating / numReviews).toFixed(2);;
+      avgStarRating = (totalStarRating / numReviews).toFixed(1);;
     } else {
         avgStarRating = 0;
     }

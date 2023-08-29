@@ -16,7 +16,9 @@
     grid-row: 1; 
     grid-column: 2;
     width: 95%;
-    height: 90%;
+    height: 88%;
+    margin-top: 10px;
+
 
 
 
@@ -27,6 +29,8 @@
     grid-column: 3;
     width: 95%;
     height: 90%;
+    margin-top: 10px;
+
 
  
 }
@@ -36,6 +40,8 @@
     grid-column: 3;
     width: 95%;
     height: 90%;
+    margin-top: 10px;
+
 
 
      
@@ -47,6 +53,41 @@
     grid-column: 2;
     width: 95%;
     height: 90%;
+    margin-top: 10px;
 
 
 }
+
+.callout{
+    box-shadow: 2px 2px 2px rgb(154, 157, 159);
+    height:248px;
+    width:265px;
+    border-radius: 5px;
+    margin-left: 860px;
+    border:1px solid lightgray;
+    margin-bottom: 9px;;
+    
+}
+.calloutPrice{
+    text-align:left;
+    margin-left: 13px;
+
+}
+.reserve{
+    background-color:#ff385c; 
+    height:37px;
+    width: 138px;
+    border-radius: 4px;
+    color:aliceblue;
+    margin-top: 30px;
+    border:0px;
+    margin-left: 50px;
+  
+
+}
+
+.callout-container{
+    border-bottom: 2px solid lightgray;
+
+}
+

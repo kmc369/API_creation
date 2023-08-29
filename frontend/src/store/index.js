@@ -6,11 +6,13 @@ import * as sessionActions from '../store/session';
 // import * as landingAction from '../store/landing'
 import landingReducer from "./landing";
 import getDetailReducer from "./details";
+import getReviewsReducer from "./reviews";
 const rootReducer = combineReducers({
   // add reducer functions here
   session:sessionsReducer,
   landing:landingReducer,
   details:getDetailReducer,
+  reviews:getReviewsReducer
 });
 
 let enhancer;
