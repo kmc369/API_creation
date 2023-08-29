@@ -23,7 +23,7 @@ export default function SpotDetails() {
     return null
   }
 
-  console.log("the review Details are " ,reviewDetails)
+  // console.log("the review Details are " ,reviewDetails)
 
 
  function formatReviewCount(count) {
