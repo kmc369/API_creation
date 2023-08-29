@@ -23,6 +23,10 @@ export default function SpotDetails() {
     return null
   }
 
+  if(!reviewDetails){
+    return null
+  }
+
  
 
 
