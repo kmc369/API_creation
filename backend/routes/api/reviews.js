@@ -108,6 +108,8 @@ router.get('/reviews/current', async (req, res) => {
   return res.status(404).json({ message: "Spot couldn't be found" });
 }
 
+//needs to be edited
+
 if(spot){
   const reviewsAtSpot = await Review.findAll({
     where:{
