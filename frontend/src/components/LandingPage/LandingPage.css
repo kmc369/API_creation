@@ -3,6 +3,7 @@
     margin-top: 50px;
     flex-direction: row;
     gap:20px;
+    cursor: pointer;
 }
 
 

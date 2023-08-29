@@ -1,0 +1,52 @@
+
+.detailImages {
+    display: grid;
+    grid-template-rows: 1fr 1fr; /* Two rows with equal height */
+    grid-template-columns: 2fr 1fr 1fr; /* Three columns with equal width */
+}
+ 
+#s0{
+    grid-row: 1 / span 2; 
+    grid-column: 1; 
+    height:471px;
+    width:99%;
+}
+
+#s1{
+    grid-row: 1; 
+    grid-column: 2;
+    width: 95%;
+    height: 90%;
+
+
+
+}
+
+#s2{
+    grid-row: 1; 
+    grid-column: 3;
+    width: 95%;
+    height: 90%;
+
+ 
+}
+
+#s3 {
+    grid-row: 2; 
+    grid-column: 3;
+    width: 95%;
+    height: 90%;
+
+
+     
+
+}
+
+#s4{
+    grid-row: 2;
+    grid-column: 2;
+    width: 95%;
+    height: 90%;
+
+
+}
