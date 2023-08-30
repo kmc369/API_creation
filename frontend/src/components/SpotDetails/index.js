@@ -18,9 +18,10 @@ export default function SpotDetails() {
   const { closeModal } = useModal();
 
   const { spotId } = useParams() 
+
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
 
-  const history = useHistory()
+  
  
   useEffect(() => {
  
@@ -104,11 +105,14 @@ const isSpotOwner = spotDetail.Owner.id === currentUser.id;
   <div>
           {currentUser && !hasPostedReview && !isSpotOwner && (
             <OpenModalButton
-              modalComponent={<ReviewForm onCloseModal={() => setIsReviewModalOpen(false)} />}
+              modalComponent={<ReviewForm spotId ={spotId} onCloseModal={() => setIsReviewModalOpen(false)} />}
+        
               buttonText="Post Your Review"
+              
             />
           )}
         </div>
+       
   {reviewDetails.Reviews
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) 
     .map((element, index) => (
