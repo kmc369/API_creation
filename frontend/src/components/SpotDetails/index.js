@@ -7,6 +7,8 @@ import * as sessionActions from "../../store/session";
 import ReviewForm from '../ReviewForm';
 import { useModal } from "../../context/Modal";
 import './SpotDetails.css';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import OpenModalButton from '../OpenModalButton'
 
 export default function SpotDetails() {
   const spotDetail = useSelector(state=>state.details.spot)
@@ -18,6 +20,7 @@ export default function SpotDetails() {
   const { spotId } = useParams() 
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
 
+  const history = useHistory()
  
   useEffect(() => {
  
@@ -104,13 +107,15 @@ const isSpotOwner = spotDetail.Owner.id === currentUser.id;
     <div className='reviewsContainer'>
     
   <h1><i className="fa-solid fa-star"></i>{spotDetail.avgStarRating} {formatReviewCount(spotDetail.numReviews)}</h1>
-      <div>
-      {currentUser && !hasPostedReview && !isSpotOwner && (
-          <button className='post-review' onClick={() => setIsReviewModalOpen(true)}>
-    Post Your Review
-    </button>
-      )}
-      </div>
+  <div>
+          {currentUser && !hasPostedReview && !isSpotOwner && (
+            // Use OpenModalButton to open the modal with ReviewForm content
+            <OpenModalButton
+              modalComponent={<ReviewForm onCloseModal={() => setIsReviewModalOpen(false)} />}
+              buttonText="Post Your Review"
+            />
+          )}
+        </div>
   {reviewDetails.Reviews
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) 
     .map((element, index) => (
@@ -122,13 +127,7 @@ const isSpotOwner = spotDetail.Owner.id === currentUser.id;
       </div>
     ))}    
 </div>
-{isReviewModalOpen && (
-        <div className='modal'>
-          <div className='modal-content'>
-            <ReviewForm onCloseModal={() => setIsReviewModalOpen(false)} />
-          </div>
-        </div>
-      )}
+
 
     </>
   )
