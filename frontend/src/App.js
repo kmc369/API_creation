@@ -27,12 +27,13 @@ function App() {
       <Route exact path="/">
           <LandingPage/>
       </Route>
-      <Route path="/spots">
+      <Route exact path="/spots">
         <CreateSpot/>
+      </Route>
       <Route path="/spots/:spotId">
           <SpotDetails/>
       </Route>
-      </Route>
+     
         </Switch>}
     </>
   );

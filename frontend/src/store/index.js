@@ -7,12 +7,14 @@ import * as sessionActions from '../store/session';
 import landingReducer from "./landing";
 import getDetailReducer from "./details";
 import getReviewsReducer from "./reviews";
+import { createSpotReducer } from "./createspot";
 const rootReducer = combineReducers({
   // add reducer functions here
   session:sessionsReducer,
   landing:landingReducer,
   details:getDetailReducer,
-  reviews:getReviewsReducer
+  reviews:getReviewsReducer,
+  create:createSpotReducer
 });
 
 let enhancer;
