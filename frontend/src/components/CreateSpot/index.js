@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
+import * as CreateActions from '../../store/createspot'
+import { useDispatch , useSelector} from 'react-redux';
 import './Createspot.css';
 
 function CreateSpot() {
@@ -13,18 +15,37 @@ function CreateSpot() {
   const [price, setPrice] = useState('');
   const [previewImageUrl, setPreviewImageUrl] = useState('');
   const [imageUrls, setImageUrls] = useState(['', '', '', '', '']); // An array for multiple images
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
-  const handleLatitudeChange = (e) => {
-    setLatitude(parseFloat(e.target.value));
-  };
+  const dispatch = useDispatch()
 
-  const handleLongitudeChange = (e) => {
-    setLongitude(parseFloat(e.target.value));
-  };
+
+  // useEffect(() => {
+  //   if (formSubmitted) {
+  //     const formData = {
+  //       country,
+  //       state,
+  //       city,
+  //       address,
+  //       latitude,
+  //       longitude,
+  //       description,
+  //       spotTitle,
+  //       price,
+  //       // previewImageUrl,
+  //       // imageUrls,
+  //     };
+  //     console.log("th form data is ", formData)
+
+  //     dispatch(CreateActions.createSpotThunk(formData));
+
+  //     setFormSubmitted(false);
+  //   }
+  // }, [formSubmitted]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const form = {
+    const formData = {
       country,
       state,
       city,
@@ -34,11 +55,12 @@ function CreateSpot() {
       description,
       spotTitle,
       price,
-      previewImageUrl,
-      imageUrls,
-    };
-    console.log(form)
   };
+  console.log(formData)
+  console.log(formData.latitude)
+  dispatch(CreateActions.createSpotThunk(formData))
+  }
+
 
   return (
     <div className='container'>
@@ -84,13 +106,13 @@ function CreateSpot() {
             type='number'
             placeholder='Latitude'
             value={latitude}
-            onChange={handleLatitudeChange}
+            onChange={(e)=>setLatitude(e.target.value)}
           />
           <input
             type='number'
             placeholder='Longitude'
             value={longitude}
-            onChange={handleLongitudeChange}
+            onChange={(e)=>setLongitude(e.target.value)}
           />
         </div>
 
@@ -130,7 +152,7 @@ function CreateSpot() {
           />
         </div>
 
-        <div className='live-photos'>
+        {/* <div className='live-photos'>
           <h5>Liven up your spot with photos</h5>
           <p>Submit a link to at least one photo to publish your spot</p>
           <input
@@ -152,7 +174,7 @@ function CreateSpot() {
               placeholder='Image URL'
             />
           ))}
-        </div>
+        </div> */}
 
         <div className='submit-button-container'>
           <button type='submit' className='submit-button'>
