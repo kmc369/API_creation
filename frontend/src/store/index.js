@@ -9,6 +9,7 @@ import getDetailReducer from "./details";
 import getReviewsReducer from "./reviews";
 import createSpotReducer  from "./createspot";
 import createSpotImagetReducer from "./spotImage";
+import createReviewBySpotReducer from "./createReview";
 const rootReducer = combineReducers({
   // add reducer functions here
   session:sessionsReducer,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   reviews:getReviewsReducer,
   create:createSpotReducer,
   spotImage:createSpotImagetReducer,
+  createReview:createReviewBySpotReducer,
 });
 
 let enhancer;
