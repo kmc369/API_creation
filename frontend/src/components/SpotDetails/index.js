@@ -10,7 +10,7 @@ export default function SpotDetails() {
   const reviewDetails = useSelector(state=>state.reviews.Reviews)
   const dispatch = useDispatch()
 
-  const { spotId } = useParams() // Extract spotId from URL params
+  const { spotId } = useParams() 
  
   useEffect(() => {
  

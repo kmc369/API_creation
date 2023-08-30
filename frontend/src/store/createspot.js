@@ -24,7 +24,7 @@ export const actionCreateSpot = (spot) => {
      
     } = spot;
 
-    console.log(spot)
+    
     try {
       
       const response = await csrfFetch('/api/spots', {
@@ -42,17 +42,13 @@ export const actionCreateSpot = (spot) => {
             name:spotTitle,
             description:description,
             price:price,
-          // livephoto1,
-          // livephoto2,
-          // livephoto3,
-          // livephoto4,
-          // livephoto5
+        
         }),
       });
   
       if (response.ok) {
         const data = await response.json();
-        console.log("reponse from the thunk", data)
+        // console.log("reponse from the thunk", data)
         dispatch(actionCreateSpot(data));
         return data;
       } 
@@ -60,6 +56,7 @@ export const actionCreateSpot = (spot) => {
       console.error('An error occurred:', error.message);
     }
   };
+  
 const initialState ={}
 export const createSpotReducer = (state=initialState,action)=>{
 
@@ -75,3 +72,5 @@ export const createSpotReducer = (state=initialState,action)=>{
     }
 
 }
+
+export default createSpotReducer

@@ -1,6 +1,8 @@
 import React, { useState,useEffect } from 'react';
 import * as CreateActions from '../../store/createspot'
+import * as SpotImage from '../../store/spotImage'
 import { useDispatch , useSelector} from 'react-redux';
+import {useParams } from 'react-router-dom'
 import './Createspot.css';
 
 function CreateSpot() {
@@ -14,37 +16,19 @@ function CreateSpot() {
   const [spotTitle, setSpotTitle] = useState('');
   const [price, setPrice] = useState('');
   const [previewImageUrl, setPreviewImageUrl] = useState('');
-  const [imageUrls, setImageUrls] = useState(['', '', '', '', '']); // An array for multiple images
-  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [image1, setImage1] = useState('')
+  const [image2, setImage2] = useState('')
+  const [image3, setImage3] = useState('')
+  const [image4, setImage4] = useState('')
+  const [preview, setPreview] = useState(false)
 
   const dispatch = useDispatch()
+  const {spotId} = useParams()
 
 
-  // useEffect(() => {
-  //   if (formSubmitted) {
-  //     const formData = {
-  //       country,
-  //       state,
-  //       city,
-  //       address,
-  //       latitude,
-  //       longitude,
-  //       description,
-  //       spotTitle,
-  //       price,
-  //       // previewImageUrl,
-  //       // imageUrls,
-  //     };
-  //     console.log("th form data is ", formData)
-
-  //     dispatch(CreateActions.createSpotThunk(formData));
-
-  //     setFormSubmitted(false);
-  //   }
-  // }, [formSubmitted]);
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+  
     const formData = {
       country,
       state,
@@ -55,11 +39,31 @@ function CreateSpot() {
       description,
       spotTitle,
       price,
+    };
+
+   
+    const imageObjects = [
+      { url:previewImageUrl},
+      { url: image1 },
+      { url: image2 },
+      { url: image3 },
+      { url: image4 },
+    ];
+  
+  
+    const createSpot =  await dispatch(CreateActions.createSpotThunk(formData));
+    const spotId = createSpot.id
+  
+    for (const imgObj of imageObjects) {
+      if (imgObj.url) {
+        await dispatch(SpotImage.postSpotImageThunk(spotId, imgObj));
+      }
+    }
   };
-  console.log(formData)
-  console.log(formData.latitude)
-  dispatch(CreateActions.createSpotThunk(formData))
-  }
+
+
+
+ 
 
 
   return (
@@ -152,7 +156,7 @@ function CreateSpot() {
           />
         </div>
 
-        {/* <div className='live-photos'>
+        <div className='live-photos'>
           <h5>Liven up your spot with photos</h5>
           <p>Submit a link to at least one photo to publish your spot</p>
           <input
@@ -161,20 +165,37 @@ function CreateSpot() {
             type='text'
             placeholder='Preview Image URL'
           />
-          {imageUrls.map((imageUrl, index) => (
+
             <input
-              key={index}
-              value={imageUrl}
-              onChange={(e) => {
-                const newImageUrls = [...imageUrls];
-                newImageUrls[index] = e.target.value;
-                setImageUrls(newImageUrls);
-              }}
+           
+              value={image1}
+              onChange={(e) => {setImage1(e.target.value)}}
               type='text'
               placeholder='Image URL'
             />
-          ))}
-        </div> */}
+          <input
+           
+           value={image2}
+           onChange={(e) => {setImage2(e.target.value)}}
+           type='text'
+           placeholder='Image URL'
+         />
+          <input
+           
+           value={image3}
+           onChange={(e) => {setImage3(e.target.value)}}
+           type='text'
+           placeholder='Image URL'
+         />
+          <input
+           
+           value={image4}
+           onChange={(e) => {setImage4(e.target.value)}}
+           type='text'
+           placeholder='Image URL'
+         />
+        
+        </div>
 
         <div className='submit-button-container'>
           <button type='submit' className='submit-button'>
