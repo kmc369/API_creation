@@ -22,7 +22,7 @@ export default function SpotDetails() {
   
     return null
   }
-  console.log("yooooo",reviewDetails)
+
   if(!reviewDetails){
     return null
   }

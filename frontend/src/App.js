@@ -7,6 +7,7 @@ import Navigation from '../src/components/Navigation'
 import LandingPage from "../src/components/LandingPage";
 import { Route } from "react-router-dom";
 import SpotDetails from '../src/components/SpotDetails'
+import CreateSpot from '../src/components/CreateSpot'
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -26,8 +27,11 @@ function App() {
       <Route exact path="/">
           <LandingPage/>
       </Route>
+      <Route path="/spots">
+        <CreateSpot/>
       <Route path="/spots/:spotId">
           <SpotDetails/>
+      </Route>
       </Route>
         </Switch>}
     </>

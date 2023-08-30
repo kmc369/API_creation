@@ -1,0 +1,119 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
+    width: 40%;
+    margin: auto;
+    border:1px solid red;
+}
+h5{
+    margin:0px;
+    text-align: center;
+}
+p{
+   width: fit-content;
+    
+}
+
+.location {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    flex-direction: column;
+    gap:6px;
+    margin-bottom:10px;
+    width: 100%;
+    border-bottom: 2px solid lightgray;
+
+
+}
+
+input{
+    
+    height:30px;
+    width: 90%;
+}
+
+
+.city-state-container{
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between; 
+   gap:6px;
+   margin-bottom: 5px;
+}
+.long-lat-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;  
+    gap:6px;
+    margin-bottom: 5px;
+
+}
+
+.describe{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    flex-direction: column;
+    gap:6px;
+    height: 30%;
+    margin-bottom:10px;
+    width: 100%;
+    border-bottom: 2px solid lightgray;
+
+
+
+
+}
+.describe p {
+    display: flex;
+    flex-direction: column;
+   
+    width:90%
+}
+
+textarea{
+ 
+    width: 90%;
+    height:60%;
+    margin-top: 35px;
+    margin-bottom: 10px;;
+   
+}
+
+.create-container{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    flex-direction: column;
+    gap:6px;
+    margin-bottom:10px;
+    width: 100%;
+    border-bottom: 2px solid lightgray;
+
+}
+
+.price-container{
+
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    flex-direction: column;
+    gap:6px;
+    margin-bottom:10px;
+    width: 100%;
+    border-bottom: 2px solid lightgray;
+}
+
+
+

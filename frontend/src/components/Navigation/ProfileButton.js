@@ -4,11 +4,15 @@ import * as sessionActions from '../../store/session';
 import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
+import {useHistory} from 'react-router-dom'
+
+
 import './Navigation.css'
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
+  const history = useHistory()
 
   const openMenu = () => {
     if (showMenu) return;
@@ -54,6 +58,8 @@ function ProfileButton({ user }) {
             <div className="Menu-Option">{user.email}</div>
             <div className="Menu-Option" onClick={logout}>Log Out</div>
             </div>
+        <div><button onClick={()=> history.push('/spots')}>Create a Spot</button></div>
+
           </>
         ) : (
         
