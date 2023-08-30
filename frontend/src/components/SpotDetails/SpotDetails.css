@@ -1,8 +1,10 @@
 
+
+
 .detailImages {
     display: grid;
-    grid-template-rows: 1fr 1fr; /* Two rows with equal height */
-    grid-template-columns: 2fr 1fr 1fr; /* Three columns with equal width */
+    grid-template-rows: 1fr 1fr; 
+    grid-template-columns: 2fr 1fr 1fr; 
 }
  
 #s0{
@@ -90,4 +92,3 @@
     border-bottom: 2px solid lightgray;
 
 }
-

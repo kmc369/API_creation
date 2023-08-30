@@ -17,7 +17,10 @@ function OpenModalMenuItem({
 
   return (
     <div className='menuButtons' onClick={onClick}>{itemText}</div>
+    
   );
 }
 
 export default OpenModalMenuItem;
+
+
