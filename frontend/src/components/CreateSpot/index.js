@@ -43,7 +43,7 @@ import './Createspot.css'
 
         <div className='live-Photos'>
            <h5>Liven up your spot with photos</h5>
-           <p>Submit a link to at least one photo to publish your spot.</p>
+           <p>Submit a link to at least one photo to publish your spot</p>
            <input type='number' placeholder='Price per night (USD)'></input>
         </div>
      
