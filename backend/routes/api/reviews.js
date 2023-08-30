@@ -110,20 +110,22 @@ router.get('/reviews/current', async (req, res) => {
 
 //needs to be edited
 
-// if(spot){
-//   const reviewsAtSpot = await Review.findAll({
-//     where:{
-//       spotId: spot.id,
-//       review:review,
-//       stars:stars
-//     }
-//   })
+if(spot){
+  const reviewsAtSpot = await Review.findAll({
+    where:{
+      spotId: spot.id,
+      userId:user.id
+    }
+  })
 
-//   if(reviewsAtSpot){
-//     return res.status(500).json({"message": "User already has a review for this spot"});
-//   }
+  
 
-// }
+  if(reviewsAtSpot.length>0){
+   
+    return res.status(500).json({"message": "User already has a review for this spot"});
+  }
+
+}
 
 
 
