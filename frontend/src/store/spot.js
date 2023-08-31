@@ -313,12 +313,9 @@ export default function spotReducer(state=initialState,action){
         }
         
         case DELETE_SPOT: {
-          const newState = {
-            ...state,
-            allSpots: { ...state.allSpots },
-            spotDetails: {},
+          const newState = {...state, allSpots: { ...state.allSpots }, spotDetails: {},
           };
-          delete newState.allSpots[action.payload]; 
+          delete newState.allSpots[action.id];
           return newState;
         }
         case GET_SPOT_DETAILS: {

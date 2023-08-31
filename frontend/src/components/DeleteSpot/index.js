@@ -13,9 +13,9 @@ export const DeleteSpot = ({spotId,onCloseModal}) => {
 
     const {closeModal} = useModal()
     const handleDelete = (e) => {
-      e.preventDefault()
+  
         dispatch(SpotActions.deleteSpotThunk(spotId));
-        dispatch(SpotActions.getSpotByUserIdThunk(spotId))
+        dispatch(SpotActions.getSpotByUserIdThunk())
         closeModal()
       };
 
@@ -24,7 +24,7 @@ export const DeleteSpot = ({spotId,onCloseModal}) => {
        <div className="delete-spot">
       <h2>Confirm Delete</h2>
       <p>Are you sure you want to remove this spot from the listing?</p>
-      <button type='submit' onClick={handleDelete} >Yes, Delete Spot</button>
+      <button type='submit' onClick={handleDelete()} >Yes, Delete Spot</button>
       <button onClick={closeModal}>No, Keep Spot</button>
     </div>
     </div>
