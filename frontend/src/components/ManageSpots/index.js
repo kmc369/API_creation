@@ -14,36 +14,40 @@ import { useState } from 'react';
 export const ManageSpot = () => {
 const dispatch = useDispatch()
 const user = useSelector(state => state.session.user)
-const userSpots = useSelector(state =>state.spots.spotDetails)
+const userSpots = useSelector(state =>state.spots.allSpots)
+
 
 const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
 
-
-// console.log("the id is ",user.id)
+console.log(userSpots)
 
 const history= useHistory()
 
   useEffect(()=>{
-    dispatch(SpotActions.getSpotByUserIdThunk(user.id))
-},[dispatch,user.id])
+    dispatch(SpotActions.getSpotByUserIdThunk())
+  
+},[dispatch])
 
 
-if (!userSpots || userSpots.length === 0 || !userSpots[0].Spots || userSpots[0].Spots.length === 0) {
-  console.log("I am returning null");
+
+
+
+if (userSpots.Spots === undefined || Object.values(userSpots).length === 0 || !userSpots) {
   return null;
 }
+
 
 
   return (
     <>
         <h1>Manage Your Spots</h1>
-        <button>Create a Spot</button>
+         <button>Create a Spot</button>
 
         <div id='landingPageContainer'>
       
        
-      {userSpots[0].Spots.map((element, index) => (
+      {userSpots.Spots.map((element, index) => (
      
           <div className="spot" key={index}>
              
@@ -62,7 +66,7 @@ if (!userSpots || userSpots.length === 0 || !userSpots[0].Spots || userSpots[0].
       </div>
       ))} 
    
-   </div>
+   </div> 
     </>
   )
 }

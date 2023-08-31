@@ -78,6 +78,15 @@ export const reviewsReducer=(state=initialState ,action)=>{
   
         return newState;
       }
+      case POST_REVIEW: {
+        const newReview = action.payload;
+        const newState = { ...state, spot: { ...state.spot } };
+  
+        newState.spot[newReview.id] = newReview;
+  
+        return newState;
+      }
+
         default:
             return state
     }

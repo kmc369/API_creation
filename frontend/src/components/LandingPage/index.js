@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Tooltip } from './tooltip';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-import * as SpotImageActions from '../../store/spotImage'
 export default function LandingPage(){
     const history = useHistory()
     const dispatch = useDispatch()

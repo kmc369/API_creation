@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch ,useSelector} from 'react-redux'
-import * as ReviewActions from '../../store/createReview'
+import * as ReviewActions from '../../store/reviews'
 import {useParams } from 'react-router-dom'
 
 function ReviewForm({ spotId, onCloseModal }) {
@@ -26,6 +26,9 @@ function ReviewForm({ spotId, onCloseModal }) {
     
    
     dispatch(ReviewActions.createReviewThunk(spotId,reviewForm))
+  
+    setreview(" ")
+    setstars(" ")
     onCloseModal();
   };
 

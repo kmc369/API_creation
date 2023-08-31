@@ -1,6 +1,5 @@
 import React, { useState,useEffect } from 'react';
 import * as SpotActions from '../../store/spot'
-import * as SpotImage from '../../store/spotImage'
 import { useDispatch , useSelector} from 'react-redux';
 import {useParams } from 'react-router-dom'
 import './UpdateForm.css';

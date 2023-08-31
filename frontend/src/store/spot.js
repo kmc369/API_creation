@@ -1,6 +1,6 @@
 import { csrfFetch } from "./csrf"
 const CREATE_SPOT = 'create/spot'
-const GET_SPOT_BY_ID = 'get/SpotByUserId'
+const GET_SPOTS_BY_USER_ID = 'get/SpotByUserId'
 const UPDATE_SPOT = 'update/spot'
 const DELETE_SPOT = '/Delete/Spot'
 const GET_SPOTS = '/getAllSpots'
@@ -13,17 +13,17 @@ export const actionCreateSpot = (spot) => {
             };
   };
 
-  export const actionGetSpotByUserId = (userId) => {
+  export const actionGetSpotByUserId = (spots) => {
     return { 
-            type: GET_SPOT_BY_ID, 
-                payload: userId
-            };
+      type: GET_SPOTS_BY_USER_ID, 
+      payload: spots
+    };
   };
 
 
   export const actionUpdateSpot = (spot) => {
     return { 
-            type: GET_SPOT_BY_ID, 
+            type: UPDATE_SPOT, 
                 payload: spot
             };
   };
@@ -95,6 +95,7 @@ export const getSpotDetailsThunk=(spotId) => async(dispatch,getState)=>{
   
       if(response.ok){
           const data = await response.json()
+      
           dispatch(actionGetSpotDetails(data))
           return data
       }
@@ -185,7 +186,6 @@ export const getAllSpotsThunk = ()=> async (dispatch) =>{
   
       if (response.ok) {
         const data = await response.json();
-        // console.log("reponse from the thunk", data)
         dispatch(actionGetSpotByUserId(data));
         return data;
       } 
@@ -289,10 +289,17 @@ export default function spotReducer(state=initialState,action){
 
             return newState
         }
-        case GET_SPOT_BY_ID:{
-          const newState={...state,spots:[action.payload]}
-          return newState
+
+
+
+        case GET_SPOTS_BY_USER_ID: {
+          const newState = { ...state, allSpots: action.payload };
+          return newState;
         }
+
+
+
+
         case UPDATE_SPOT: {
           const updatedSpot = action.payload;
           const newState = {
