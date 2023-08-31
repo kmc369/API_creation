@@ -1,19 +1,19 @@
 import React, { useState,useEffect } from 'react';
-import * as CreateActions from '../../store/createspot'
+import * as SpotActions from '../../store/spot'
 import * as SpotImage from '../../store/spotImage'
 import { useDispatch , useSelector} from 'react-redux';
 import {useParams } from 'react-router-dom'
 import './UpdateForm.css';
-import * as DetailActions from '../../store/details'
-import * as SpotActions from '../../store/createspot'
+// import * as DetailActions from '../../store/details'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 
 function UpdateSpot() {
     
     const spotDetail = useSelector(state=>state.details.spot)
-    console.log("the form data is ",spotDetail)
     
     const {spotId} = useParams()
     const dispatch = useDispatch()
+    const history = useHistory()
 
 
     
@@ -32,21 +32,31 @@ function UpdateSpot() {
     const [description, setDescription] = useState(spotDetail.description);
     const [spotTitle, setSpotTitle] = useState(spotDetail.name);
     const [price, setPrice] = useState(spotDetail.price);
-    const [previewImageUrl, setPreviewImageUrl] = useState(spotDetail.SpotImages[0]?.url || 'Preview ImageURL');
-    const [image1, setImage1] = useState(spotDetail.SpotImages[1]?.url || 'Image URL')
-    const [image2, setImage2] = useState(spotDetail.SpotImages[2]?.url || 'Image URL')
-    const [image3, setImage3] = useState(spotDetail.SpotImages[3]?.url || 'Image URL')
-    const [image4, setImage4] = useState(spotDetail.SpotImages[4]?.url || 'Image URL')
+    const [previewImageUrl, setPreviewImageUrl] = useState('Preview ImageURL');
+    const [image1, setImage1] = useState( 'Image URL')
+    const [image2, setImage2] = useState('Image URL')
+    const [image3, setImage3] = useState('Image URL')
+    const [image4, setImage4] = useState('Image URL')
     const [preview, setPreview] = useState(false)
     
     useEffect(() => {
       
-      dispatch(DetailActions.getSpotDetailsThunk(spotId));
+      async function fetchData() {
+      
+        
+        const spotDeta =  await dispatch(SpotActions.getSpotDetailsThunk(spotId));
+        return spotDeta
+   
+      }
+   
     
-    }, [dispatch, spotId]);
+     
+      
+    
+    }, [dispatch,spotId ]);
 
 
-    if(Object.values(spotDetail).length===0){
+    if(Object.values(spotDetail).length===0 || spotDetail.SpotImages.length===0){
   
       return null
     }
@@ -69,7 +79,23 @@ function UpdateSpot() {
       price,
     };
     dispatch(SpotActions.updateSpotThunk(formData,spotId))
+   
+    setCountry('');
+    setState('');
+    setCity('');
+    setAddress('');
+    setLatitude(0);
+    setLongitude(0);
+    setDescription('');
+    setSpotTitle('');
+    setPrice(0);
+    setPreviewImageUrl('');
+    setImage1('');
+    setImage2('');
+    setImage3('');
+    setImage4('');
 
+    history.push(`/spot/update/${spotId}`)
   
   }
 
@@ -173,7 +199,7 @@ function UpdateSpot() {
           <input
             value={previewImageUrl}
             onChange={(e) => setPreviewImageUrl(e.target.value)}
-            type='text'
+            type='url'
             placeholder='Preview Image URL'
           />
 

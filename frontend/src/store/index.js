@@ -4,21 +4,15 @@ import { restoreCSRF, csrfFetch } from '../store/csrf';
 import sessionsReducer from "./session";
 import * as sessionActions from '../store/session';
 // import * as landingAction from '../store/landing'
-import landingReducer from "./landing";
-import getDetailReducer from "./details";
-import getReviewsReducer from "./reviews";
-import createSpotReducer  from "./createspot";
-import createSpotImagetReducer from "./spotImage";
-import createReviewBySpotReducer from "./createReview";
+// import getDetailReducer from "./details";
+import reviewsReducer from "./reviews";
+import spotReducer from "./spot";
+
 const rootReducer = combineReducers({
   // add reducer functions here
   session:sessionsReducer,
-  landing:landingReducer,
-  details:getDetailReducer,
-  reviews:getReviewsReducer,
-  create:createSpotReducer,
-  spotImage:createSpotImagetReducer,
-  createReview:createReviewBySpotReducer,
+  reviews:reviewsReducer,
+  spots:spotReducer,
 });
 
 let enhancer;
