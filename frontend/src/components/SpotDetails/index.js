@@ -13,10 +13,11 @@ import OpenModalButton from '../OpenModalButton'
 export default function SpotDetails() {
   const spotDetail = useSelector(state=>state.spots.spotDetails)
 
-  console.log("spot details are here baby", spotDetail)
 
   
   const reviewDetails = useSelector((state) => state.reviews.spot);
+  console.log("revieww details are here baby", reviewDetails)
+
   const currentUser = useSelector(state => state.session.user)
   
   
@@ -71,12 +72,15 @@ const monthYearFormat = `${months[date.getUTCMonth()]} ${date.getUTCFullYear()}`
 return monthYearFormat;
 }
 
+const value = Object.values(reviewDetails )
 
-// const hasPostedReview = reviewDetails.Reviews.some(
-//   review => review.User.id === currentUser.id && review.spotId === spotId
-// );
+const hasPostedReview = value.some(
+  review => review.User.id === currentUser.id && review.spotId === spotId
+);
 
 const isSpotOwner = spotDetail.Owner.id === currentUser.id;
+
+
 
   return (
     <>
@@ -110,7 +114,7 @@ const isSpotOwner = spotDetail.Owner.id === currentUser.id;
    <div className='reviewsContainer'>
     
   <h1><i className="fa-solid fa-star"></i>{spotDetail.avgStarRating} {formatReviewCount(spotDetail.numReviews)}</h1>
-  {/* <div>
+  <div>
           {currentUser && !hasPostedReview && !isSpotOwner && (
             <OpenModalButton
               modalComponent={<ReviewForm spotId ={spotId} onCloseModal={() => setIsReviewModalOpen(false)} />}
@@ -119,9 +123,9 @@ const isSpotOwner = spotDetail.Owner.id === currentUser.id;
               
             />
           )}
-        </div>  */}
+        </div> 
        
-   {/* {reviewDetails.Reviews
+    {value
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) 
     .map((element, index) => (
       
@@ -130,7 +134,7 @@ const isSpotOwner = spotDetail.Owner.id === currentUser.id;
         <p>{dateFormat(element.createdAt)}</p>
         <p>{element.review}</p>
       </div>
-    ))}      */}
+    ))}      
  </div>
 
 
