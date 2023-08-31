@@ -2,7 +2,7 @@ import { create } from "@mui/material/styles/createTransitions"
 import { csrfFetch } from "./csrf"
 
 const POST_IMAGE = 'postImageForSpot'
-
+const UPDATE_IMAGES = 'update/Images'
 const postImage = (spotId)=>{
     return{
         type:POST_IMAGE,
@@ -10,9 +10,16 @@ const postImage = (spotId)=>{
     }
 }
 
+const actionUpdateImages = (spotId)=>{
+  return{
+      type:UPDATE_IMAGES,
+      payload:spotId
+  }
+}
+
 export const postSpotImageThunk = (spotId, imageObj) => async (dispatch, getState) => {
     const { id, url } = imageObj;
-    console.log(imageObj)
+    // console.log(imageObj)
     if (url) {
       try {
         const response = await csrfFetch(`/api/spots/${spotId}/images`, {
@@ -36,6 +43,11 @@ export const postSpotImageThunk = (spotId, imageObj) => async (dispatch, getStat
       }
     }
   };
+
+
+
+  
+  
   
 
 const intitalState = {}

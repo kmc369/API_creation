@@ -9,18 +9,20 @@ const dispatch = useDispatch()
 const user = useSelector(state => state.session.user)
 const userSpots = useSelector(state =>state.create.spots)
 const imgs = useSelector(state=>state.spotImage.image)
+
+
 // console.log("the id is ",user.id)
-// console.log(userSpots)
+console.log("the user spots are ", userSpots)
 console.log(imgs)
 const history= useHistory()
 
   useEffect(()=>{
     dispatch(SpotsActions.getSpotByUserIdThunk(user.id))
-},[dispatch])
+},[dispatch,user.id])
 
 
-
-if (!userSpots || userSpots.length === 0 || userSpots[0].Spots.length === 0) {
+if (!userSpots || userSpots.length === 0 || !userSpots[0].Spots || userSpots[0].Spots.length === 0) {
+  console.log("I am returning null");
   return null;
 }
 

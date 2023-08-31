@@ -4,7 +4,7 @@ import * as SpotImage from '../../store/spotImage'
 import { useDispatch , useSelector} from 'react-redux';
 import {useParams } from 'react-router-dom'
 import './Createspot.css';
-
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 function CreateSpot() {
   const [country, setCountry] = useState('');
   const [state, setState] = useState('');
@@ -13,17 +13,19 @@ function CreateSpot() {
   const [latitude, setLatitude] = useState(1234.0);
   const [longitude, setLongitude] = useState(1586.0);
   const [description, setDescription] = useState('');
-  const [spotTitle, setSpotTitle] = useState('');
+  const [name, setName] = useState('');
   const [price, setPrice] = useState('');
-  const [previewImageUrl, setPreviewImageUrl] = useState('');
+  const [previewImage, setPreviewImageUrl] = useState('');
   const [image1, setImage1] = useState('')
   const [image2, setImage2] = useState('')
   const [image3, setImage3] = useState('')
   const [image4, setImage4] = useState('')
-  const [preview, setPreview] = useState(false)
-
+  const [preview, setPreview] = useState(true)
+  const history = useHistory()
   const dispatch = useDispatch()
   const {spotId} = useParams()
+
+ 
 
 
   const handleSubmit = async (e) => {
@@ -37,28 +39,60 @@ function CreateSpot() {
       latitude,
       longitude,
       description,
-      spotTitle,
+      name,
       price,
+    
+      
     };
 
+
+    
    
     const imageObjects = [
-      { url:previewImageUrl},
+      { url:previewImage},
       { url: image1 },
       { url: image2 },
       { url: image3 },
       { url: image4 },
+     
     ];
+
+   
+
+
+
   
   
     const createSpot =  await dispatch(CreateActions.createSpotThunk(formData));
     const spotId = createSpot.id
+
   
+
     for (const imgObj of imageObjects) {
       if (imgObj.url) {
         await dispatch(SpotImage.postSpotImageThunk(spotId, imgObj));
       }
     }
+;
+
+
+
+    setCountry('');
+    setState('');
+    setCity('');
+    setAddress('');
+    setLatitude(0);
+    setLongitude(0);
+    setDescription('');
+    setName('');
+    setPrice(0);
+    setPreviewImageUrl('');
+    setImage1('');
+    setImage2('');
+    setImage3('');
+    setImage4('');
+
+    history.push('/spots')
   };
 
 
@@ -138,8 +172,8 @@ function CreateSpot() {
           <h5>Create a title for your spot</h5>
           <p>Catch guests' attention with a spot title that highlights what makes your place special.</p>
           <input
-            value={spotTitle}
-            onChange={(e) => setSpotTitle(e.target.value)}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             type='text'
             placeholder='Name of your spot'
           />
@@ -160,7 +194,7 @@ function CreateSpot() {
           <h5>Liven up your spot with photos</h5>
           <p>Submit a link to at least one photo to publish your spot</p>
           <input
-            value={previewImageUrl}
+            value={previewImage}
             onChange={(e) => setPreviewImageUrl(e.target.value)}
             type='text'
             placeholder='Preview Image URL'

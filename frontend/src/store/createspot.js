@@ -38,8 +38,9 @@ export const actionCreateSpot = (spot) => {
       latitude,
       longitude,
       price,
-      spotTitle,
+      name,
       state,
+    
      
      
     } = spot;
@@ -59,9 +60,10 @@ export const actionCreateSpot = (spot) => {
             country:country,
             lat:latitude,
             lng:longitude,
-            name:spotTitle,
+            name:name,
             description:description,
             price:price,
+          
         
         }),
       });
@@ -108,8 +110,9 @@ export const actionCreateSpot = (spot) => {
       latitude,
       longitude,
       price,
-      spotTitle,
+      name,
       state,
+    
      
      
     } = spot;
@@ -128,9 +131,10 @@ export const actionCreateSpot = (spot) => {
             country:country,
             lat:latitude,
             lng:longitude,
-            name:spotTitle,
+            name:name,
             description:description,
             price:price,
+         
         
         }),
       
