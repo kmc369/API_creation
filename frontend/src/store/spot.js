@@ -49,18 +49,18 @@ const actionGetSpotDetails = (id)=>{
   }
 }
 
-const actionPostImage = (spotId)=>{
-  return{
-      type:POST_IMAGE,
-      payload:spotId
-  }
-}
+const actionPostImage = (spotId, imgData) => {
+  return {
+    type: POST_IMAGE,
+    payload: { spotId, imgData }
+  };
+};
   
 
 export const postSpotImageThunk = (spotId, imageObj) => async (dispatch, getState) => {
-  const { id, url } = imageObj;
+ const {url,preview} = imageObj
   // console.log(imageObj)
-  if (url) {
+
     try {
       const response = await csrfFetch(`/api/spots/${spotId}/images`, {
         method: 'POST',
@@ -69,19 +69,20 @@ export const postSpotImageThunk = (spotId, imageObj) => async (dispatch, getStat
         },
         body: JSON.stringify({
           url: url,
-          preview: false,
+          preview: preview,
         }),
       });
 
       if (response.ok) {
         const data = await response.json();
-        dispatch( actionPostImage(data, id));
+       
+        dispatch(actionPostImage(spotId, data));
         return data;
       }
     } catch (error) {
       console.error('An error occurred:', error);
     }
-  }
+  
 };
 
 
@@ -326,9 +327,20 @@ export default function spotReducer(state=initialState,action){
           };
           return newState;
         }
-        case POST_IMAGE:
-          const newState = {...state, image:{...action.payload}}
-          return newState
+        case POST_IMAGE: {
+          const { spotId, imgData } = action.payload;
+          const newState = { ...state, spotDetails: { ...state.spotDetails } };
+        
+          
+          const spotToUpdate = newState.spotDetails[spotId];
+        
+          
+          if (spotToUpdate) {
+            spotToUpdate.SpotImages = [...spotToUpdate.SpotImages, imgData];
+          }
+        
+          return newState;
+        }
             default:
                 return state
 

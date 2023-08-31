@@ -47,14 +47,19 @@ function CreateSpot() {
 
     
    
-    const imageObjects = [
-      { url:previewImage},
-      { url: image1 },
-      { url: image2 },
-      { url: image3 },
-      { url: image4 },
+    // const imageObjects = [
+    //   { url:previewImage},
+    //   { url: image1 },
+    //   { url: image2 },
+    //   { url: image3 },
+    //   { url: image4 },
      
-    ];
+    // ]
+
+    const imgObj ={
+      url:previewImage,
+      preview:true
+    }
 
    
 
@@ -62,20 +67,22 @@ function CreateSpot() {
 
   
   
-    const createSpot =  await dispatch(SpotActions.createSpotThunk(formData));
-    const spotId = createSpot.id
 
+    const createSpotResponse = await dispatch(SpotActions.createSpotThunk(formData));
+    const createdSpotId = createSpotResponse.id;
   
-
-    for (const imgObj of imageObjects) {
-      if (imgObj.url) {
-        await dispatch(SpotActions.postSpotImageThunk(spotId, imgObj));
-      }
+    console.log(createdSpotId)
+    
+    if (imgObj.url) {
+      await dispatch(SpotActions.postSpotImageThunk(createdSpotId, imgObj));
     }
-;
-
-
-
+    
+    
+    
+    
+    
+    
+    
     setCountry('');
     setState('');
     setCity('');
