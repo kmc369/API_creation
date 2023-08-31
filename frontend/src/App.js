@@ -10,6 +10,7 @@ import SpotDetails from '../src/components/SpotDetails'
 import CreateSpot from '../src/components/CreateSpot'
 import ReviewForm from "./components/ReviewForm";
 import ManageSpot from "./components/ManageSpots";
+import UpdateSpot from "./components/UpdateSpot";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -32,6 +33,14 @@ function App() {
       <Route exact path="/spots">
         <CreateSpot/>
       </Route>
+      <Route exact path="/spots/current">
+        <ManageSpot/>
+      </Route>
+
+      <Route exact path="/spot/update/:spotId">
+        <UpdateSpot/>
+      </Route>
+     
 
       <Route exact path="/spots/current">
         <ManageSpot/>

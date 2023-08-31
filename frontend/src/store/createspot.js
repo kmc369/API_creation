@@ -1,5 +1,6 @@
 import { csrfFetch } from "./csrf"
 const CREATE_SPOT = 'create/spot'
+const GET_SPOT_BY_ID = 'get/SpotByUserId'
 
 export const actionCreateSpot = (spot) => {
     return { 
@@ -7,6 +8,15 @@ export const actionCreateSpot = (spot) => {
                 payload: spot 
             };
   };
+
+  export const actionGetSpotByUserId = (userId) => {
+    return { 
+            type: GET_SPOT_BY_ID, 
+                payload: userId
+            };
+  };
+
+
 
 
   export const createSpotThunk = (spot) => async (dispatch) => {
@@ -57,14 +67,39 @@ export const actionCreateSpot = (spot) => {
     }
   };
   
+  export const getSpotByUserIdThunk = (spotId) => async (dispatch) => {
+ 
+    
+    try {
+      
+      const response = await csrfFetch("/api/spots/current", {
+        method: 'GET',
+        
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        // console.log("reponse from the thunk", data)
+        dispatch(actionGetSpotByUserId(data));
+        return data;
+      } 
+    } catch (error) {
+      console.error('An error occurred:', error.message);
+    }
+  };
+  
 const initialState ={}
 export const createSpotReducer = (state=initialState,action)=>{
 
     switch(action.type){
-        case CREATE_SPOT:
+        case CREATE_SPOT:{
             const newState={...state, spot:{...action.payload}}
             return newState
-        
+        }
+        case GET_SPOT_BY_ID:{
+          const newState={...state,spots:[action.payload]}
+          return newState
+        }
             default:
                 return state
 
