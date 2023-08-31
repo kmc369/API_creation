@@ -16,7 +16,7 @@ export default function SpotDetails() {
 
   
   const reviewDetails = useSelector((state) => state.reviews.spot);
-  console.log("revieww details are here baby", reviewDetails)
+  // console.log("revieww details are here baby", reviewDetails)
 
   const currentUser = useSelector(state => state.session.user)
   
@@ -37,7 +37,7 @@ export default function SpotDetails() {
   }, [dispatch, spotId]);
 
   if(Object.values(spotDetail).length===0 ){
-    console.log("in first null")
+    // console.log("in first null")
     return null
   }
 

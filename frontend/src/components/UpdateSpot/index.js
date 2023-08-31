@@ -3,17 +3,17 @@ import * as SpotActions from '../../store/spot'
 import { useDispatch , useSelector} from 'react-redux';
 import {useParams } from 'react-router-dom'
 import './UpdateForm.css';
-// import * as DetailActions from '../../store/details'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 
 function UpdateSpot() {
     
-    const spotDetail = useSelector(state=>state.details.spot)
+    const spotDetail = useSelector(state=>state.spots.spotDetails)
     
     const {spotId} = useParams()
     const dispatch = useDispatch()
     const history = useHistory()
 
+    console.log("spot Details are gang", spotDetail)
 
     
     
@@ -38,27 +38,7 @@ function UpdateSpot() {
     const [image4, setImage4] = useState('Image URL')
     const [preview, setPreview] = useState(false)
     
-    useEffect(() => {
-      
-      async function fetchData() {
-      
-        
-        const spotDeta =  await dispatch(SpotActions.getSpotDetailsThunk(spotId));
-        return spotDeta
-   
-      }
-   
-    
-     
-      
-    
-    }, [dispatch,spotId ]);
-
-
-    if(Object.values(spotDetail).length===0 || spotDetail.SpotImages.length===0){
-  
-      return null
-    }
+ 
 
   
 
@@ -240,6 +220,7 @@ function UpdateSpot() {
         </div>
       </form>
     </div>
+  
   );
 }
 
