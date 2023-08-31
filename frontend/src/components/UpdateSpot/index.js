@@ -4,48 +4,74 @@ import * as SpotImage from '../../store/spotImage'
 import { useDispatch , useSelector} from 'react-redux';
 import {useParams } from 'react-router-dom'
 import './UpdateForm.css';
+import * as DetailActions from '../../store/details'
+import * as SpotActions from '../../store/createspot'
 
 function UpdateSpot() {
-    const formData = useSelector(state=>state.create.spots)
-    console.log(formData)
-    const imgData = useSelector(state=>state.spotImage.image)
-// console.log("image data is ",imgData)
-
+    
+    const spotDetail = useSelector(state=>state.details.spot)
+    console.log("the form data is ",spotDetail)
     
     const {spotId} = useParams()
-    // console.log("the array is ", Array)
-    const spotsArray = formData[0].Spots;
-
-    const spotInformation = spotsArray.find(spot => spot.id === Number(spotId));
-
-    console.log("The spot information is", spotInformation);
+    const dispatch = useDispatch()
 
 
-    const [country, setCountry] = useState(spotInformation.country);
-    const [state, setState] = useState(spotInformation.state);
-    const [city, setCity] = useState(spotInformation.city);
-    const [address, setAddress] = useState(spotInformation.address);
+    
+    
+    
+    
+    
+    
+    
+    const [country, setCountry] = useState(spotDetail.country);
+    const [state, setState] = useState(spotDetail.state);
+    const [city, setCity] = useState(spotDetail.city);
+    const [address, setAddress] = useState(spotDetail.address);
     const [latitude, setLatitude] = useState(1234);
     const [longitude, setLongitude] = useState(345632);
-    const [description, setDescription] = useState(spotInformation.description);
-    const [spotTitle, setSpotTitle] = useState(spotInformation.name);
-    const [price, setPrice] = useState(spotInformation.price);
-    const [previewImageUrl, setPreviewImageUrl] = useState(spotInformation.previewImage);
-    const [image1, setImage1] = useState('')
-    const [image2, setImage2] = useState('')
-    const [image3, setImage3] = useState('')
-    const [image4, setImage4] = useState('')
+    const [description, setDescription] = useState(spotDetail.description);
+    const [spotTitle, setSpotTitle] = useState(spotDetail.name);
+    const [price, setPrice] = useState(spotDetail.price);
+    const [previewImageUrl, setPreviewImageUrl] = useState(spotDetail.SpotImages[0]?.url || 'Preview ImageURL');
+    const [image1, setImage1] = useState(spotDetail.SpotImages[1]?.url || 'Image URL')
+    const [image2, setImage2] = useState(spotDetail.SpotImages[2]?.url || 'Image URL')
+    const [image3, setImage3] = useState(spotDetail.SpotImages[3]?.url || 'Image URL')
+    const [image4, setImage4] = useState(spotDetail.SpotImages[4]?.url || 'Image URL')
     const [preview, setPreview] = useState(false)
     
-    const dispatch = useDispatch()
+    useEffect(() => {
+      
+      dispatch(DetailActions.getSpotDetailsThunk(spotId));
     
-    console.log(FormData)
+    }, [dispatch, spotId]);
+
+
+    if(Object.values(spotDetail).length===0){
+  
+      return null
+    }
+
+  
+
+ 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formData = {
+      country,
+      state,
+      city,
+      address,
+      latitude,
+      longitude,
+      description,
+      spotTitle,
+      price,
+    };
+    dispatch(SpotActions.updateSpotThunk(formData,spotId))
+
   
   }
-
 
 
  
@@ -56,14 +82,14 @@ function UpdateSpot() {
       <form className='form-container' onSubmit={handleSubmit}>
         <div className='location-container'>
           <h3>Create a New Spot</h3>
-          <h5>Where's your place located?</h5>
+          <h5>Where's your place located</h5>
           <p>Guests will only get your exact address once they book a reservation.</p>
           <input
             value={country}
             onChange={(e) => setCountry(e.target.value)}
             required
             type='text'
-            placeholder='Country'
+            placeholder={spotDetail.country}
           />
           <input
             value={address}
@@ -160,14 +186,14 @@ function UpdateSpot() {
             />
           <input
            
-           value={image2}
+           value={image2 }
            onChange={(e) => {setImage2(e.target.value)}}
            type='text'
            placeholder='Image URL'
          />
           <input
            
-           value={image3}
+           value={image3 }
            onChange={(e) => {setImage3(e.target.value)}}
            type='text'
            placeholder='Image URL'
