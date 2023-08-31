@@ -91,7 +91,7 @@ function CreateSpot() {
     setImage3('');
     setImage4('');
 
-    history.push('/spots')
+    history.push(`/spots/${spotId}`)
   };
 
 
@@ -195,7 +195,7 @@ function CreateSpot() {
           <input
             value={previewImage}
             onChange={(e) => setPreviewImageUrl(e.target.value)}
-            type='text'
+            type='url'
             placeholder='Preview Image URL'
           />
 

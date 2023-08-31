@@ -6,14 +6,17 @@ import { useModal } from "../../context/Modal";
 
 
 export const DeleteSpot = ({spotId,onCloseModal}) => {
-    console.log(spotId)
+    // console.log(spotId)
     const dispatch = useDispatch()
     const history= useHistory()
   
 
-    const handleDelete = () => {
+    const {closeModal} = useModal()
+    const handleDelete = (e) => {
+      e.preventDefault()
         dispatch(SpotActions.deleteSpotThunk(spotId));
-        history.push("/spots/current")
+        dispatch(SpotActions.getSpotByUserIdThunk(spotId))
+        closeModal()
       };
 
   return (
@@ -21,8 +24,8 @@ export const DeleteSpot = ({spotId,onCloseModal}) => {
        <div className="delete-spot">
       <h2>Confirm Delete</h2>
       <p>Are you sure you want to remove this spot from the listing?</p>
-      <button onClick={handleDelete}>Yes, Delete Spot</button>
-      <button onClick={()=>onCloseModal}>No, Keep Spot</button>
+      <button type='submit' onClick={handleDelete} >Yes, Delete Spot</button>
+      <button onClick={closeModal}>No, Keep Spot</button>
     </div>
     </div>
   )
