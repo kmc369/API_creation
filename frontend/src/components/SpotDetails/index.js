@@ -12,20 +12,25 @@ import OpenModalButton from '../OpenModalButton'
 
 export default function SpotDetails() {
   const spotDetail = useSelector(state=>state.details.spot)
+
+  console.log("spot details are ", spotDetail)
+
   const reviewDetails = useSelector(state=>state.reviews.Reviews)
   const currentUser = useSelector(state => state.session.user)
+  
+  
   const dispatch = useDispatch()
   const { closeModal } = useModal();
-
-  const { spotId } = useParams() 
-
-  const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
-
   
- 
+  const { spotId } = useParams() 
+  
+  const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
+  
+  
+  
   useEffect(() => {
  
-    dispatch(DetailActions.getSpotDetailsThunk(spotId)); // Pass spotId to action creator
+    dispatch(DetailActions.getSpotDetailsThunk(spotId));
     dispatch(ReviewAction.getReviewsThunk(spotId))
   }, [dispatch, spotId]);
 
