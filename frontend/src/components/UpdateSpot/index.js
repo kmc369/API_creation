@@ -1,11 +1,10 @@
 import React, { useState,useEffect } from 'react';
-import * as CreateActions from '../../store/createspot'
+import * as SpotActions from '../../store/spot'
 import * as SpotImage from '../../store/spotImage'
 import { useDispatch , useSelector} from 'react-redux';
 import {useParams } from 'react-router-dom'
 import './UpdateForm.css';
-import * as DetailActions from '../../store/details'
-import * as SpotActions from '../../store/createspot'
+// import * as DetailActions from '../../store/details'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 
 function UpdateSpot() {
@@ -45,7 +44,7 @@ function UpdateSpot() {
       async function fetchData() {
       
         
-        const spotDeta =  await dispatch(DetailActions.getSpotDetailsThunk(spotId));
+        const spotDeta =  await dispatch(SpotActions.getSpotDetailsThunk(spotId));
         return spotDeta
    
       }

@@ -1,6 +1,6 @@
 import './LandingPage.css'
 import { useEffect } from 'react';
-import * as LandingActions from '../../store/landing'
+import * as SpotActions from '../../store/spot'
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Tooltip } from './tooltip';
@@ -9,11 +9,11 @@ import * as SpotImageActions from '../../store/spotImage'
 export default function LandingPage(){
     const history = useHistory()
     const dispatch = useDispatch()
-    const spots = useSelector(state=>(state.landing.spots))
-    const spotImages = useSelector(state =>(state.spotImage.image))
+    const spots = useSelector(state=>(state.spots.allSpots))
+    // const spotImages = useSelector(state =>(state.spotImage.image))
  
     useEffect(()=>{
-        dispatch(LandingActions.getAllSpotsThunk())
+        dispatch(SpotActions.getAllSpotsThunk())
  
     },[dispatch])
   
@@ -33,7 +33,7 @@ export default function LandingPage(){
         <div id='landingPageContainer'>
       
        
-        {values[0].map((element, index) => (
+        {values.map((element, index) => (
        
             <div className="spot" key={index} onClick={()=>{history.push(`/spots/${element.id}`)}}>
                 <Tooltip text={element.name}>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from 'react'
 import { useDispatch ,useSelector} from 'react-redux'
-import * as DetailActions from '../../store/details'
+import * as SpotActions from '../../store/spot'
 import * as ReviewAction from '../../store/reviews'
 import { useParams } from 'react-router-dom'; 
 import * as sessionActions from "../../store/session";
@@ -11,11 +11,12 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import OpenModalButton from '../OpenModalButton'
 
 export default function SpotDetails() {
-  const spotDetail = useSelector(state=>state.details.spot)
+  const spotDetail = useSelector(state=>state.spots.spotDetails)
 
-  console.log("spot details are ", spotDetail)
+  console.log("spot details are here baby", spotDetail)
 
-  const reviewDetails = useSelector(state=>state.reviews.Reviews)
+  
+  const reviewDetails = useSelector((state) => state.reviews.spot);
   const currentUser = useSelector(state => state.session.user)
   
   
@@ -30,12 +31,12 @@ export default function SpotDetails() {
   
   useEffect(() => {
  
-    dispatch(DetailActions.getSpotDetailsThunk(spotId));
+    dispatch(SpotActions.getSpotDetailsThunk(spotId));
     dispatch(ReviewAction.getReviewsThunk(spotId))
   }, [dispatch, spotId]);
 
   if(Object.values(spotDetail).length===0 ){
-  
+    console.log("in first null")
     return null
   }
 
@@ -77,15 +78,17 @@ return monthYearFormat;
 }
 
 
-const hasPostedReview = reviewDetails.Reviews.some(
-  review => review.User.id === currentUser.id && review.spotId === spotId
-);
+// const hasPostedReview = reviewDetails.Reviews.some(
+//   review => review.User.id === currentUser.id && review.spotId === spotId
+// );
 
 const isSpotOwner = spotDetail.Owner.id === currentUser.id;
 
   return (
     <>
-    <div className='spotDetails'>
+
+   
+     <div className='spotDetails'>
       <h1>{ spotDetail.name}</h1>
       <p>{spotDetail.city}, {spotDetail.state}, {spotDetail.country}</p>
     </div>
@@ -110,10 +113,10 @@ const isSpotOwner = spotDetail.Owner.id === currentUser.id;
     </div>
     </div>
 
-    <div className='reviewsContainer'>
+   <div className='reviewsContainer'>
     
   <h1><i className="fa-solid fa-star"></i>{spotDetail.avgStarRating} {formatReviewCount(spotDetail.numReviews)}</h1>
-  <div>
+  {/* <div>
           {currentUser && !hasPostedReview && !isSpotOwner && (
             // Use OpenModalButton to open the modal with ReviewForm content
             <OpenModalButton
@@ -123,9 +126,9 @@ const isSpotOwner = spotDetail.Owner.id === currentUser.id;
               
             />
           )}
-        </div>
+        </div>  */}
        
-  {reviewDetails.Reviews
+   {/* {reviewDetails.Reviews
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) 
     .map((element, index) => (
       
@@ -134,8 +137,8 @@ const isSpotOwner = spotDetail.Owner.id === currentUser.id;
         <p>{dateFormat(element.createdAt)}</p>
         <p>{element.review}</p>
       </div>
-    ))}    
-</div>
+    ))}      */}
+ </div>
 
 
     </>

@@ -1,6 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import * as CreateActions from '../../store/createspot'
-import * as SpotImage from '../../store/spotImage'
+import * as SpotActions from '../../store/spot'
 import { useDispatch , useSelector} from 'react-redux';
 import {useParams } from 'react-router-dom'
 import './Createspot.css';
@@ -63,14 +62,14 @@ function CreateSpot() {
 
   
   
-    const createSpot =  await dispatch(CreateActions.createSpotThunk(formData));
+    const createSpot =  await dispatch(SpotActions.createSpotThunk(formData));
     const spotId = createSpot.id
 
   
 
     for (const imgObj of imageObjects) {
       if (imgObj.url) {
-        await dispatch(SpotImage.postSpotImageThunk(spotId, imgObj));
+        await dispatch(SpotActions.postSpotImageThunk(spotId, imgObj));
       }
     }
 ;
