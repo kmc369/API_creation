@@ -38,6 +38,7 @@ function ProfileButton({ user }) {
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
+    history.push('/')
     closeMenu();
   };
 
@@ -56,6 +57,7 @@ function ProfileButton({ user }) {
             <div className="Menu-Option">{user.username}</div>
             <div className="Menu-Option">{user.firstName} {user.lastName}</div>
             <div className="Menu-Option">{user.email}</div>
+            <div className="Menu-Option" onClick={()=>history.push("/spots/current")}>Manage Spot </div>
             <div className="Menu-Option" onClick={logout}>Log Out</div>
             </div>
         <div><button onClick={()=> history.push('/spots')}>Create a Spot</button></div>
@@ -64,6 +66,8 @@ function ProfileButton({ user }) {
         ) : (
         
          <div className="Menu-Options-container">
+
+            
         
             <OpenModalMenuItem
           

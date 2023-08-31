@@ -9,6 +9,7 @@ import { Route } from "react-router-dom";
 import SpotDetails from '../src/components/SpotDetails'
 import CreateSpot from '../src/components/CreateSpot'
 import ReviewForm from "./components/ReviewForm";
+import ManageSpot from "./components/ManageSpots";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -32,9 +33,9 @@ function App() {
         <CreateSpot/>
       </Route>
 
-      {/* <Route exact path="/spot/:spotId/review">
-        <ReviewForm/>
-      </Route> */}
+      <Route exact path="/spots/current">
+        <ManageSpot/>
+      </Route>
     
       <Route exact path="/spots/:spotId">
           <SpotDetails/>
