@@ -13,7 +13,6 @@ import OpenModalButton from '../OpenModalButton'
 export default function SpotDetails() {
   const spotDetail = useSelector(state=>state.spots.spotDetails)
 
-
   
   const reviewDetails = useSelector((state) => state.reviews.spot);
   // console.log("revieww details are here baby", reviewDetails)

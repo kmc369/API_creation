@@ -71,7 +71,6 @@ function CreateSpot() {
     const createSpotResponse = await dispatch(SpotActions.createSpotThunk(formData));
     const createdSpotId = createSpotResponse.id;
   
-    console.log(createdSpotId)
     
     if (imgObj.url) {
       await dispatch(SpotActions.postSpotImageThunk(createdSpotId, imgObj));
@@ -98,7 +97,7 @@ function CreateSpot() {
     setImage3('');
     setImage4('');
 
-    history.push(`/spots/${spotId}`)
+    history.push(`/spots/${createdSpotId}`)
   };
 
 
