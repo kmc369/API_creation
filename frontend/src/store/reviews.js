@@ -2,12 +2,12 @@ import { csrfFetch } from "./csrf"
 
 const GET_REVIEWS = 'getReviewsBySpotId';
 const POST_REVIEW = 'create/review'
-const getReviews =(spotId)=>{
-    return {
-        type:GET_REVIEWS,
-        payload:spotId
-    }
-}
+const getReviews = (spotId, reviews) => {
+  return {
+    type: GET_REVIEWS,
+    payload: { spotId, reviews }
+  };
+};
 
 export const actionCreateReview = (spotId, reviewData) => {
     return { 
@@ -45,22 +45,21 @@ export const actionCreateReview = (spotId, reviewData) => {
     
     }
 
-export const getReviewsThunk=(spotId) => async(dispatch,getState)=>{
-    try{
-        const response = await csrfFetch(`/api/spots/${spotId}/reviews`,{
-            method:'GET'
-        })
+    export const getReviewsThunk = (spotId) => async (dispatch) => {
+      try {
+        const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
+          method: 'GET'
+        });
     
-        if(response.ok){
-            const data = await response.json()
-            dispatch(getReviews(data))
-            return data
+        if (response.ok) {
+          const data = await response.json();
+          dispatch(getReviews(spotId, data)); 
+          return data;
         }
-
-    }catch(error){
+      } catch (error) {
         console.error("An error occurred:", error);
-}
-}
+      }
+    };
 
 
 
@@ -70,13 +69,10 @@ export const reviewsReducer=(state=initialState ,action)=>{
 
     switch(action.type){
       case GET_REVIEWS: {
+        const { spotId, reviews } = action.payload;
         const newState = { ...state, spot: { ...state.spot } };
   
-        action.payload.Reviews.forEach((review) => {
-          newState.spot[review.id] = review;
-
-          
-        });
+        newState.spot[spotId] = reviews;
   
         return newState;
       }
