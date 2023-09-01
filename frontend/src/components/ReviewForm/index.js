@@ -52,13 +52,13 @@ function ReviewForm({ spotId, onCloseModal }) {
         onChange={(e)=>setreview(e.target.value)}
       />
       <div className="stars">
-        <label>Stars</label>
        <input value = {stars}
        type='number' 
        onChange={(e)=>setstars(parseInt(e.target.value))}
        min={1} max={5}>
       
        </input>
+         <label>Stars</label>
       </div>
       <button
         className="submit-button"

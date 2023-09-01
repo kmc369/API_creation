@@ -4,7 +4,7 @@ import * as ReviewActions from '../../store/reviews'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import { useModal } from "../../context/Modal";
 import * as SpotActions from '../../store/spot'
-
+import './deleteReview.css'
 
 export const DeleteReview = ({reviewId,spotId}) => {
     // console.log("review id =",reviewId)
@@ -23,12 +23,12 @@ export const DeleteReview = ({reviewId,spotId}) => {
       };
     
   return (
-    <div>DeleteReview
+    <div>
        <div className="delete-Review">
       <h2>Confirm Delete</h2>
       <p>Are you sure you want to remove this Review from the listing?</p>
-      <button type='submit' onClick={handleDelete} >Yes, Delete Review</button>
-      <button onClick={closeModal}>No, Keep Review</button>
+      <button className="confirm" type='submit' onClick={handleDelete} >Yes, Delete Review</button>
+      <button className="deny" onClick={closeModal}>No, Keep Review</button>
     </div>
     </div>
   )

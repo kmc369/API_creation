@@ -1,0 +1,13 @@
+.confirm{
+    color:white;
+    background-color: red;
+    border: none;
+    margin-right: 5px;
+}
+
+.deny{
+    color: white;
+    background-color: grey;
+    border: none;
+
+}

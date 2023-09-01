@@ -88,12 +88,13 @@ return monthYearFormat;
 
 
 
-const hasPostedReview = value.some(
+const hasPostedReview = value[0].Reviews.some(
   review => review.User && currentUser && review.User.id === currentUser.id && review.spotId === spotId
 );
 
 
 const isSpotOwner = spotDetail.Owner.id === currentUser.id;
+
 
 
 
@@ -116,7 +117,7 @@ return (
     <div className='callout-container'>
       <div className='callout'>
         <p className='calloutPrice'>
-          {spotDetail.price} night <i className="fa-solid fa-star"></i>
+         ${spotDetail.price} night <i className="fa-solid fa-star"></i>
           {spotDetail.avgStarRating} {formatReviewCount(spotDetail.numReviews)}
         </p>
         <button className='reserve' onClick={() => alert("feature coming soon")}>Reserve</button>
@@ -167,6 +168,8 @@ return (
               );
             })}
         </div>
+      
+        
       )}
     </div>
   </>

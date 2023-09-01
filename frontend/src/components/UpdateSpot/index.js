@@ -74,7 +74,8 @@ function UpdateSpot() {
     setImage3('');
     setImage4('');
 
-    history.push(`/spot/update/${spotId}`)
+    history.push(`/spots/${spotId}`)
+
   
   }
 
@@ -86,7 +87,7 @@ function UpdateSpot() {
     <div className='container'>
       <form className='form-container' onSubmit={handleSubmit}>
         <div className='location-container'>
-          <h3>Create a New Spot</h3>
+          <h3>Update Your Spot</h3>
           <h5>Where's your place located</h5>
           <p>Guests will only get your exact address once they book a reservation.</p>
           <input
@@ -215,7 +216,7 @@ function UpdateSpot() {
 
         <div className='submit-button-container'>
           <button type='submit' className='submit-button'>
-            Update spot
+            Update Your Spot
           </button>
         </div>
       </form>

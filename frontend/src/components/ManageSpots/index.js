@@ -59,7 +59,7 @@ if (userSpots.Spots === undefined || Object.values(userSpots).length === 0 || !u
              <span> <OpenModalButton
               modalComponent={<DeleteSpot spotId={element.id}  onCloseModal={() => setIsDeleteModalOpen(false)} />}
         
-              buttonText="Delete Your Spot"
+              buttonText="Delete"
               
             /></span>
 

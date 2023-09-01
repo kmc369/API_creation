@@ -10,10 +10,12 @@ export default function LandingPage(){
     const dispatch = useDispatch()
     const spots = useSelector(state=>(state.spots.allSpots))
     // const spotImages = useSelector(state =>(state.spotImage.image))
+    // const spotDetails = useSelector(state=>(state.spots.spotDetails))
+    // console.log("the spot details are",spotDetails)
  
     useEffect(()=>{
         dispatch(SpotActions.getAllSpotsThunk())
- 
+        
     },[dispatch])
   
    
@@ -33,12 +35,13 @@ export default function LandingPage(){
       
        
         {values.map((element, index) => (
-       
+            
             <div className="spot" key={index} onClick={()=>{history.push(`/spots/${element.id}`)}}>
                 <Tooltip text={element.name}>
                 <img src={element?.previewImage} alt='image'></img>
                 </Tooltip>
-                <p className='city-star'>{element.state}, {element.city} <i class="fa-solid fa-star"></i>{element.avgRating}</p> 
+                
+                <p className='city-star'>{element.state}, {element.city} <i class="fa-solid fa-star"></i>{parseInt(element.avgRating, 10)>0? parseInt(element.avgRating, 10).toFixed(1): 'New'}</p>
                 <p>${element.price} night</p>
 
              

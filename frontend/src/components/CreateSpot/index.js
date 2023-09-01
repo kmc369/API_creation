@@ -170,6 +170,7 @@ function CreateSpot() {
             onChange={(e) => setDescription(e.target.value)}
             className='textarea-text'
             type='textarea'
+            placeholder='Please write at least 30 characters"'
           ></textarea>
         </div>
 
