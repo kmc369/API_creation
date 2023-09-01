@@ -4,7 +4,7 @@ import * as ReviewActions from '../../store/reviews'
 import {useParams } from 'react-router-dom'
 import * as SpotActions from '../../store/spot'
 import { useModal } from "../../context/Modal";
-
+import './postReview.css'
 
 
 function ReviewForm({ spotId, onCloseModal }) {
@@ -43,8 +43,17 @@ function ReviewForm({ spotId, onCloseModal }) {
   };
 
  useEffect(()=>{
+  const error ={}
 
- })
+  if(review.length<10){
+    error.review = "Must be greater than 30 character"
+  }
+
+  if(!stars){
+    error.stars = "Must give a rating "
+  }
+  setErrors(error)
+ },[review,stars])
 
   return (
  
@@ -55,6 +64,7 @@ function ReviewForm({ spotId, onCloseModal }) {
         value={review}
         onChange={(e)=>setreview(e.target.value)}
       />
+      <p className='errors'>{errors.review}</p>
       <div className="stars">
        <input value = {stars}
        type='number' 
@@ -62,11 +72,13 @@ function ReviewForm({ spotId, onCloseModal }) {
        min={1} max={5}>
       
        </input>
+       
          <label>Stars</label>
       </div>
       <button
-        className="submit-button"
-        
+       type='submit'
+        className={`submit-button ${Object.keys(errors).length > 0 ? "disabled-button" : "enabled-button"}`}
+        style={{ backgroundColor: Object.keys(errors).length > 0 ? 'rgb(187, 186, 186)' : 'rgb(0, 123, 255)' }}
         disabled={isSubmitDisabled}
       >
         Submit Your Review
