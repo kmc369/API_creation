@@ -36,7 +36,7 @@ function ReviewForm({ spotId, onCloseModal }) {
     setstars(0)
     closeModal();
 
-    // await dispatch(SpotActions.getSpotDetailsThunk(spotId))
+    await dispatch(SpotActions.getSpotDetailsThunk(spotId))
     await dispatch(ReviewActions.getReviewsThunk(spotId))
   };
 

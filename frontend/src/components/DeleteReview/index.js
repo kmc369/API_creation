@@ -3,6 +3,7 @@ import { useDispatch ,useSelector} from 'react-redux'
 import * as ReviewActions from '../../store/reviews'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import { useModal } from "../../context/Modal";
+import * as SpotActions from '../../store/spot'
 
 
 export const DeleteReview = ({reviewId,spotId}) => {
@@ -18,6 +19,7 @@ export const DeleteReview = ({reviewId,spotId}) => {
        await dispatch(ReviewActions.deleteReviewThunk(reviewId));
         closeModal()
        await  dispatch(ReviewActions.getReviewsThunk(spotId))
+       await dispatch(SpotActions.getSpotDetailsThunk(spotId))
       };
     
   return (
