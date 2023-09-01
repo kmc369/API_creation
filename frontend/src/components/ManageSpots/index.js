@@ -42,7 +42,8 @@ if (userSpots.Spots === undefined || Object.values(userSpots).length === 0 || !u
   return (
     <>
         <h1>Manage Your Spots</h1>
-         <button>Create a Spot</button>
+
+        <button onClick={()=> history.push('/spots')}>Create a Spot</button>
 
         <div id='landingPageContainer'>
       

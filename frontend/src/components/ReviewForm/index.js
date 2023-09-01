@@ -12,6 +12,8 @@ function ReviewForm({ spotId, onCloseModal }) {
   const [stars, setstars] = useState(0);
   const dispatch = useDispatch()
   const {closeModal} = useModal()
+  const [errors, setErrors] = useState({});
+
   
   
   const reviewDetails = useSelector((state) => state.reviews.spot);
@@ -40,7 +42,9 @@ function ReviewForm({ spotId, onCloseModal }) {
     await dispatch(ReviewActions.getReviewsThunk(spotId))
   };
 
- 
+ useEffect(()=>{
+
+ })
 
   return (
  

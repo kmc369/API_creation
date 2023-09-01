@@ -93,9 +93,16 @@ const hasPostedReview = value[0].Reviews.some(
 );
 
 
-const isSpotOwner = spotDetail.Owner.id === currentUser.id;
+let isSpotOwner ;
+try{
+
+ isSpotOwner = spotDetail.Owner.id === currentUser.id;
+
+}catch(error){
+  
 
 
+}
 
 
 return (
@@ -126,11 +133,21 @@ return (
 
     <div className='reviewsContainer'>
       <h1><i className="fa-solid fa-star"></i>{spotDetail.avgStarRating} {formatReviewCount(spotDetail.numReviews)}</h1>
+      
       <div>
-        {currentUser && !hasPostedReview && !isSpotOwner && (
+        {currentUser && !hasPostedReview && !isSpotOwner && spotDetail.numReviews>0 &&  (
           <OpenModalButton
             modalComponent={<ReviewForm spotId={spotId} onCloseModal={() => setIsReviewModalOpen(false)} />}
-            buttonText="Post Your Review"
+            buttonText="post a review!"
+          />
+        )}
+      </div>
+
+      <div>
+        {currentUser && !hasPostedReview && !isSpotOwner && spotDetail.numReviews===0 &&  (
+          <OpenModalButton
+            modalComponent={<ReviewForm spotId={spotId} onCloseModal={() => setIsReviewModalOpen(false)} />}
+            buttonText="Be the first to post a review!"
           />
         )}
       </div>

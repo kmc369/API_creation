@@ -6,7 +6,6 @@ import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
 import {useHistory} from 'react-router-dom'
 
-
 import './Navigation.css'
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -42,11 +41,22 @@ function ProfileButton({ user }) {
     closeMenu();
   };
 
+  const handleClick = () => {
+    const obj = {
+      credential:"du@gmail.com",
+      password:"hello1"
+
+    }
+    return dispatch(sessionActions.login(obj))
+
+  }
+
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
   return (
     <>
       <button className="MenuButton" onClick={openMenu}>
+      
       <i class="fa-solid fa-bars"></i>
       </button>
       <div className={ulClassName} ref={ulRef}>
@@ -57,10 +67,14 @@ function ProfileButton({ user }) {
             <div className="Menu-Option">{user.username}</div>
             <div className="Menu-Option">{user.firstName} {user.lastName}</div>
             <div className="Menu-Option">{user.email}</div>
-            <div className="Menu-Option" onClick={()=>history.push("/spots/current")}>Manage Spot </div>
+            <div className="Menu-Option" onClick={()=>history.push("/spots/current")}>
+              {!(user.email ==="du@gmail.com") && ( <div>Manage Spot </div>)}
+              </div>
             <div className="Menu-Option" onClick={logout}>Log Out</div>
             </div>
-        <div><button onClick={()=> history.push('/spots')}>Create a Spot</button></div>
+        <div>
+        {!(user.email ==="du@gmail.com") && ( <div><button onClick={()=> history.push('/spots')}>Create a Spot</button></div>)}
+        </div>
 
           </>
         ) : (
@@ -76,6 +90,8 @@ function ProfileButton({ user }) {
               modalComponent={<LoginFormModal />}
   
             />
+
+            <button onClick={handleClick}>Login As Demo User</button>
     
           
             <OpenModalMenuItem
