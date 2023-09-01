@@ -19,6 +19,7 @@ export default function SpotDetails() {
   // console.log("revieww details are here baby", reviewDetails)
 
   const currentUser = useSelector(state => state.session.user)
+  const [dataLoaded, setDataLoaded] = useState(false);
   
   
   const dispatch = useDispatch()
@@ -29,36 +30,16 @@ export default function SpotDetails() {
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
   
 
-  const handleDeleteReview = async (reviewId) => {
-    // You can add confirmation dialogs or other checks here if needed
-    const deleted = await dispatch(ReviewAction.deleteReviewThunk(reviewId));
-    if (deleted) {
-      const getReview = await dispatch(ReviewAction.getReviewsThunk(spotId))
-
-    }
-  }
 
 
-
-
-
-
-  
-  
   useEffect(() => {
- 
-
     async function fetchData() {
-
-  
-      const getspot= await dispatch(SpotActions.getSpotDetailsThunk(spotId));
-      const getReview = await dispatch(ReviewAction.getReviewsThunk(spotId))
-     
+      const getspot = await dispatch(SpotActions.getSpotDetailsThunk(spotId));
+      const getReview = await dispatch(ReviewAction.getReviewsThunk(spotId));
+      console.log("spot id is ", spotId)
+      setDataLoaded(true); 
     }
     fetchData();
-    
-    
- 
   }, [dispatch, spotId]);
 
   
@@ -153,36 +134,40 @@ return (
         )}
       </div>
 
-      {console.log("the values are", value[0].Reviews)}
 
-      {value[0].Reviews
-        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-        .map((element, index) => {
-          const reviewId = element.id;
-          const spotId = element.spotId;
 
-          return (
-            <div key={element.id}>
-              {console.log("the element id is", element.id)}
-              <h3>{element.User.firstName}</h3>
-              <p>{dateFormat(element.createdAt)}</p>
-              <p>{element.review}</p>
+      {reviewDetails && Object.keys(reviewDetails).length > 0 && (
+        <div>
+          {value[0].Reviews
+            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+            .map((element, index) => {
+              const reviewId = element.id;
+              const spotId = element.spotId;
 
-              {currentUser && element.User.id === currentUser.id && (
-                <OpenModalButton
-                  modalComponent={
-                    <DeleteReview
-                      reviewId={reviewId}
-                      spotId={spotId}
-                      onCloseModal={() => setIsReviewModalOpen(false)}
+              return (
+                <div key={element.id}>
+                  {/* {console.log("the element id is", element.id)} */}
+                  <h3>{element.User.firstName}</h3>
+                  <p>{dateFormat(element.createdAt)}</p>
+                  <p>{element.review}</p>
+
+                  {currentUser && element.User.id === currentUser.id && (
+                    <OpenModalButton
+                      modalComponent={
+                        <DeleteReview
+                          reviewId={reviewId}
+                          spotId={spotId}
+                          onCloseModal={() => setIsReviewModalOpen(false)}
+                        />
+                      }
+                      buttonText="Delete Review"
                     />
-                  }
-                  buttonText="Delete Review"
-                />
-              )}
-            </div>
-          );
-        })}
+                  )}
+                </div>
+              );
+            })}
+        </div>
+      )}
     </div>
   </>
 )

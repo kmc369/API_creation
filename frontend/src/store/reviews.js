@@ -79,12 +79,12 @@ export const actionCreateReview = (spotId, reviewData) => {
     export const getReviewsThunk = (spotId) => async (dispatch) => {
       try {
         const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
-          method: 'GET'
+          method: 'GET',
         });
     
         if (response.ok) {
           const data = await response.json();
-          dispatch(getReviews(spotId, data)); 
+          dispatch(getReviews(spotId, data));
           return data;
         }
       } catch (error) {
@@ -101,12 +101,12 @@ export const reviewsReducer=(state=initialState ,action)=>{
     switch(action.type){
       case GET_REVIEWS: {
         const { spotId, reviews } = action.payload;
-        const newState = { ...state, spot: { ...state.spot } };
-  
-        newState.spot[spotId] = reviews;
-  
+        const newState = { ...state, spot: {} };
+        newState.spot[spotId] =  reviews ;
+      
         return newState;
       }
+      
       case POST_REVIEW: {
         const { spotId, newReview } = action.payload;
 

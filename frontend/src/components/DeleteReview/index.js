@@ -6,8 +6,8 @@ import { useModal } from "../../context/Modal";
 
 
 export const DeleteReview = ({reviewId,spotId}) => {
-    console.log(reviewId)
-    console.log(spotId)
+    // console.log("review id =",reviewId)
+    // console.log("spotId is ",spotId)
     const dispatch = useDispatch()
     const userReviews = useSelector(state =>state.reviews.user)
 
