@@ -7,7 +7,6 @@ import { useModal } from "../../context/Modal";
 
 
 
-
 function ReviewForm({ spotId, onCloseModal }) {
   const [review, setreview] = useState('');
   const [stars, setstars] = useState(0);
@@ -15,6 +14,7 @@ function ReviewForm({ spotId, onCloseModal }) {
   const {closeModal} = useModal()
   
   
+  const reviewDetails = useSelector((state) => state.reviews.spot);
   
   
   
@@ -36,7 +36,8 @@ function ReviewForm({ spotId, onCloseModal }) {
     setstars(0)
     closeModal();
 
-    await dispatch(SpotActions.getSpotDetailsThunk(spotId))
+    // await dispatch(SpotActions.getSpotDetailsThunk(spotId))
+    await dispatch(ReviewActions.getReviewsThunk(spotId))
   };
 
  
