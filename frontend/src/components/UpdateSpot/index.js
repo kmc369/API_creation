@@ -13,7 +13,7 @@ function UpdateSpot() {
     const dispatch = useDispatch()
     const history = useHistory()
 
-    console.log("spot Details are gang", spotDetail)
+    // console.log("spot Details are gang", spotDetail)
 
     
     

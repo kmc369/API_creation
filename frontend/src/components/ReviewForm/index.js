@@ -2,12 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch ,useSelector} from 'react-redux'
 import * as ReviewActions from '../../store/reviews'
 import {useParams } from 'react-router-dom'
+import * as SpotActions from '../../store/spot'
+import { useModal } from "../../context/Modal";
+
+
+
 
 function ReviewForm({ spotId, onCloseModal }) {
   const [review, setreview] = useState('');
   const [stars, setstars] = useState(0);
   const dispatch = useDispatch()
-  
+  const {closeModal} = useModal()
   
   
   
@@ -15,7 +20,7 @@ function ReviewForm({ spotId, onCloseModal }) {
   
   const isSubmitDisabled = review.length < 10 || stars === 0;
   
-  const handleSubmit =  (e) => {
+  const handleSubmit =  async(e) => {
     e.preventDefault();
    
     const reviewForm = {
@@ -25,11 +30,13 @@ function ReviewForm({ spotId, onCloseModal }) {
     }
     
    
-    dispatch(ReviewActions.createReviewThunk(spotId,reviewForm))
+    await dispatch(ReviewActions.createReviewThunk(spotId,reviewForm))
   
     setreview(" ")
-    setstars(" ")
-    onCloseModal();
+    setstars(0)
+    closeModal();
+
+    await dispatch(SpotActions.getSpotDetailsThunk(spotId))
   };
 
  
@@ -47,7 +54,7 @@ function ReviewForm({ spotId, onCloseModal }) {
         <label>Stars</label>
        <input value = {stars}
        type='number' 
-       onChange={(e)=>setstars(e.target.value)}
+       onChange={(e)=>setstars(parseInt(e.target.value))}
        min={1} max={5}>
       
        </input>

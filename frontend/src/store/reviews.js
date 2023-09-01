@@ -9,17 +9,17 @@ const getReviews =(spotId)=>{
     }
 }
 
-export const actionCreateReview = (reviewData) => {
+export const actionCreateReview = (spotId, reviewData) => {
     return { 
                 type: POST_REVIEW, 
-                payload: reviewData 
+                payload: { spotId,  reviewData} 
             };
   };
 
 
   export const createReviewThunk = (spotId,reviewData) => async (dispatch) => {
     const {review,stars} = reviewData
-    console.log("the review form is " ,review)
+    // console.log("the review form is " ,review)
   
     try {
     
@@ -36,7 +36,7 @@ export const actionCreateReview = (reviewData) => {
   
         if (response.ok) {
           const data = await response.json();
-          dispatch( actionCreateReview (data));
+          dispatch( actionCreateReview(spotId,data));
           return data;
         }
       } catch (error) {
@@ -74,16 +74,22 @@ export const reviewsReducer=(state=initialState ,action)=>{
   
         action.payload.Reviews.forEach((review) => {
           newState.spot[review.id] = review;
+
+          
         });
   
         return newState;
       }
       case POST_REVIEW: {
-        const newReview = action.payload;
-        const newState = { ...state, spot: { ...state.spot } };
-  
-        newState.spot[newReview.id] = newReview;
-  
+        const { spotId, newReview } = action.payload;
+
+       
+        const newState = { ...state };
+        const targetSpot = newState.spot[spotId];
+              if (targetSpot) {
+          targetSpot.reviews = [...targetSpot.reviews, newReview];
+        }
+      
         return newState;
       }
 

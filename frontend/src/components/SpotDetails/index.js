@@ -15,7 +15,7 @@ export default function SpotDetails() {
 
   
   const reviewDetails = useSelector((state) => state.reviews.spot);
-  // console.log("revieww details are here baby", reviewDetails)
+  console.log("revieww details are here baby", reviewDetails)
 
   const currentUser = useSelector(state => state.session.user)
   
@@ -31,20 +31,28 @@ export default function SpotDetails() {
   
   useEffect(() => {
  
-    dispatch(SpotActions.getSpotDetailsThunk(spotId));
-    dispatch(ReviewAction.getReviewsThunk(spotId))
+    async function fetchData() {
+      await dispatch(SpotActions.getSpotDetailsThunk(spotId));
+      await dispatch(ReviewAction.getReviewsThunk(spotId))
+    
+    }
+    fetchData()
   }, [dispatch, spotId]);
 
+  
+   const value = Object.values(reviewDetails )
   if(Object.values(spotDetail).length===0 ){
     // console.log("in first null")
     return null
   }
 
-  if(!reviewDetails){
+  if(!reviewDetails || Object.values(reviewDetails).length===0 ||reviewDetails===undefined || value===undefined) {
+    console.log("I returned null")
     return null
   }
 
- 
+
+  console.log("the values are ", value)
 
 
  function formatReviewCount(count) {
@@ -71,11 +79,14 @@ const monthYearFormat = `${months[date.getUTCMonth()]} ${date.getUTCFullYear()}`
 return monthYearFormat;
 }
 
-const value = Object.values(reviewDetails )
+
+
+
 
 const hasPostedReview = value.some(
-  review => review.User.id === currentUser.id && review.spotId === spotId
+  review => review.User && currentUser && review.User.id === currentUser.id && review.spotId === spotId
 );
+
 
 const isSpotOwner = spotDetail.Owner.id === currentUser.id;
 
@@ -123,10 +134,7 @@ const isSpotOwner = spotDetail.Owner.id === currentUser.id;
             />
           )}
         </div> 
-       
-    {value
-    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) 
-    .map((element, index) => (
+    {value.map((element, index) => (
       
       <div key={element.id}> 
         <h3>{element.User.firstName} </h3>
@@ -136,6 +144,7 @@ const isSpotOwner = spotDetail.Owner.id === currentUser.id;
     ))}      
  </div>
 
+  {/* .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))  */}
 
     </>
   )
