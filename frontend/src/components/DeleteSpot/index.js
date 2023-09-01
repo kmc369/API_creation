@@ -31,3 +31,5 @@ export const DeleteSpot = ({spotId,onCloseModal}) => {
     </div>
   )
 }
+
+export default DeleteSpot

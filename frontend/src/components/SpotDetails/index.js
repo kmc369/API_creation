@@ -9,13 +9,14 @@ import { useModal } from "../../context/Modal";
 import './SpotDetails.css';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import OpenModalButton from '../OpenModalButton'
+import DeleteReview from '../DeleteReview'
 
 export default function SpotDetails() {
   const spotDetail = useSelector(state=>state.spots.spotDetails)
 
   
   const reviewDetails = useSelector((state) => state.reviews.spot);
-  console.log("revieww details are here baby", reviewDetails)
+  // console.log("revieww details are here baby", reviewDetails)
 
   const currentUser = useSelector(state => state.session.user)
   
@@ -27,17 +28,40 @@ export default function SpotDetails() {
   
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
   
+
+  const handleDeleteReview = async (reviewId) => {
+    // You can add confirmation dialogs or other checks here if needed
+    const deleted = await dispatch(ReviewAction.deleteReviewThunk(reviewId));
+    if (deleted) {
+      const getReview = await dispatch(ReviewAction.getReviewsThunk(spotId))
+
+    }
+  }
+
+
+
+
+
+
   
   
   useEffect(() => {
  
+
     async function fetchData() {
-      await dispatch(SpotActions.getSpotDetailsThunk(spotId));
-      await dispatch(ReviewAction.getReviewsThunk(spotId))
-    
+
+  
+      const getspot= await dispatch(SpotActions.getSpotDetailsThunk(spotId));
+      const getReview = await dispatch(ReviewAction.getReviewsThunk(spotId))
+     
     }
-    fetchData()
+    fetchData();
+    
+    
+ 
   }, [dispatch, spotId]);
+
+  
 
   
    const value = Object.values(reviewDetails )
@@ -52,7 +76,7 @@ export default function SpotDetails() {
   }
 
 
-  console.log("the values are ", value)
+  // console.log("the values are ", value)
 
 
  function formatReviewCount(count) {
@@ -92,62 +116,75 @@ const isSpotOwner = spotDetail.Owner.id === currentUser.id;
 
 
 
-  return (
-    <>
-
-   
-     <div className='spotDetails'>
-      <h1>{ spotDetail.name}</h1>
+return (
+  <>
+    <div className='spotDetails'>
+      <h1>{spotDetail.name}</h1>
       <p>{spotDetail.city}, {spotDetail.state}, {spotDetail.country}</p>
     </div>
 
-
     <div className='detailImages'>
-      {spotDetail.SpotImages.map((element,index)=>(
-        <img id={`s${index}`} src={element.url} alt="img"></img>
-       
-     
+      {spotDetail.SpotImages.map((element, index) => (
+        <img id={`s${index}`} src={element.url} alt="img" key={index}></img>
+      ))}
+    </div>
 
-      ))} 
-       </div>
-
-    <p>Hosted By: {spotDetail.Owner.firstName},{spotDetail.Owner.lastName}</p>
+    <p>Hosted By: {spotDetail.Owner.firstName}, {spotDetail.Owner.lastName}</p>
     <p>Description: {spotDetail.description}</p>
 
-  <div className='callout-container'>
-    <div className='callout'>
-      <p className='calloutPrice'>{spotDetail.price} night <i class="fa-solid fa-star"></i>{spotDetail.avgStarRating}  {formatReviewCount(spotDetail.numReviews)} </p>
-      <button className='reserve' onClick={()=> alert("feature coming soon")}>Reserve</button>
-    </div>
-    </div>
-
-   <div className='reviewsContainer'>
-    
-  <h1><i className="fa-solid fa-star"></i>{spotDetail.avgStarRating} {formatReviewCount(spotDetail.numReviews)}</h1>
-  <div>
-          {currentUser && !hasPostedReview && !isSpotOwner && (
-            <OpenModalButton
-              modalComponent={<ReviewForm spotId ={spotId} onCloseModal={() => setIsReviewModalOpen(false)} />}
-        
-              buttonText="Post Your Review"
-              
-            />
-          )}
-        </div> 
-    {value.map((element, index) => (
-      
-      <div key={element.id}> 
-        <h3>{element.User.firstName} </h3>
-        <p>{dateFormat(element.createdAt)}</p>
-        <p>{element.review}</p>
+    <div className='callout-container'>
+      <div className='callout'>
+        <p className='calloutPrice'>
+          {spotDetail.price} night <i className="fa-solid fa-star"></i>
+          {spotDetail.avgStarRating} {formatReviewCount(spotDetail.numReviews)}
+        </p>
+        <button className='reserve' onClick={() => alert("feature coming soon")}>Reserve</button>
       </div>
-    ))}      
- </div>
+    </div>
 
-  {/* .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))  */}
+    <div className='reviewsContainer'>
+      <h1><i className="fa-solid fa-star"></i>{spotDetail.avgStarRating} {formatReviewCount(spotDetail.numReviews)}</h1>
+      <div>
+        {currentUser && !hasPostedReview && !isSpotOwner && (
+          <OpenModalButton
+            modalComponent={<ReviewForm spotId={spotId} onCloseModal={() => setIsReviewModalOpen(false)} />}
+            buttonText="Post Your Review"
+          />
+        )}
+      </div>
 
-    </>
-  )
+      {console.log("the values are", value[0].Reviews)}
+
+      {value[0].Reviews
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+        .map((element, index) => {
+          const reviewId = element.id;
+          const spotId = element.spotId;
+
+          return (
+            <div key={element.id}>
+              {console.log("the element id is", element.id)}
+              <h3>{element.User.firstName}</h3>
+              <p>{dateFormat(element.createdAt)}</p>
+              <p>{element.review}</p>
+
+              {currentUser && element.User.id === currentUser.id && (
+                <OpenModalButton
+                  modalComponent={
+                    <DeleteReview
+                      reviewId={reviewId}
+                      spotId={spotId}
+                      onCloseModal={() => setIsReviewModalOpen(false)}
+                    />
+                  }
+                  buttonText="Delete Review"
+                />
+              )}
+            </div>
+          );
+        })}
+    </div>
+  </>
+)
 }
-
 

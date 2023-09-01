@@ -2,10 +2,18 @@ import { csrfFetch } from "./csrf"
 
 const GET_REVIEWS = 'getReviewsBySpotId';
 const POST_REVIEW = 'create/review'
+const DELETE_REVIEW = 'delete/review'
 const getReviews = (spotId, reviews) => {
   return {
     type: GET_REVIEWS,
     payload: { spotId, reviews }
+  };
+};
+
+const actionDeleteReviews = (reviewId) => {
+  return {
+    type: DELETE_REVIEW,
+    payload:reviewId
   };
 };
 
@@ -15,6 +23,29 @@ export const actionCreateReview = (spotId, reviewData) => {
                 payload: { spotId,  reviewData} 
             };
   };
+
+
+
+
+
+  export const deleteReviewThunk = (reviewId) => async (dispatch) => {
+    try {
+      const response = await csrfFetch(`/api/reviews/${reviewId}`, {
+        method: 'DELETE',
+      });
+  
+      if (response.ok) {
+        dispatch(actionDeleteReviews(reviewId));
+        return true; 
+      } else {
+        return false; 
+      }
+    } catch (error) {
+      console.error('An error occurred:', error);
+      return false; 
+    }
+  };
+
 
 
   export const createReviewThunk = (spotId,reviewData) => async (dispatch) => {
@@ -88,6 +119,23 @@ export const reviewsReducer=(state=initialState ,action)=>{
       
         return newState;
       }
+
+      case DELETE_REVIEW:
+        const { payload: reviewId } = action;
+        const newState = {
+          ...state,
+          spot: { ...state.spot },
+        };
+  
+        if (newState.spot[reviewId]) {
+          delete newState.spot[reviewId];
+        }
+  
+        if (newState.user[reviewId]) {
+          delete newState.user[reviewId];
+        }
+  
+        return newState;
 
         default:
             return state
