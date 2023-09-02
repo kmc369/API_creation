@@ -7,6 +7,7 @@ import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import "./LoginForm.css";
+import { NavLink } from 'react-router-dom';
 
 function LoginFormModal() {
   const dispatch = useDispatch();
@@ -28,14 +29,24 @@ function LoginFormModal() {
       });
   };
 
+  const handleClick = () => {
+    const obj = {
+      credential:"du@gmail.com",
+      password:"hello1"
+
+    }
+    closeModal()
+    return dispatch(sessionActions.login(obj))
+  }
+
   useEffect(()=>{
     const error = {}
     if(credential.length<4){
-      error.credential = "NAME MUST BE GREATER THAN FOUR CHARACTERS"
+      error.credentials = "NAME MUST BE GREATER THAN FOUR CHARACTERS"
     }
 
     if(password.length<6){
-      error.password = "PASSWORD MUST BE GREATER THAN 6 CHARACTERS"
+      error.passwords = "PASSWORD MUST BE GREATER THAN 6 CHARACTERS"
     }
 
     setErrors(error)
@@ -54,32 +65,35 @@ function LoginFormModal() {
               >
               <form  onSubmit={handleSubmit}>
                  <h1>Login</h1>
-                <input
+                 <label>Username or email</label>
+                 <input
                  value={credential}
                  onChange={(e)=>setCredential(e.target.value)}
                  type="text"
                  id="creditial" 
                  name="creditial" 
-                 placeholder="Username or Email" 
+                //  placeholder="Username or Email" 
                  required
                  initial={{ opacity: 0, x: -20 }}
                  animate={{ opacity: 1, x: 0 }}
                  transition={{ delay: 0.2, duration: 0.5 }}
                  
                  />
+              <label>Password</label>
               <input
                 value={password}
                 onChange={(e)=>setPassword(e.target.value)}
                 type="password" 
                 id="password" 
                 name="password" 
-                placeholder="Password" 
+                // placeholder="Password" 
                 required 
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4, duration: 0.5 }} 
+                className='username'
                 />
-                {errors.credential && <p>{errors.credential}</p>}
+                {errors.credential && errors.credential}
                 <button
                 type="submit"
                 disabled={Object.keys(errors).length>0}
@@ -89,8 +103,13 @@ function LoginFormModal() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6, duration: 0.5 }}
-                >Submit</button >
+                >Log In</button >
+
+            <div className='demoUser' onClick={handleClick}>Demo User</div>
+
                
+
+              
               </form>
             </motion.div>
 

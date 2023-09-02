@@ -87,7 +87,6 @@ function ProfileButton({ user }) {
 
             
            <div className="menuButtons" onClick={handleClick}>Login As Demo User</div>
-        
             <OpenModalMenuItem
               
               itemText="Login In"
@@ -97,7 +96,7 @@ function ProfileButton({ user }) {
             />
 
     
-          
+
             <OpenModalMenuItem
               itemText="Sign Up"
               onItemClick={closeMenu}
