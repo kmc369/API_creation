@@ -86,16 +86,16 @@ function ProfileButton({ user }) {
          <div className="Menu-Options-container">
 
             
+           <div className="menuButtons" onClick={handleClick}>Login As Demo User</div>
         
             <OpenModalMenuItem
-          
+              
               itemText="Login In"
               onItemClick={closeMenu}
               modalComponent={<LoginFormModal />}
   
             />
 
-            <button onClick={handleClick}>Login As Demo User</button>
     
           
             <OpenModalMenuItem
