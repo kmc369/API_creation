@@ -32,10 +32,10 @@ function UpdateSpot() {
     const [spotTitle, setSpotTitle] = useState(spotDetail.name);
     const [price, setPrice] = useState(spotDetail.price);
     const [previewImageUrl, setPreviewImageUrl] = useState(spotDetail.SpotImages[0].url);
-    const [image1, setImage1] = useState("")
-    const [image2, setImage2] = useState('')
-    const [image3, setImage3] = useState('')
-    const [image4, setImage4] = useState('')
+    const [image1, setImage1] = useState(spotDetail.SpotImages[1]?.url || '')
+    const [image2, setImage2] = useState(spotDetail.SpotImages[2]?.url || '')
+    const [image3, setImage3] = useState(spotDetail.SpotImages[3]?.url || '')
+    const [image4, setImage4] = useState(spotDetail.SpotImages[4]?.url || '')
     const [preview, setPreview] = useState(false)
     
  
@@ -58,7 +58,7 @@ function UpdateSpot() {
       spotTitle,
       price,
     };
-    dispatch(SpotActions.updateSpotThunk(formData,spotId))
+    const updatedSpot = await dispatch(SpotActions.updateSpotThunk(formData,spotId))
 
 
 
@@ -88,30 +88,31 @@ function UpdateSpot() {
     }
     
     
-    const createSpotResponse = await dispatch(SpotActions.createSpotThunk(formData));
-    const createdSpotId = createSpotResponse.id;
+    // const createSpotResponse = await dispatch(SpotActions.createSpotThunk(formData));
+    
+   
     
    
     
     if (imgObj.url) {
-      dispatch(SpotActions.postSpotImageThunk(createdSpotId, imgObj));
+      await dispatch(SpotActions.postSpotImageThunk(updatedSpot.id, imgObj));
     }
 
-    if(image1){
-       dispatch(SpotActions.postSpotImageThunk(createdSpotId,img1))
-    }
+//     if(image1){
+//        await dispatch(SpotActions.postSpotImageThunk(updatedSpot.id,img1))
+//     }
 
-    if(image2){
-        dispatch(SpotActions.postSpotImageThunk(createdSpotId,img2))
-     }
+//     if(image2){
+//         await dispatch(SpotActions.postSpotImageThunk(updatedSpot.id,img2))
+//      }
 
-     if(image3){
-      dispatch(SpotActions.postSpotImageThunk(createdSpotId,img3))
-   }
+//      if(image3){
+//        await dispatch(SpotActions.postSpotImageThunk(updatedSpot.id,img3))
+//    }
 
-   if(image4){
-    dispatch(SpotActions.postSpotImageThunk(createdSpotId,img4))
- }
+//    if(image4){
+//     await dispatch(SpotActions.postSpotImageThunk(updatedSpot.id,img4))
+//  }
     
 
    

@@ -112,17 +112,21 @@ return (
       <h1>{spotDetail.name}</h1>
       <p>{spotDetail.city}, {spotDetail.state}, {spotDetail.country}</p>
     </div>
-
     <div className='detailImages'>
+      
       {spotDetail.SpotImages.map((element, index) => (
+        // <div className={`image${index}`}> 
         <img id={`s${index}`} src={element.url} alt="img" key={index}></img>
+        // </div>
       ))}
     </div>
 
-    <p>Hosted By: {spotDetail.Owner.firstName}, {spotDetail.Owner.lastName}</p>
-    <p>Description: {spotDetail.description}</p>
+    <h2 className='hostedBy'> Hosted By {spotDetail.Owner.firstName}, {spotDetail.Owner.lastName}</h2>
+    
 
-    <div className='callout-container'>
+   
+      <div className='callout-container'>
+     <div><p className='description'>Description: {spotDetail.description}</p></div> 
       <div className='callout'>
         <p className='calloutPrice'>
          ${spotDetail.price} night <i className="fa-solid fa-star"></i>
@@ -130,7 +134,8 @@ return (
         </p>
         <button className='reserve' onClick={() => alert("feature coming soon")}>Reserve</button>
       </div>
-    </div>
+      </div>  
+   
 
     <div className='reviewsContainer'>
       <h1><i className="fa-solid fa-star"></i>{spotDetail.avgStarRating} {formatReviewCount(spotDetail.numReviews)}</h1>
