@@ -163,7 +163,7 @@ function CreateSpot() {
     <div className='container'>
       <form className='form-container' onSubmit={handleSubmit}>
         <div className='location-container'>
-          <h3 className='headers'>Create a New Spot</h3>
+          <h3 className='headers1'>Create a New Spot</h3>
           <h4 className='headers'>Where's your place located?</h4>
           <p>Guests will only get your exact address once they book a reservation.</p>
           <label for="country">Country</label>

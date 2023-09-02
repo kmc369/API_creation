@@ -145,6 +145,7 @@ return (
           <OpenModalButton
             modalComponent={<ReviewForm spotId={spotId} onCloseModal={() => setIsReviewModalOpen(false)} />}
             buttonText="post a review!"
+            className="PostReview"
           />
         )}
       </div>
