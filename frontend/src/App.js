@@ -11,6 +11,7 @@ import CreateSpot from '../src/components/CreateSpot'
 import ReviewForm from "./components/ReviewForm";
 import ManageSpot from "./components/ManageSpots";
 import UpdateSpot from "./components/UpdateSpot";
+import landingcss from './components/LandingPage/LandingPage.css'
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);

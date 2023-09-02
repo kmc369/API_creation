@@ -58,16 +58,10 @@ function CreateSpot() {
 
     const img1 ={
       url:image1,
-      preview:false
+      preview:true
     }
 
    
-
-
-
-  
-  
-
     const createSpotResponse = await dispatch(SpotActions.createSpotThunk(formData));
     const createdSpotId = createSpotResponse.id;
   
@@ -77,6 +71,7 @@ function CreateSpot() {
     }
 
     if(image1.url){
+     
       await dispatch(SpotActions.postSpotImageThunk(createdSpotId,img1))
     }
     
@@ -112,12 +107,12 @@ function CreateSpot() {
   }
 
    
-  if (address.length<10 || address===" " ) {
+  if (address.length<3 || address===" " ) {
     error.address = "ADDRESS BE GREATER THAN 10 CHARACTERS";
 }
 
 
-   if (city.length<10 || city===" " ) {
+   if (city.length<3 || city===" " ) {
     error.address = "MUST BE GREATER THAN 10 CHARACTERS";
 }
 
@@ -270,7 +265,6 @@ function CreateSpot() {
           />
 
             <input
-           
               value={image1}
               onChange={(e) => {setImage1(e.target.value)}}
               type='url'
