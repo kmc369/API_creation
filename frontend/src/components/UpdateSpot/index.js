@@ -16,7 +16,7 @@ function UpdateSpot() {
 
     
     
-    
+    console.log(spotDetail.SpotImages[0].url)
     
     
     
@@ -30,11 +30,11 @@ function UpdateSpot() {
     const [description, setDescription] = useState(spotDetail.description);
     const [spotTitle, setSpotTitle] = useState(spotDetail.name);
     const [price, setPrice] = useState(spotDetail.price);
-    const [previewImageUrl, setPreviewImageUrl] = useState('Preview ImageURL');
-    const [image1, setImage1] = useState( 'Image URL')
-    const [image2, setImage2] = useState('Image URL')
-    const [image3, setImage3] = useState('Image URL')
-    const [image4, setImage4] = useState('Image URL')
+    const [previewImageUrl, setPreviewImageUrl] = useState(spotDetail.SpotImages[0].url);
+    const [image1, setImage1] = useState("")
+    const [image2, setImage2] = useState('')
+    const [image3, setImage3] = useState('')
+    const [image4, setImage4] = useState('')
     const [preview, setPreview] = useState(false)
     
  
@@ -180,7 +180,7 @@ function UpdateSpot() {
             value={previewImageUrl}
             onChange={(e) => setPreviewImageUrl(e.target.value)}
             type='url'
-            placeholder='Preview Image URL'
+            placeholder='Preview '
           />
 
             <input
@@ -188,28 +188,31 @@ function UpdateSpot() {
               value={image1}
               onChange={(e) => {setImage1(e.target.value)}}
               type='text'
-              placeholder='Image URL'
+              placeholder='Image url'
             />
           <input
            
            value={image2 }
            onChange={(e) => {setImage2(e.target.value)}}
            type='text'
-           placeholder='Image URL'
+           placeholder='Image url'
+
          />
           <input
            
            value={image3 }
            onChange={(e) => {setImage3(e.target.value)}}
            type='text'
-           placeholder='Image URL'
+           placeholder='Image url'
+
          />
           <input
            
            value={image4}
            onChange={(e) => {setImage4(e.target.value)}}
            type='text'
-           placeholder='Image URL'
+           placeholder='Image url'
+
          />
         
         </div>
