@@ -169,11 +169,12 @@ return (
               const spotId = element.spotId;
 
               return (
-                <div key={element.id}>
-                  {/* {console.log("the element id is", element.id)} */}
-                  <h3>{element.User.firstName}</h3>
-                  <p>{dateFormat(element.createdAt)}</p>
-                  <p>{element.review}</p>
+                <div className='reviews-container'>
+                  <div key={element.id}>
+                  <h3 className='reviewer-name'>{element.User.firstName}</h3>
+                  <p className='reviewer-date'>{dateFormat(element.createdAt)}</p>
+                  <p className='des'>{element.review}</p>
+                </div>
 
                   {currentUser && element.User.id === currentUser.id && (
                     <OpenModalButton

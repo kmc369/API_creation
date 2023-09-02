@@ -139,3 +139,29 @@ p{
 .description{
     width: 550px;
 }
+
+.reviews-container{
+    border: 1px solid rgb(218, 214, 214);
+    margin-bottom: 15px;
+    
+
+}
+
+.reviewer-name{
+    margin:0;
+    text-align: left;
+    margin-left: 12px;
+
+}
+.reviewer-date{
+    color:rgb(134, 134, 134);
+    margin-bottom: 3px;
+    margin:0;
+    text-align: left;
+    margin-left: 12px;
+    
+
+}
+.des{
+    margin-bottom: 30px;
+}
