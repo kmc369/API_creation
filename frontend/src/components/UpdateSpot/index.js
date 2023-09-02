@@ -16,11 +16,12 @@ function UpdateSpot() {
 
     
     
-    console.log(spotDetail.SpotImages[0].url)
+ 
     
     
     
-    
+    const [errors, setErrors] = useState({});
+
     const [country, setCountry] = useState(spotDetail.country);
     const [state, setState] = useState(spotDetail.state);
     const [city, setCity] = useState(spotDetail.city);
@@ -58,6 +59,61 @@ function UpdateSpot() {
       price,
     };
     dispatch(SpotActions.updateSpotThunk(formData,spotId))
+
+
+
+    const imgObj ={
+      url:previewImageUrl,
+      preview:true
+    }
+
+    const img1 ={
+      url:image1,
+      preview:false
+    }
+
+    const img2 ={
+      url:image2,
+      preview:false
+    }
+
+    const img3 ={
+      url:image3,
+      preview:false
+    }
+
+    const img4 ={
+      url:image4,
+      preview:false
+    }
+    
+    
+    const createSpotResponse = await dispatch(SpotActions.createSpotThunk(formData));
+    const createdSpotId = createSpotResponse.id;
+    
+   
+    
+    if (imgObj.url) {
+      dispatch(SpotActions.postSpotImageThunk(createdSpotId, imgObj));
+    }
+
+    if(image1){
+       dispatch(SpotActions.postSpotImageThunk(createdSpotId,img1))
+    }
+
+    if(image2){
+        dispatch(SpotActions.postSpotImageThunk(createdSpotId,img2))
+     }
+
+     if(image3){
+      dispatch(SpotActions.postSpotImageThunk(createdSpotId,img3))
+   }
+
+   if(image4){
+    dispatch(SpotActions.postSpotImageThunk(createdSpotId,img4))
+ }
+    
+
    
     setCountry('');
     setState('');
@@ -78,6 +134,33 @@ function UpdateSpot() {
 
   
   }
+  useEffect(()=>{
+    const error = {}
+    
+    if (country.length<2 || country===" " ) {
+      error.country = "COUNTRY BE GREATER THAN 2 CHARACTERS";
+  }
+
+   
+  if (address.length<3 || address===" " ) {
+    error.address = "ADDRESS BE GREATER THAN 10 CHARACTERS";
+}
+
+
+   if (city.length<3 || city===" " ) {
+    error.address = "MUST BE GREATER THAN 10 CHARACTERS";
+}
+
+
+  
+
+   if(description.length<30){
+    error.description="MUST BE 30 CHARACTERS OR MORE"
+   }
+   setErrors(error)
+
+
+  },[country,city,state,description])
 
 
  
@@ -186,14 +269,14 @@ function UpdateSpot() {
             <input
            
               value={image1}
-              onChange={(e) => {setImage1(e.target.value)}}
+              onChange={(e) => setImage1(e.target.value)}
               type='text'
               placeholder='Image url'
             />
           <input
            
            value={image2 }
-           onChange={(e) => {setImage2(e.target.value)}}
+           onChange={(e) => setImage2(e.target.value)}
            type='text'
            placeholder='Image url'
 
@@ -201,7 +284,7 @@ function UpdateSpot() {
           <input
            
            value={image3 }
-           onChange={(e) => {setImage3(e.target.value)}}
+           onChange={(e) => setImage3(e.target.value)}
            type='text'
            placeholder='Image url'
 
@@ -209,7 +292,7 @@ function UpdateSpot() {
           <input
            
            value={image4}
-           onChange={(e) => {setImage4(e.target.value)}}
+           onChange={(e) => setImage4(e.target.value)}
            type='text'
            placeholder='Image url'
 
