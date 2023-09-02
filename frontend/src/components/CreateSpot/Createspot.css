@@ -1,75 +1,97 @@
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; 
-    padding-top: 50px; 
-    height: calc(100vh - 50px); 
+  
+   
     overflow: auto; 
+    max-width: 80%;
+    border:1px solid red;
+    margin:0 auto;
+  
   }
   
   .form-container {
+    border:5px solid purple;
     width: 80%;
-    max-width: 600px;
     padding: 20px;
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .form-container > div {
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #ccc;
-  }
-  
-  .form-container > div:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-  }
-  
-  .location,
-  .describe,
-  .create-container,
-  .price-container,
-  .live-photos {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .location input,
-  .describe textarea,
-  .create-container input,
-  .price-container input,
-  .live-photos input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-top: 5px;
-  }
-  
-  .city-state-container,
-  .long-lat-container {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-  }
-  
-  .city-state-container input,
-  .long-lat-container input {
-    width: calc(50% - 5px);
+    height: 80%; 
   }
   
 
+
   
+
   h3,
-  h5 {
+  h4 {
     margin: 0;
+    margin-left: 10px;
   }
+  p{
+    margin-bottom: 30px;
+  }
+  label{
+
+    margin-left: 10px;
+    display: block;
+    margin-bottom: 5px;
+    margin-top: 10px;
+
+  }
+  input{
+    display: block;
+    margin-left: 10px;
+    margin-top: 2px;
+    border-radius: 2px;
+    border:1px solid lightgray;
+    width:97%;
+    margin-bottom: 10px;
+  }
+
+  .city-state-container {
+    display: flex;
+    width:100%;
+    height:80px;
+  
+
+  }
+  
+  .input-group {
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start; 
+    margin-right: 20px; 
+    width:100%;
+  }
+  
+  label {
+    margin: 0;
+    margin-bottom: 5px; 
+    margin-top: 5px;
+    margin-left: 10px;
+
+    }
+
+
+  input.city-input{
+    width:100%;
+  }
+
+  input.state-input{
+    width: 100%;
+  }
+
+
+  
+
+
+
+
+
   
  
   
-  h3 {
+  /* h3 {
     font-size: 1.5em;
     margin-bottom: 10px;
   }
@@ -77,11 +99,9 @@
   h5 {
     font-size: 1.2em;
     margin-bottom: 5px;
-  }
+  } */
   
-  .p {
-    font-size: 0.8em;
-  }
+
   
   textarea {
     height: 80px;

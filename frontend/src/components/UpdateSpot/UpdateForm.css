@@ -28,7 +28,7 @@
     padding-bottom: 0;
   }
   
-  .location,
+  /* .location,
   .describe,
   .create-container,
   .price-container,
@@ -59,7 +59,7 @@
   .long-lat-container input {
     width: calc(50% - 5px);
   }
-  
+   */
 
   
   h3,

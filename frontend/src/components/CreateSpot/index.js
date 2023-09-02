@@ -163,8 +163,8 @@ function CreateSpot() {
     <div className='container'>
       <form className='form-container' onSubmit={handleSubmit}>
         <div className='location-container'>
-          <h3>Create a New Spot</h3>
-          <h5>Where's your place located?</h5>
+          <h3 className='headers'>Create a New Spot</h3>
+          <h4 className='headers'>Where's your place located?</h4>
           <p>Guests will only get your exact address once they book a reservation.</p>
           <label for="country">Country</label>
           <input
@@ -190,35 +190,33 @@ function CreateSpot() {
           />
           {/* <p className='error'>{errors.address}</p> */}
 
-          <div className='city-state-container'>
-          <label for="city">City</label>
-
-            <input
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-              required
-              type='text'
-              placeholder='City'
-              name='city'
-         
-            />
-            {/* <p className='error'>{errors.city}</p> */}
-            <label for="state">State</label>
-
-            <input
-              value={state}
-              onChange={(e) => setState(e.target.value)}
-              required
-              type='text'
-              placeholder='State'
-              name='state'
-              
-            />
-
-        {/* <p className='error'>{errors.state}</p> */}
-
-          </div>
-        </div>
+      <div className='city-state-container'>
+        <div className='input-group'>
+        <label className='city'>City</label>
+        <input
+          className='city-input'
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+          required
+          type='text'
+          placeholder='City'
+          name='city'
+        />
+  </div>
+  <div className='input-group'>
+    <label className='state'>State</label>
+    <input
+      className='state-input'
+      value={state}
+      onChange={(e) => setState(e.target.value)}
+      required
+      type='text'
+      placeholder='State'
+      name='state'
+    />
+  </div>
+</div>
+       {/*} </div>
 
         <div className='long-lat-container'>
           <input
@@ -252,10 +250,10 @@ function CreateSpot() {
            
           >
 
-          </textarea>
+          </textarea> */}
           {/* <p className='error'>{errors.description}</p> */}
 
-        </div>
+        {/* </div>
 
         <div className='create-container'>
           <h5>Create a title for your spot</h5>
@@ -331,7 +329,7 @@ function CreateSpot() {
           
           >
             Create a Spot
-          </button>
+          </button> */}
         </div>
       </form>
     </div>
