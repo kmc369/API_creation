@@ -25,7 +25,11 @@ i{
     flex-direction: row;
     justify-content: space-between;
     border-bottom: 1px solid rgb(218, 214, 214);
-    max-width: fit-content;
+    flex-grow: 0; 
+    flex-shrink: 1; 
+    flex-basis: auto
+    
+   
 
 }
 .airbnb-logo-container{
@@ -112,6 +116,16 @@ i{
     background-color: rgb(207, 206, 206);
   
   
+}
+
+.createSpot{
+    cursor: pointer;
+    color:white;
+    background-color: #ff385c;
+    border:none;
+    border-radius: 3px;
+    height: 35px;
+    width: 120px;
 }
 
 

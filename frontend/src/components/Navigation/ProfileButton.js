@@ -54,7 +54,12 @@ function ProfileButton({ user }) {
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
   return (
+
     <>
+        
+         <div>
+        {user && !(user?.email ==="du@gmail.com") && ( <div><button className="createSpot" onClick={()=> history.push('/spots')}>Create a Spot</button></div>)}
+        </div>
       <button className="MenuButton" onClick={openMenu}>
       
       <i class="fa-solid fa-bars"></i>
@@ -62,6 +67,7 @@ function ProfileButton({ user }) {
       <div className={ulClassName} ref={ulRef}>
         {user ? (
           <>
+         
           <div className="Menu-Options-LoggedIn">
             <div className="Menu-Option">Hello {user.firstName}</div>
             <div className="Menu-Option">{user.username}</div>
@@ -72,9 +78,7 @@ function ProfileButton({ user }) {
               </div>
             <div className="Menu-Option" onClick={logout}>Log Out</div>
             </div>
-        <div>
-        {!(user.email ==="du@gmail.com") && ( <div><button onClick={()=> history.push('/spots')}>Create a Spot</button></div>)}
-        </div>
+      
 
           </>
         ) : (
