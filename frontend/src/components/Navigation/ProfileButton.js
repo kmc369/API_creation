@@ -69,14 +69,14 @@ function ProfileButton({ user }) {
           <>
          
           <div className="Menu-Options-LoggedIn">
-            <div className="Menu-Option">Hello {user.firstName}</div>
-            <div className="Menu-Option">{user.username}</div>
-            <div className="Menu-Option">{user.firstName} {user.lastName}</div>
-            <div className="Menu-Option">{user.email}</div>
-            <div className="Menu-Option" onClick={()=>history.push("/spots/current")}>
+            <div className="Menu-Option1">Hello {user.firstName}</div>
+            <div className="Menu-Option2">{user.username}</div>
+            <div className="Menu-Option3">{user.firstName} {user.lastName}</div>
+            <div className="Menu-Option4">{user.email}</div>
+            <div className="Menu-Option5" onClick={()=>history.push("/spots/current")}>
               {!(user.email ==="du@gmail.com") && ( <div>Manage Spot </div>)}
               </div>
-            <div className="Menu-Option" onClick={logout}>Log Out</div>
+            <button className="Menu-Option logout-button" onClick={logout}>Log Out</button>
             </div>
       
 
