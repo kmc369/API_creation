@@ -29,12 +29,12 @@
     align-self: center;
   }
   
-  .Login-form-container form {
+  /* .Login-form-container form {
     display: flex;
     flex-direction: column;
     align-items: left;
   
-  }
+  } */
   
   .Login-form-container label {
     margin-bottom: 10px;
@@ -50,13 +50,14 @@
     width: 100%;
   }
   
-  .Login-form-container p {
+  /* .Login-form-container p {
     color: #ff0000;
     margin-bottom: 20px;
-  }
+  
+  } */
   
   .enabled-button {
-    background-color: #007bff; 
+    background-color: #ff0000;
     color: #ffffff; 
     color: black;
     padding: 10px 20px;
@@ -64,6 +65,8 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    margin-left: 40px;
+    width:100px;
   }
 
   .disabled-button {
@@ -74,6 +77,8 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    margin-left: 40px;;
+
   }
 
   /* .Login-form-container button :disabled{
@@ -103,8 +108,11 @@
     border-bottom: 1px solid purple;
     width:90px;
     margin-left: 30px;
+
     
   }
+
+
 
  
 

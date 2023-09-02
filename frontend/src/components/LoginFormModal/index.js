@@ -55,7 +55,7 @@ function LoginFormModal() {
 
 
     return (
-    <div>
+    <div className='login-container'>
            
            <motion.div // Wrap with motion.div for animation
                 className={`Login-form-container `} 
