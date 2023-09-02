@@ -63,6 +63,11 @@ function CreateSpot() {
       preview:true
     }
 
+    const img1 ={
+      url:image1,
+      preview:false
+    }
+
    
 
 
@@ -76,6 +81,10 @@ function CreateSpot() {
     
     if (imgObj.url) {
       await dispatch(SpotActions.postSpotImageThunk(createdSpotId, imgObj));
+    }
+
+    if(image1.url){
+      await dispatch(SpotActions.postSpotImageThunk(createdSpotId,img1))
     }
     
     

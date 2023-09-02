@@ -19,8 +19,8 @@ const userSpots = useSelector(state =>state.spots.allSpots)
 
 const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
-
-// console.log(userSpots)
+console.log("hello")
+console.log("the user spots are ", userSpots)
 
 const history= useHistory()
 
@@ -45,7 +45,7 @@ if (userSpots.Spots === undefined || Object.values(userSpots).length === 0 || !u
 
         <button onClick={()=> history.push('/spots')}>Create a Spot</button>
 
-        <div id='landingPageContainer'>
+        <div id='landingPageContainer' >
       
        
       {userSpots.Spots.map((element, index) => (

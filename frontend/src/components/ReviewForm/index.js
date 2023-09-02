@@ -40,6 +40,8 @@ function ReviewForm({ spotId, onCloseModal }) {
 
     await dispatch(SpotActions.getSpotDetailsThunk(spotId))
     await dispatch(ReviewActions.getReviewsThunk(spotId))
+
+    
   };
 
  useEffect(()=>{
