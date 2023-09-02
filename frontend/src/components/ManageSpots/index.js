@@ -8,7 +8,7 @@ import { useModal } from "../../context/Modal";
 import OpenModalButton from '../OpenModalButton'
 import { DeleteSpot } from '../DeleteSpot';
 import { useState } from 'react';
-
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 export const ManageSpot = () => {
@@ -20,7 +20,6 @@ const userSpots = useSelector(state =>state.spots.allSpots)
 const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
 
-
 const history= useHistory()
 
   useEffect(()=>{
@@ -29,7 +28,13 @@ const history= useHistory()
 },[dispatch])
 
 
+const handleUpdateSpot = async (spotId) =>{
+  const Spot = await dispatch(SpotActions.getSpotDetailsThunk(spotId))
 
+  history.push(`/spot/update/${Spot.id}`)
+
+  
+}
 
 
 if (userSpots.Spots === undefined || Object.values(userSpots).length === 0 || !userSpots) {
@@ -55,7 +60,7 @@ if (userSpots.Spots === undefined || Object.values(userSpots).length === 0 || !u
             
               <p className='city-star' onClick={()=>{history.push(`/spots/${element.id}`)}}>{element.state}, {element.city} <i class="fa-solid fa-star"></i>{element.avgRating}</p> 
               <p>${element.price} night</p>
-             <span> <button onClick={()=>history.push(`/spot/update/${element.id}`) }>update</button></span>
+             <span> <button onClick={()=>handleUpdateSpot(element.id)}>update</button></span>
              <span> <OpenModalButton
               modalComponent={<DeleteSpot spotId={element.id}  onCloseModal={() => setIsDeleteModalOpen(false)} />}
         

@@ -89,7 +89,7 @@ export const postSpotImageThunk = (spotId, imageObj) => async (dispatch, getStat
 
 
 export const getSpotDetailsThunk=(spotId) => async(dispatch,getState)=>{
-  console.log("thunk spot id is ", spotId)
+  // console.log("thunk spot id is ", spotId)
 
   try{
       const response = await csrfFetch(`/api/spots/${spotId}`,{
