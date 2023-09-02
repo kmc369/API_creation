@@ -277,8 +277,9 @@ function CreateSpot() {
 
 
         <div className='price-container'>
-          <h5>Set a base price for your spot</h5>
+          <h4>Set a base price for your spot</h4>
           <p>Competitive pricing can help your listing stand out and rank higher in search results.</p>
+          
           <input
             value={price}
             onChange={(e) => setPrice(e.target.value)}
@@ -287,10 +288,10 @@ function CreateSpot() {
             min={0}
           />
         </div>
-{/*        
+       
 
         <div className='live-photos'>
-          <h5>Liven up your spot with photos</h5>
+          <h4>Liven up your spot with photos</h4>
           <p>Submit a link to at least one photo to publish your spot</p>
           <input
             value={previewImage}
@@ -339,7 +340,8 @@ function CreateSpot() {
           
           >
             Create a Spot
-          </button> */}
+         </button> 
+         </div>
         </div>
       </form>
     </div>
