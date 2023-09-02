@@ -50,7 +50,7 @@ if (userSpots.Spots === undefined || Object.values(userSpots).length === 0 || !u
        
       {userSpots.Spots.map((element, index) => (
      
-          <div className="spot" key={index}>
+          <div className="spot" key={index} onClick={()=>{history.push(`/spots/${element.id}`)}}>
              
               <img src={element.previewImage} alt='image'></img>
             
