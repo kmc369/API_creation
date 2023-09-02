@@ -1,12 +1,11 @@
 .enabled-button {
-    background-color: #007bff; 
+    background-color: #ff385c;; 
     color: #ffffff; 
     color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
   }
 
   .disabled-button {
@@ -16,9 +15,35 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
   }
 
   .errors{
     color: red;
   }
+
+  .review-form{
+    width:400px;
+    height:300px;
+
+  }
+
+  .review-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px rgb(187, 186, 186);
+    border: 5px solid black;; 
+  }
+
+  .reviewtextBox{
+    width:80%;
+  }
+
+  .stars{
+    width: 30%;
+    
+  }
+ 
+ 

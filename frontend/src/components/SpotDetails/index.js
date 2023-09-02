@@ -140,12 +140,14 @@ return (
     <div className='reviewsContainer'>
       <h1><i className="fa-solid fa-star"></i>{spotDetail.avgStarRating} {formatReviewCount(spotDetail.numReviews)}</h1>
       
-      <div>
+      <div >
         {currentUser && !hasPostedReview && !isSpotOwner && spotDetail.numReviews>0 &&  (
           <OpenModalButton
+        
             modalComponent={<ReviewForm spotId={spotId} onCloseModal={() => setIsReviewModalOpen(false)} />}
-            buttonText="post a review!"
-            className="PostReview"
+            buttonText="post a review !"
+          
+            
           />
         )}
       </div>
