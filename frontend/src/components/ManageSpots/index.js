@@ -50,11 +50,11 @@ if (userSpots.Spots === undefined || Object.values(userSpots).length === 0 || !u
        
       {userSpots.Spots.map((element, index) => (
      
-          <div className="spot" key={index} onClick={()=>{history.push(`/spots/${element.id}`)}}>
+          <div className="spot" key={index} >
              
-              <img src={element.previewImage} alt='image'></img>
+              <img src={element.previewImage} alt='image' onClick={()=>{history.push(`/spots/${element.id}`)}}></img>
             
-              <p className='city-star'>{element.state}, {element.city} <i class="fa-solid fa-star"></i>{element.avgRating}</p> 
+              <p className='city-star' onClick={()=>{history.push(`/spots/${element.id}`)}}>{element.state}, {element.city} <i class="fa-solid fa-star"></i>{element.avgRating}</p> 
               <p>${element.price} night</p>
              <span> <button onClick={()=>history.push(`/spot/update/${element.id}`) }>update</button></span>
              <span> <OpenModalButton
