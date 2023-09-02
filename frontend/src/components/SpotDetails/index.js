@@ -53,7 +53,7 @@ export default function SpotDetails() {
   }
 
   if(!reviewDetails || Object.values(reviewDetails).length===0 ||reviewDetails===undefined || value===undefined) {
-    console.log("I returned null")
+    
     return null
   }
 

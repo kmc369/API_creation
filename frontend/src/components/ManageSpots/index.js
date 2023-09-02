@@ -19,8 +19,7 @@ const userSpots = useSelector(state =>state.spots.allSpots)
 
 const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
-console.log("hello")
-console.log("the user spots are ", userSpots)
+
 
 const history= useHistory()
 
