@@ -13,7 +13,6 @@ function UpdateSpot() {
     const dispatch = useDispatch()
     const history = useHistory()
 
-    // console.log("spot Details are gang", spotDetail)
 
     
     
@@ -95,7 +94,7 @@ function UpdateSpot() {
             onChange={(e) => setCountry(e.target.value)}
             required
             type='text'
-            placeholder={spotDetail.country}
+            placeholder="Country"
           />
           <input
             value={address}
