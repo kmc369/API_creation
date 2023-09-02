@@ -298,6 +298,7 @@ function CreateSpot() {
             onChange={(e) => setPreviewImageUrl(e.target.value)}
             type='url'
             placeholder='Preview Image URL'
+            required
           />
 
             <input
