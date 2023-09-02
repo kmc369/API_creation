@@ -49,14 +49,7 @@ function CreateSpot() {
 
     
    
-    // const imageObjects = [
-    //   { url:previewImage},
-    //   { url: image1 },
-    //   { url: image2 },
-    //   { url: image3 },
-    //   { url: image4 },
-     
-    // ]
+   
 
     const imgObj ={
       url:previewImage,
@@ -161,7 +154,7 @@ function CreateSpot() {
             name='country'
           
           />
-          <p className='error'>{errors.country}</p>
+          {/* <p className='error'>{errors.country}</p> */}
           <label for="address">Street Address</label>
           <input
             value={address}
@@ -173,7 +166,7 @@ function CreateSpot() {
 
             
           />
-          <p className='error'>{errors.address}</p>
+          {/* <p className='error'>{errors.address}</p> */}
 
           <div className='city-state-container'>
           <label for="city">City</label>
@@ -187,7 +180,7 @@ function CreateSpot() {
               name='city'
          
             />
-            <p className='error'>{errors.city}</p>
+            {/* <p className='error'>{errors.city}</p> */}
             <label for="state">State</label>
 
             <input
@@ -200,7 +193,7 @@ function CreateSpot() {
               
             />
 
-        <p className='error'>{errors.state}</p>
+        {/* <p className='error'>{errors.state}</p> */}
 
           </div>
         </div>
@@ -238,7 +231,7 @@ function CreateSpot() {
           >
 
           </textarea>
-          <p className='error'>{errors.description}</p>
+          {/* <p className='error'>{errors.description}</p> */}
 
         </div>
 
