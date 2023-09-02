@@ -336,7 +336,6 @@ export default function spotReducer(state=initialState,action){
           
           const spotToUpdate = newState.spotDetails[spotId];
         
-          
           if (spotToUpdate) {
             spotToUpdate.SpotImages = [...spotToUpdate.SpotImages, imgData];
           }

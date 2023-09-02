@@ -14,7 +14,8 @@ import DeleteReview from '../DeleteReview'
 export default function SpotDetails() {
   const spotDetail = useSelector(state=>state.spots.spotDetails)
 
-  
+  console.log("spot detials imagea are", spotDetail.SpotImages)
+
   const reviewDetails = useSelector((state) => state.reviews.spot);
   // console.log("revieww details are here baby", reviewDetails)
 
@@ -36,7 +37,7 @@ export default function SpotDetails() {
     async function fetchData() {
       const getspot = await dispatch(SpotActions.getSpotDetailsThunk(spotId));
       const getReview = await dispatch(ReviewAction.getReviewsThunk(spotId));
-      console.log("spot id is ", spotId)
+      // console.log("spot id is ", spotId)
       setDataLoaded(true); 
     }
     fetchData();

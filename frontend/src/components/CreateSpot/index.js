@@ -58,22 +58,49 @@ function CreateSpot() {
 
     const img1 ={
       url:image1,
-      preview:true
+      preview:false
     }
 
-   
+    const img2 ={
+      url:image2,
+      preview:false
+    }
+
+    const img3 ={
+      url:image3,
+      preview:false
+    }
+
+    const img4 ={
+      url:image4,
+      preview:false
+    }
+    
+    
     const createSpotResponse = await dispatch(SpotActions.createSpotThunk(formData));
     const createdSpotId = createSpotResponse.id;
-  
+    
+   
     
     if (imgObj.url) {
-      await dispatch(SpotActions.postSpotImageThunk(createdSpotId, imgObj));
+      dispatch(SpotActions.postSpotImageThunk(createdSpotId, imgObj));
     }
 
-    if(image1.url){
-     
-      await dispatch(SpotActions.postSpotImageThunk(createdSpotId,img1))
+    if(image1){
+       dispatch(SpotActions.postSpotImageThunk(createdSpotId,img1))
     }
+
+    if(image2){
+        dispatch(SpotActions.postSpotImageThunk(createdSpotId,img2))
+     }
+
+     if(image3){
+      dispatch(SpotActions.postSpotImageThunk(createdSpotId,img3))
+   }
+
+   if(image4){
+    dispatch(SpotActions.postSpotImageThunk(createdSpotId,img4))
+ }
     
     
     
@@ -266,28 +293,29 @@ function CreateSpot() {
 
             <input
               value={image1}
-              onChange={(e) => {setImage1(e.target.value)}}
+              onChange={(e) => setImage1(e.target.value)}
               type='url'
               placeholder='Image URL'
-            />
+              />
+           
           <input
            
            value={image2}
-           onChange={(e) => {setImage2(e.target.value)}}
+           onChange={(e) => setImage2(e.target.value)}
            type='url'
            placeholder='Image URL'
          />
           <input
            
            value={image3}
-           onChange={(e) => {setImage3(e.target.value)}}
+           onChange={(e) => setImage3(e.target.value)}
            type='url'
            placeholder='Image URL'
          />
           <input
            
            value={image4}
-           onChange={(e) => {setImage4(e.target.value)}}
+           onChange={(e) => setImage4(e.target.value)}
            type='url'
            placeholder='Image URL'
          />
