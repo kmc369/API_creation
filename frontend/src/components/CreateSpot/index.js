@@ -216,9 +216,10 @@ function CreateSpot() {
     />
   </div>
 </div>
-       {/*} </div>
-
-        <div className='long-lat-container'>
+      
+      <div className='long-lat-container'>
+        <div className='input-group'>
+          <label>Latitude</label>
           <input
             type='number'
             placeholder='Latitude'
@@ -226,16 +227,22 @@ function CreateSpot() {
             onChange={(e)=>setLatitude(e.target.value)}
          
           />
-          <input
+          </div>
+          <div className='input-group'>
+           <label>Longitude</label>
+           <input
             type='number'
             placeholder='Longitude'
             value={longitude}
             onChange={(e)=>setLongitude(e.target.value)}
           />
         </div>
+        </div>
+
+        
 
         <div className='describe'>
-          <h5>Describe your place to guests</h5>
+          <h4>Describe your place to guests</h4>
           <p className='secondP'>
             Mention the best features of your space, any special amenities like fast
             wifi or parking, and what you love about the neighborhood.
@@ -250,13 +257,14 @@ function CreateSpot() {
            
           >
 
-          </textarea> */}
-          {/* <p className='error'>{errors.description}</p> */}
+          </textarea> 
 
-        {/* </div>
+        </div>
+
+        
 
         <div className='create-container'>
-          <h5>Create a title for your spot</h5>
+          <h4>Create a title for your spot</h4>
           <p>Catch guests' attention with a spot title that highlights what makes your place special.</p>
           <input
             value={name}
@@ -265,6 +273,8 @@ function CreateSpot() {
             placeholder='Name of your spot'
           />
         </div>
+
+
 
         <div className='price-container'>
           <h5>Set a base price for your spot</h5>
@@ -277,7 +287,7 @@ function CreateSpot() {
             min={0}
           />
         </div>
-        
+{/*        
 
         <div className='live-photos'>
           <h5>Liven up your spot with photos</h5>
