@@ -25,9 +25,10 @@ i{
     flex-direction: row;
     justify-content: space-between;
     border-bottom: 1px solid rgb(218, 214, 214);
-    flex-grow: 0; 
-    flex-shrink: 1; 
-    flex-basis: auto
+    width: 90%;
+   
+
+    
     
    
 

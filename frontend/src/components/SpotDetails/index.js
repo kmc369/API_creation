@@ -127,10 +127,15 @@ try{
 
 return (
   <>
-    <div className='spotDetails'>
+    <div className='spotDetails-entire-container'>
+
+    <div className='header'>
       <h1>{spotDetail.name}</h1>
       <p>{spotDetail.city}, {spotDetail.state}, {spotDetail.country}</p>
-    </div>
+   </div>
+
+
+
     <div className='detailImages'>
       
       {spotDetail.SpotImages.map((element, index) => (
@@ -224,6 +229,7 @@ return (
       
         
       )}
+    </div>
     </div>
   </>
 )

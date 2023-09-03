@@ -18,22 +18,24 @@
     height:320px;
     justify-content: center;
     margin: 0 auto;
-    margin-bottom: 20px;;
-    margin-bottom: 15px;;
-    
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     
    
    
 }
+
+
+
 h1{
     text-align: left;
-    margin-left: 12px;
+ 
+    margin-left: 20px;
     
 }
 p{
     text-align: left;
     margin-left: 12px;
+    margin-left: 10px !important;
    
 }
  
@@ -104,7 +106,7 @@ p{
 .callout-container{
     margin-top: 10px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 .callout{
     box-shadow: 2px 2px 2px rgb(154, 157, 159);
@@ -137,13 +139,13 @@ p{
 
 
 .hostedBy{
-    margin-top: 40px;
-    margin-bottom:0;
     text-align: left;
-    margin-left: 12px;
+    margin-left: 20px !important;
+    margin-top: 50px;;
+    
 }
 .description{
-    width: 550px;
+    max-width: 50%;
 }
 
 .reviews-container{
@@ -186,4 +188,11 @@ p{
     margin-bottom: 10px;
     height: 30px;
     width: 140px;
+}
+
+.spotDetails-entire-container{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+
 }

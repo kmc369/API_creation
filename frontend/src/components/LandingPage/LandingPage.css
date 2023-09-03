@@ -4,10 +4,14 @@
     flex-direction: row;
     gap: 20px;
     cursor: pointer;
-    max-width: 100%;
+    max-width: 70%;
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center; 
+    padding-left: 40px;
+   
+
+ 
 
     
 }
