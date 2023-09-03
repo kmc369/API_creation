@@ -94,12 +94,20 @@ return monthYearFormat;
 
 const hasPostedReview = value[0].Reviews.some((element)=>{
   
+
+  try{
   if(element.User.id===currentUser.id){
     return true
   }
-  else{
-    return false
-  }
+
+}catch{
+  return false
+}
+
+
+
+
+
 })
 
 
