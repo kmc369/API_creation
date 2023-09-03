@@ -41,12 +41,7 @@ function ReviewForm({ spotId, onCloseModal }) {
     await dispatch(SpotActions.getSpotDetailsThunk(spotId))
     await dispatch(ReviewActions.getReviewsThunk(spotId))
 
-    
-  };
-
- useEffect(()=>{
   const error ={}
-
   if(review.length<10){
     error.review = "Must be greater than 30 character"
   }
@@ -55,11 +50,30 @@ function ReviewForm({ spotId, onCloseModal }) {
     error.stars = "Must give a rating "
   }
   setErrors(error)
- },[review,stars])
+
+    
+  };
+
+//  useEffect(()=>{
+//   const error ={}
+
+//   if(review.length<10){
+//     error.review = "Must be greater than 30 character"
+//   }
+
+//   if(!stars){
+//     error.stars = "Must give a rating "
+//   }
+//   setErrors(error)
+//  },[review,stars])
 
   return (
  
       <form className="review-form" onSubmit={handleSubmit}>
+              <p className='errors'>{errors.review}</p>
+              <p className='errors'>{errors.stars}</p>
+
+
       <h2>How was your stay?</h2>
       <div className='review-stuff'>
       <textarea
@@ -68,7 +82,6 @@ function ReviewForm({ spotId, onCloseModal }) {
         value={review}
         onChange={(e)=>setreview(e.target.value)}
       />
-      {/* <p className='errors'>{errors.review}</p> */}
       <label className='stars-label'>Stars</label>
       <div className="stars">
        <input value = {stars}
