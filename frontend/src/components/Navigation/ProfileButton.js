@@ -58,7 +58,7 @@ function ProfileButton({ user }) {
     <>
         
          <div>
-        {user && !(user?.email ==="du@gmail.com") && ( <div><button className="createSpot" onClick={()=> history.push('/spots')}>Create a Spot</button></div>)}
+        {user && ( <div><button className="createSpot" onClick={()=> history.push('/spots')}>Create a Spot</button></div>)}
         </div>
       <button className="MenuButton" onClick={openMenu}>
       

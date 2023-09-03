@@ -166,7 +166,7 @@ return (
         {console.log("is not spot owner is  ", !isSpotOwner)} */}
         
 
-        {currentUser && !hasPostedReview && !isSpotOwner && spotDetail.numReviews>0 && !(currentUser.id===2) && (
+        {currentUser && !hasPostedReview && !isSpotOwner && spotDetail.numReviews>0 && (
      
           <OpenModalButton
         
@@ -179,7 +179,7 @@ return (
       </div>
 
       <div>
-        {currentUser && !hasPostedReview && !isSpotOwner && spotDetail.numReviews===0 && !(currentUser.id===2) &&  (
+        {currentUser && !hasPostedReview && !isSpotOwner && spotDetail.numReviews===0 &&   (
           <OpenModalButton
             modalComponent={<ReviewForm spotId={spotId} onCloseModal={() => setIsReviewModalOpen(false)} />}
             buttonText="Be the first to post a review!"
