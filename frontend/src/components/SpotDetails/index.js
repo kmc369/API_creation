@@ -20,7 +20,7 @@ export default function SpotDetails() {
   // console.log("revieww details are here baby", reviewDetails)
 
   const currentUser = useSelector(state => state.session.user)
-  console.log("user " , currentUser)
+  
   const [dataLoaded, setDataLoaded] = useState(false);
   
   
@@ -87,11 +87,10 @@ return monthYearFormat;
 }
 
 
-console.log("reviews are " ,value[0].Reviews)
 
 
-// const hasPostedReview = value[0].Reviews.some((review) => review.User && currentUser && review.User.id === currentUser.id && review.spotId === spotId
-// );
+
+
 
 const hasPostedReview = value[0].Reviews.some((element)=>{
   
@@ -128,6 +127,7 @@ return (
       
       {spotDetail.SpotImages.map((element, index) => (
         // <div className={`image${index}`}> 
+        
         <img id={`s${index}`} src={element.url} alt="img" key={index}></img>
         // </div>
       ))}
