@@ -6,6 +6,8 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+ 
+
   }
 
   .disabled-button {
@@ -15,35 +17,66 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+ 
   }
 
   .errors{
     color: red;
   }
 
-  .review-form{
+  #modal-content{
+    border-radius: 2px;
+    border: 2px solid black;
+    height:350px !important;
     width:400px;
-    height:300px;
-
   }
 
+
   .review-form{
+   
+    display: flex;
+    flex-direction: column;
+   
+
+
+  }
+  .review-stuff{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    border-radius: 5px;
-    box-shadow: 2px 2px 2px rgb(187, 186, 186);
-    border: 5px solid black;; 
+   
+
+  }
+  h2{
+    text-align: center;
   }
 
+
+  .submit-button{
+    width:250px;
+  }
+
+  .post-Review-Button{
+    display: flex;
+    justify-content: center;
+  }
+
+ 
+
   .reviewtextBox{
-    width:80%;
+    width: 90%;
+    height: 90px;
   }
 
   .stars{
     width: 30%;
+    margin-left: 40px;;
     
   }
+  .stars-label{
+    margin-left: 45px;;
+
+  }
+
  
  

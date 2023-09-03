@@ -61,6 +61,7 @@ function ReviewForm({ spotId, onCloseModal }) {
  
       <form className="review-form" onSubmit={handleSubmit}>
       <h2>How was your stay?</h2>
+      <div className='review-stuff'>
       <textarea
         className='reviewtextBox'
         placeholder="Leave your review here..."
@@ -68,7 +69,7 @@ function ReviewForm({ spotId, onCloseModal }) {
         onChange={(e)=>setreview(e.target.value)}
       />
       {/* <p className='errors'>{errors.review}</p> */}
-      <label>Stars</label>
+      <label className='stars-label'>Stars</label>
       <div className="stars">
        <input value = {stars}
        type='number' 
@@ -79,6 +80,8 @@ function ReviewForm({ spotId, onCloseModal }) {
        
          
       </div>
+      </div>
+      <div className='post-Review-Button'>
       <button
        type='submit'
         className={`submit-button ${Object.keys(errors).length > 0 ? "disabled-button" : "enabled-button"}`}
@@ -87,6 +90,7 @@ function ReviewForm({ spotId, onCloseModal }) {
       >
         Submit Your Review
       </button>
+      </div>
       </form>
   
   );
