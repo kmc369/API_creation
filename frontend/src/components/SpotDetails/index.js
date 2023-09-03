@@ -171,7 +171,7 @@ return (
       </div>
 
       <div>
-        {currentUser && !hasPostedReview && !isSpotOwner && spotDetail.numReviews===0 &&  (
+        {currentUser && !hasPostedReview && !isSpotOwner && spotDetail.numReviews===0 && !(currentUser.id===2) &&  (
           <OpenModalButton
             modalComponent={<ReviewForm spotId={spotId} onCloseModal={() => setIsReviewModalOpen(false)} />}
             buttonText="Be the first to post a review!"
