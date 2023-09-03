@@ -17,7 +17,46 @@ function SignupFormModal() {
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
 
-  useEffect(()=>{
+  // useEffect(()=>{
+  //   const errorOBJ = {}
+
+  //   if(!email){
+  //     errorOBJ.email = "CAN NOT BE EMPTY"
+  //   }
+
+  //   if(!username || username.length<4){
+  //     errorOBJ.username = "TO SHORT"
+  //   }
+
+  //   if(!firstName){
+  //     errorOBJ.firstName = "CAN NOT BE EMPTY"
+  //   }
+
+
+  //   if(!lastName){
+  //     errorOBJ.lastName = "CAN NOT BE EMPTY"
+  //   }
+
+
+  //   if(!password || password.length<6){
+  //     errorOBJ.password = "TO SHORT"
+  //   }
+
+
+  //   if(!confirmPassword || password!==confirmPassword){
+  //     errorOBJ.confirmPassword = "PASSWORDS MUST MATCH"
+    
+  //   }
+ 
+
+  //     setErrors(errorOBJ)
+    
+  // },[email,username,firstName,lastName,password,confirmPassword])
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+
     const errorOBJ = {}
 
     if(!email){
@@ -50,11 +89,22 @@ function SignupFormModal() {
  
 
       setErrors(errorOBJ)
-    
-  },[email,username,firstName,lastName,password,confirmPassword])
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     if (password === confirmPassword) {
       setErrors({});
       return dispatch(
@@ -89,6 +139,8 @@ function SignupFormModal() {
     >
 
       <form onSubmit={handleSubmit}>
+      {errors.email && <p>{errors.email}</p>}
+      {errors.username && <p>{errors.username}</p>}
       <h1>Sign Up</h1>
     
           <input
@@ -99,7 +151,6 @@ function SignupFormModal() {
             placeholder="Email"
           />
        
-        {errors.email && <p>{errors.email}</p>}
     
           <input
             type="text"
@@ -109,7 +160,6 @@ function SignupFormModal() {
             required
           />
        
-        {errors.username && <p>{errors.username}</p>}
       
         
           <input

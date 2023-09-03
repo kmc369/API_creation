@@ -31,6 +31,17 @@ function CreateSpot() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+   
+   
+    
+ 
+
+
+  
+
+
+
+
   
     const formData = {
       country,
@@ -76,10 +87,10 @@ function CreateSpot() {
       preview:false
     }
     
-    
+  
     const createSpotResponse = await dispatch(SpotActions.createSpotThunk(formData));
     const createdSpotId = createSpotResponse.id;
-    
+  
    
     
     if (imgObj.url) {
@@ -101,6 +112,8 @@ function CreateSpot() {
    if(image4){
     dispatch(SpotActions.postSpotImageThunk(createdSpotId,img4))
  }
+
+ 
     
     
     
@@ -126,6 +139,8 @@ function CreateSpot() {
     history.push(`/spots/${createdSpotId}`)
   };
 
+
+
   useEffect(()=>{
     const error = {}
     
@@ -140,7 +155,7 @@ function CreateSpot() {
 
 
    if (city.length<3 || city===" " ) {
-    error.address = "MUST BE GREATER THAN 10 CHARACTERS";
+    error.city = "MUST BE GREATER THAN 10 CHARACTERS";
 }
 
 
@@ -149,12 +164,14 @@ function CreateSpot() {
    if(description.length<30){
     error.description="MUST BE 30 CHARACTERS OR MORE"
    }
+
+  //  if(!previewImage.endsWith('jpg') || !previewImage.endsWith('png')){
+  //   error.previewImage="Must end in jpg or png"
+  //  }
    setErrors(error)
 
 
   },[country,city,state,description])
-
-
 
  
 
@@ -162,6 +179,9 @@ function CreateSpot() {
   return (
     <div className='container'>
       <form className='form-container' onSubmit={handleSubmit}>
+    <p className='error'>{errors.previewImage}</p>
+
+
         <div className='location-container'>
           <h3 className='headers1'>Create a New Spot</h3>
           <h4 className='headers'>Where's your place located?</h4>
@@ -176,7 +196,7 @@ function CreateSpot() {
             name='country'
           
           />
-          {/* <p className='error'>{errors.country}</p> */}
+     
           <label for="address">Street Address</label>
           <input
             value={address}
@@ -188,7 +208,7 @@ function CreateSpot() {
 
             
           />
-          {/* <p className='error'>{errors.address}</p> */}
+   
 
       <div className='city-state-container'>
         <div className='input-group'>
