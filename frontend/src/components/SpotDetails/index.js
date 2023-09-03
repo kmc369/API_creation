@@ -20,6 +20,7 @@ export default function SpotDetails() {
   // console.log("revieww details are here baby", reviewDetails)
 
   const currentUser = useSelector(state => state.session.user)
+  console.log("user " , currentUser)
   const [dataLoaded, setDataLoaded] = useState(false);
   
   
@@ -86,12 +87,23 @@ return monthYearFormat;
 }
 
 
+console.log("reviews are " ,value[0].Reviews)
 
 
+// const hasPostedReview = value[0].Reviews.some((review) => review.User && currentUser && review.User.id === currentUser.id && review.spotId === spotId
+// );
 
-const hasPostedReview = value[0].Reviews.some(
-  review => review.User && currentUser && review.User.id === currentUser.id && review.spotId === spotId
-);
+const hasPostedReview = value[0].Reviews.some((element)=>{
+  
+  if(element.User.id===currentUser.id){
+    return true
+  }
+  else{
+    return false
+  }
+})
+
+
 
 
 let isSpotOwner ;
@@ -141,7 +153,13 @@ return (
       <h1><i className="fa-solid fa-star"></i>{spotDetail.avgStarRating} {formatReviewCount(spotDetail.numReviews)}</h1>
       
       <div >
+        {/* {console.log("current user is ", currentUser)}
+        {console.log("has not posted is ", !hasPostedReview)}
+        {console.log("is not spot owner is  ", !isSpotOwner)} */}
+        
+
         {currentUser && !hasPostedReview && !isSpotOwner && spotDetail.numReviews>0 &&  (
+     
           <OpenModalButton
         
             modalComponent={<ReviewForm spotId={spotId} onCloseModal={() => setIsReviewModalOpen(false)} />}
