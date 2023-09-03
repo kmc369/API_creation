@@ -3,11 +3,39 @@
     background-color: red;
     border: none;
     margin-right: 5px;
+    width:137px;
+    height:35px;
+    border-radius: 4px;
+    width:90%;
+    margin-top: 15px;;
+    margin-bottom: 10px;;
+}
+p{
+    margin-left: 5px;
 }
 
 .deny{
     color: white;
     background-color: grey;
     border: none;
+    width:90%;
+    height:35px;
+    border-radius: 4px;
+    margin-bottom: 10px;;
+
+}
+
+#modal-content{
+    width:410px;
+    height:240px;
+    border:2px solid black;
+    border-radius: 4px;
+    
+}
+.delete-Review{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
 }

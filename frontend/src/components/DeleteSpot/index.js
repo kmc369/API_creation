@@ -25,8 +25,8 @@ export const DeleteSpot = ({spotId,onCloseModal}) => {
        <div className="delete-spot">
       <h2>Confirm Delete</h2>
       <p>Are you sure you want to remove this spot from the listing?</p>
-      <button className='confirm'  type='submit' onClick={handleDelete} >Yes, Delete Spot</button>
-      <button className='deny' onClick={closeModal}>No, Keep Spot</button>
+      <div><button className='confirm'  type='submit' onClick={handleDelete} >Yes, Delete Spot</button></div>
+      <div><button className='deny' onClick={closeModal}>No, Keep Spot</button></div>
     </div>
     </div>
   )
