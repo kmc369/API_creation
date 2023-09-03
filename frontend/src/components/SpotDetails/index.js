@@ -14,7 +14,7 @@ import DeleteReview from '../DeleteReview'
 export default function SpotDetails() {
   const spotDetail = useSelector(state=>state.spots.spotDetails)
 
-  console.log("spot detials imagea are", spotDetail.SpotImages)
+ 
 
   const reviewDetails = useSelector((state) => state.reviews.spot);
   // console.log("revieww details are here baby", reviewDetails)

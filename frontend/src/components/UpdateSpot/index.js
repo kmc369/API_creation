@@ -8,10 +8,12 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 function UpdateSpot() {
     
     const spotDetail = useSelector(state=>state.spots.spotDetails)
+
     
     const {spotId} = useParams()
     const dispatch = useDispatch()
     const history = useHistory()
+
 
 
     
@@ -31,7 +33,7 @@ function UpdateSpot() {
     const [description, setDescription] = useState(spotDetail.description);
     const [name, setName] = useState(spotDetail.name);
     const [price, setPrice] = useState(spotDetail.price);
-    const [previewImageUrl, setPreviewImageUrl] = useState(spotDetail.SpotImages[0].url);
+    const [previewImageUrl, setPreviewImageUrl] = useState(spotDetail.SpotImages[0]?.url || '');
     const [image1, setImage1] = useState(spotDetail.SpotImages[1]?.url || ' ')
     const [image2, setImage2] = useState(spotDetail.SpotImages[2]?.url || ' ')
     const [image3, setImage3] = useState(spotDetail.SpotImages[3]?.url || ' ')
@@ -59,7 +61,9 @@ function UpdateSpot() {
       price,
     };
     const updatedSpot = await dispatch(SpotActions.updateSpotThunk(formData,spotId))
-    
+   
+
+   
 
 
     const imgObj ={
@@ -90,30 +94,77 @@ function UpdateSpot() {
     
     
    
-    
-   
-    
-    if (imgObj.url) {
 
+       
+    if (imgObj.url) {
+      let imageId
+      try{
+      imageId = spotDetail.SpotImages[0].id   
+      }catch{
+
+      }
+    
+      await dispatch(SpotActions.deleteSpotImageThunk(spotId,imageId)) 
       await dispatch(SpotActions.postSpotImageThunk(updatedSpot.id, imgObj));
     }
 
-    if(image1.url){
+    if(image1){
 
-       await dispatch(SpotActions.postSpotImageThunk(updatedSpot.id,img1))
+ 
+      try{
+      const imageId = spotDetail.SpotImages[1].id   
+      await dispatch(SpotActions.deleteSpotImageThunk(spotId,imageId)) 
+      }catch{
+
+      }
+
+
+      await dispatch(SpotActions.postSpotImageThunk(updatedSpot.id,img1))
     }
 
+
     if(image2){
-        await dispatch(SpotActions.postSpotImageThunk(updatedSpot.id,img2))
-     }
 
-     if(image3){
-       await dispatch(SpotActions.postSpotImageThunk(updatedSpot.id,img3))
-   }
+ 
+      try{
+      const imageId = spotDetail.SpotImages[2].id   
+      await dispatch(SpotActions.deleteSpotImageThunk(spotId,imageId)) 
+      }catch{
 
-   if(image4){
-    await dispatch(SpotActions.postSpotImageThunk(updatedSpot.id,img4))
- }
+      }
+
+
+      await dispatch(SpotActions.postSpotImageThunk(updatedSpot.id,img2))
+    }
+
+    if(image3){
+
+ 
+      try{
+      const imageId = spotDetail.SpotImages[3].id   
+      await dispatch(SpotActions.deleteSpotImageThunk(spotId,imageId)) 
+      }catch{
+
+      }
+
+
+      await dispatch(SpotActions.postSpotImageThunk(updatedSpot.id,img3))
+    }
+
+
+    if(image4){
+
+ 
+      try{
+      const imageId = spotDetail.SpotImages[4].id   
+      await dispatch(SpotActions.deleteSpotImageThunk(spotId,imageId)) 
+      }catch{
+
+      }
+
+
+      await dispatch(SpotActions.postSpotImageThunk(updatedSpot.id,img4))
+    }
     
 
    

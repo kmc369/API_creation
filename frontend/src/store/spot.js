@@ -6,6 +6,7 @@ const DELETE_SPOT = '/Delete/Spot'
 const GET_SPOTS = '/getAllSpots'
 const GET_SPOT_DETAILS = 'getSpotDetails'
 const POST_IMAGE = 'postImageForSpot'
+const DELETE_IMAGES = 'delete/Images'
 export const actionCreateSpot = (spot) => {
     return { 
             type: CREATE_SPOT, 
@@ -55,6 +56,14 @@ const actionPostImage = (spotId, imgData) => {
     payload: { spotId, imgData }
   };
 };
+
+export const actionDeleteImages = (spotId, imageId) => {
+  return { 
+    type: DELETE_IMAGES, 
+    payload: { spotId, imageId }
+  };
+};
+
   
 
 export const postSpotImageThunk = (spotId, imageObj) => async (dispatch, getState) => {
@@ -273,6 +282,24 @@ export const getAllSpotsThunk = ()=> async (dispatch) =>{
       console.error('An error occurred:', error.message);
     }
   };
+
+
+
+  export const deleteSpotImageThunk = (spotId, imageId) => async (dispatch) => {
+    try {
+      const response = await csrfFetch(`/api/spot-images/${imageId}`, {
+        method: 'DELETE',
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        dispatch(actionDeleteImages(spotId, imageId));
+        return data;
+      }
+    } catch (error) {
+      console.error('An error occurred:', error);
+    }
+  };
   
   
 const initialState ={allSpots:{},  spotDetails:{}}
@@ -340,6 +367,20 @@ export default function spotReducer(state=initialState,action){
             spotToUpdate.SpotImages = [...spotToUpdate.SpotImages, imgData];
           }
         
+          return newState;
+        }
+        
+        case DELETE_IMAGES: {
+          const { spotId, imageId } = action.payload;
+          const newState = { ...state, allSpots: { ...state.allSpots } };
+    
+          const spotToUpdate = newState.allSpots[spotId];
+    
+          if (spotToUpdate) {
+            // Create a new array without the image with the specified imageId
+            spotToUpdate.SpotImages = spotToUpdate.SpotImages.filter((img) => img.id !== imageId);
+          }
+    
           return newState;
         }
             default:
