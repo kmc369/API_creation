@@ -158,7 +158,7 @@ return (
         {console.log("is not spot owner is  ", !isSpotOwner)} */}
         
 
-        {currentUser && !hasPostedReview && !isSpotOwner && spotDetail.numReviews>0 &&  (
+        {currentUser && !hasPostedReview && !isSpotOwner && spotDetail.numReviews>0 && !(currentUser.id===2) && (
      
           <OpenModalButton
         
