@@ -98,6 +98,7 @@ p{
 
 }
 .callout-container{
+    margin-top: 10px;
     display: flex;
     justify-content: space-between;
 }
@@ -132,7 +133,8 @@ p{
 
 
 .hostedBy{
-    margin:0;
+    margin-top: 8px;
+    margin-bottom:0;
     text-align: left;
     margin-left: 12px;
 }
