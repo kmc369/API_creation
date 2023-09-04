@@ -141,7 +141,7 @@ return (
       {spotDetail.SpotImages.map((element, index) => (
         <div className={`image${index}`}> 
         
-        <img id={`s${index}`} src={element.url} alt="img" key={index}></img>
+        <img id="s1" height={"200px"} width={"200px"} src={element.url} alt="img" key={index}></img>
       </div>
       ))}
     
