@@ -21,7 +21,7 @@ function SignupFormModal() {
     const errorOBJ = {}
 
     if(errors){
-      setErrors(null)
+      setErrors({})
     }
 
 
