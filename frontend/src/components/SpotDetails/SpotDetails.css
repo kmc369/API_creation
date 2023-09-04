@@ -125,7 +125,7 @@
 .hostedBy{
   
     margin-top: 30px;;
-    text-align: left !important;
+    margin-left: 87px;
     
 }
 button{
@@ -182,4 +182,8 @@ button{
     width: 90%;
     height: 90%;
 
+}
+
+.header{
+    margin-left: 87px;
 }

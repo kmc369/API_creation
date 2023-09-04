@@ -150,7 +150,7 @@ return (
 
      <div className='hostedBy'>
 
-    <h3> Hosted By {spotDetail.Owner.firstName}, {spotDetail.Owner.lastName}</h3> 
+    <h3 > Hosted By {spotDetail.Owner.firstName}, {spotDetail.Owner.lastName}</h3> 
 
 
    
