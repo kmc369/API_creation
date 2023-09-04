@@ -93,7 +93,9 @@ function LoginFormModal() {
                 transition={{ delay: 0.4, duration: 0.5 }} 
                 className='username'
                 />
-                {errors.credential && errors.credential}
+                        
+
+                <span>{errors.credential && errors.credential}</span>
                 <button
                 type="submit"
                 disabled={Object.keys(errors).length>0}
