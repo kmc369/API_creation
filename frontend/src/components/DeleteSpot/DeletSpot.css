@@ -31,12 +31,23 @@ p{
 
 }
 
+.delete-spot{
+    width:410px;
+    height:fit-content;
+    border:2px solid black;
+    border-radius: 4px;
+    
+}
+
 #modal-content{
+    height:fit-content;
+    width: fit-content;
+}   
+.delete-spot{
     width:410px;
     height:220px!important;
     border:2px solid black;
     border-radius: 4px;
-    
 }
 .delete-Review{
     display: flex;

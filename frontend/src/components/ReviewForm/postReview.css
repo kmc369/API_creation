@@ -24,18 +24,21 @@
     color: red;
   }
 
-  #modal-content{
+  /* #modal-content{
     border-radius: 2px;
     border: 5px solid black;
     height:350px !important;
     width:471px;
-  }
+  } */
 
 
   .review-form{
    
     display: flex;
     flex-direction: column;
+    height:350px;
+    width: 400px;
+    background: white;
    
 
 
