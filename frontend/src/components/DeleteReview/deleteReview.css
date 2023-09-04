@@ -11,3 +11,7 @@
     border: none;
 
 }
+
+#modal-content{
+height: 300px !important;
+}

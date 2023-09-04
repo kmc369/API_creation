@@ -59,39 +59,70 @@ function ReviewForm({ spotId, onCloseModal }) {
 
   return (
  
-      <form className="review-form" onSubmit={handleSubmit}>
-      <h2>How was your stay?</h2>
-      <div className='review-stuff'>
+    <form className="review-form" onSubmit={handleSubmit}>
+    <h2>How was your stay?</h2>
+    <div className='review-stuff'>
       <textarea
         className='reviewtextBox'
         placeholder="Leave your review here..."
         value={review}
-        onChange={(e)=>setreview(e.target.value)}
+        onChange={(e) => setreview(e.target.value)}
       />
-      {/* <p className='errors'>{errors.review}</p> */}
       <label className='stars-label'>Stars</label>
-      <div className="stars">
-       <input value = {stars}
-       type='number' 
-       onChange={(e)=>setstars(parseInt(e.target.value))}
-       min={1} max={5}>
-      
-       </input>
-       
-         
+      <div class="star-rating">
+        <input
+          type="radio"
+          id="star5"
+          name="rating"
+          value="5"
+          onChange={(e) => setstars(parseInt(e.target.value))}
+        />
+        <label for="star5"></label>
+        <input
+          type="radio"
+          id="star4"
+          name="rating"
+          value="4"
+          onChange={(e) => setstars(parseInt(e.target.value))}
+        />
+        <label for="star4"></label>
+        <input
+          type="radio"
+          id="star3"
+          name="rating"
+          value="3"
+          onChange={(e) => setstars(parseInt(e.target.value))}
+        />
+        <label for="star3"></label>
+        <input
+          type="radio"
+          id="star2"
+          name="rating"
+          value="2"
+          onChange={(e) => setstars(parseInt(e.target.value))}
+        />
+        <label for="star2"></label>
+        <input
+          type="radio"
+          id="star1"
+          name="rating"
+          value="1"
+          onChange={(e) => setstars(parseInt(e.target.value))}
+        />
+        <label for="star1"></label>
       </div>
-      </div>
-      <div className='post-Review-Button'>
+    </div>
+    <div className='post-Review-Button'>
       <button
-       type='submit'
+        type='submit'
         className={`submit-button ${Object.keys(errors).length > 0 ? "disabled-button" : "enabled-button"}`}
         style={{ backgroundColor: Object.keys(errors).length > 0 ? 'rgb(187, 186, 186)' : ' #ff385c' }}
         disabled={isSubmitDisabled}
       >
         Submit Your Review
       </button>
-      </div>
-      </form>
+    </div>
+  </form>
   
   );
 }
