@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
       type:DataTypes.INTEGER,
     },
     review: {
-      type:DataTypes.STRING,
+      type:DataTypes.TEXT,
     },
     stars: {
       type:DataTypes.INTEGER
