@@ -33,7 +33,7 @@ p{
 
 .delete-spot{
     width:410px;
-    height:220px;
+    height:220px!important;
     border:2px solid black;
     border-radius: 4px;
     
