@@ -18,7 +18,7 @@
     grid-template-rows: 1fr 1fr; 
     grid-template-columns: 2fr 1fr 1fr; 
     width: 85%;
-    height: 25%;
+    height: 20%;
     justify-content: center;
     margin: 0 auto;
     margin-bottom: 20px;
@@ -32,26 +32,34 @@
   
   }
 #s0{
-    width: 90%;
+    width: 98%;
     height: 85%;
     padding: 10px;
 }
 #s1{
-    width:90%;
-    height:80%;
+    width:98%;
+    height:98%;
     padding: 10px;
 
 }
 
 #s2{
     width:95%;
-    height:80%;
+    height:98%;
     padding: 10px;
 }
 #s3{
-    width:95%;
+    width:99%;
     height:90%;
     padding: 10px;
+
+}
+
+#s4{
+    width:95%;
+    height:80%;
+    padding: 10px;
+
 }
 
 .image1{
@@ -71,7 +79,6 @@
     grid-row: 2; 
     grid-column: 2; 
     height: 70%;
-    border:3px solid purple;
 
   }
 
