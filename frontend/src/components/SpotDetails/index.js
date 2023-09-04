@@ -215,7 +215,7 @@ return (
                 </div>
 
                   {currentUser && element.User.id === currentUser.id && (
-                    <OpenModalButton
+                    <OpenModalButton  
                       modalComponent={
                         <DeleteReview
                           reviewId={reviewId}
