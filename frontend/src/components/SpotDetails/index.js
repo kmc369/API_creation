@@ -138,7 +138,7 @@ return (
    <div className='detailImages'>
   {/* First Image */}
   <div className='first-image'>
-    <img id='s0' src={spotDetail.SpotImages[0].url} alt='img' key={0}></img>
+    <img id='s0' src={spotDetail.SpotImages[0]?.url || ""} alt='img' key={0}></img>
   </div>
 
   {/* Other Images */}
