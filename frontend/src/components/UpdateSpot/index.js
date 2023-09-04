@@ -108,63 +108,63 @@ function UpdateSpot() {
       await dispatch(SpotActions.postSpotImageThunk(updatedSpot.id, imgObj));
     }
 
-    if(image1){
+    // if(image1){
 
  
-      try{
-      const imageId = spotDetail.SpotImages[1].id   
-      await dispatch(SpotActions.deleteSpotImageThunk(spotId,imageId)) 
-      }catch{
+    //   try{
+    //   const imageId = spotDetail.SpotImages[1].id   
+    //   await dispatch(SpotActions.deleteSpotImageThunk(spotId,imageId)) 
+    //   }catch{
 
-      }
-
-
-      await dispatch(SpotActions.postSpotImageThunk(updatedSpot.id,img1))
-    }
+    //   }
 
 
-    if(image2){
-
- 
-      try{
-      const imageId = spotDetail.SpotImages[2].id   
-      await dispatch(SpotActions.deleteSpotImageThunk(spotId,imageId)) 
-      }catch{
-
-      }
+    //   await dispatch(SpotActions.postSpotImageThunk(updatedSpot.id,img1))
+    // }
 
 
-      await dispatch(SpotActions.postSpotImageThunk(updatedSpot.id,img2))
-    }
-
-    if(image3){
+    // if(image2){
 
  
-      try{
-      const imageId = spotDetail.SpotImages[3].id   
-      await dispatch(SpotActions.deleteSpotImageThunk(spotId,imageId)) 
-      }catch{
+    //   try{
+    //   const imageId = spotDetail.SpotImages[2].id   
+    //   await dispatch(SpotActions.deleteSpotImageThunk(spotId,imageId)) 
+    //   }catch{
 
-      }
-
-
-      await dispatch(SpotActions.postSpotImageThunk(updatedSpot.id,img3))
-    }
+    //   }
 
 
-    if(image4){
+    //   await dispatch(SpotActions.postSpotImageThunk(updatedSpot.id,img2))
+    // }
+
+    // if(image3){
 
  
-      try{
-      const imageId = spotDetail.SpotImages[4].id   
-      await dispatch(SpotActions.deleteSpotImageThunk(spotId,imageId)) 
-      }catch{
+    //   try{
+    //   const imageId = spotDetail.SpotImages[3].id   
+    //   await dispatch(SpotActions.deleteSpotImageThunk(spotId,imageId)) 
+    //   }catch{
 
-      }
+    //   }
 
 
-      await dispatch(SpotActions.postSpotImageThunk(updatedSpot.id,img4))
-    }
+    //   await dispatch(SpotActions.postSpotImageThunk(updatedSpot.id,img3))
+    // }
+
+
+    // if(image4){
+
+ 
+    //   try{
+    //   const imageId = spotDetail.SpotImages[4].id   
+    //   await dispatch(SpotActions.deleteSpotImageThunk(spotId,imageId)) 
+    //   }catch{
+
+    //   }
+
+
+    //   await dispatch(SpotActions.postSpotImageThunk(updatedSpot.id,img4))
+    // }
     
 
    
