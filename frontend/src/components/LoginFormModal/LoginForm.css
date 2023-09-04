@@ -9,8 +9,8 @@
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Slightly elevated appearance */
     z-index: 1; /* Higher z-index to make it pop out */
-    height:420px;
-    width:490px;
+    height:350px;
+    width:436px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -65,8 +65,7 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
-    margin-left: 40px;
+    margin-top: 10px;
     width:100px;
   }
 
@@ -77,8 +76,14 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
-    margin-left: 40px;;
+    margin-top: 10px;
+   
+
+
+    height: 35px;
+    margin-bottom: 10px;
+    width:100px;
+    margin-left: 10px;
 
   }
 
@@ -111,6 +116,21 @@
     margin-left: 77px;
 
     
+  }
+  .submit-button{
+    border: none;
+    border-radius: 0px;
+    height: 35px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px 20px;
+    margin-left: 10px;
+    cursor: pointer;
+
+
+  
+    width:100px;
+
   }
 
 #password{
