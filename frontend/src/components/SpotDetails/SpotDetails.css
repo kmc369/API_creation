@@ -110,7 +110,7 @@
 .reserve{
     background-color:#ff385c; 
     height:37px;
-    width: 138px;
+    width: 86px;
     border-radius: 4px;
     color:aliceblue;
     margin-top: 30px;
@@ -124,8 +124,8 @@
 
 .hostedBy{
   
-    margin-top: 30px;;
-    margin-left: 87px;
+    margin-top: -23px;
+    margin-left: 57px;
     
 }
 button{
@@ -159,6 +159,7 @@ button{
 .description{
     margin-bottom: 30px;
     margin-left: 21px;
+    width: 70%;
 }
 
 #modal-content{
@@ -189,5 +190,5 @@ button{
     margin-left: 87px;
 }
 .location-name{
-    margin-left: 25px;
+    margin-left: 2px;
 }
