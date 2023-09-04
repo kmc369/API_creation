@@ -12,7 +12,7 @@ function Navigation({ isLoaded }){
   
         <div className='airbnb-logo-container'>
           <NavLink exact to="/"><i class="fa-brands fa-airbnb"></i></NavLink>
-          <p className='airbnb'>airbnb</p>
+         <NavLink exact to ="/" className='airbnb'>airbnb</NavLink>
         </div>
         <div className='signUp-login-container'>
           {isLoaded && ( <ProfileButton user={sessionUser} /> )}

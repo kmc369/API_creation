@@ -6,6 +6,10 @@
     color:#ff385c; 
     margin-left: 10px; 
     font-size: 25px;
+    cursor: pointer;
+    margin-top: 17px;
+    text-decoration: none; 
+
 
 
 }
@@ -13,6 +17,8 @@
 .fa-brands {
     margin-top: 10px;
     font-size: 50px;
+    cursor: pointer;
+
 }
 
 i{
