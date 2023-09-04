@@ -48,12 +48,16 @@ if (userSpots.Spots === undefined || Object.values(userSpots).length === 0 || !u
       <div className='manageSpot-entire-container'>
 
 
+      <div className='headerStuff'>
         <div className='headerSpot'>
         <h1>Manage Your Spots</h1>
-
-        <button className='createSpot' onClick={()=> history.push('/spots')}>Create a Spot</button>
         </div>
+      
+      <div>
+        <button className='createSpot' onClick={()=> history.push('/spots')}>Create a Spot</button>
+      </div>
 
+      </div>
 
 
         <div className='managAllContainer' >

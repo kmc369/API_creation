@@ -350,47 +350,7 @@ function UpdateSpot() {
       </div>
      
 
-      <div className='live-photos'>
-        <h4>Liven up your spot with photos</h4>
-        <p>Submit a link to at least one photo to publish your spot</p>
-        <input
-          value={previewImageUrl}
-          onChange={(e) => setPreviewImageUrl(e.target.value)}
-          type='url'
-          placeholder='Preview Image URL'
-          required
-        />
 
-          <input
-            value={image1}
-            onChange={(e) => setImage1(e.target.value)}
-            type='url'
-            placeholder='Image URL'
-            />
-         
-        <input
-         
-         value={image2}
-         onChange={(e) => setImage2(e.target.value)}
-         type='url'
-         placeholder='Image URL'
-       />
-        <input
-         
-         value={image3}
-         onChange={(e) => setImage3(e.target.value)}
-         type='url'
-         placeholder='Image URL'
-       />
-        <input
-         
-         value={image4}
-         onChange={(e) => setImage4(e.target.value)}
-         type='url'
-         placeholder='Image URL'
-       />
-      
-      </div>
 
       <div className='submit-button-container'>
         <button type='submit' 
