@@ -31,18 +31,26 @@ function CreateSpot() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-   
-   
-    
- 
+    const error ={};
 
+    if(country.length<=1 ) {
+      error.country = "COUNTRY BE GREATER THAN 1 CHARACTERS";
+  }
+    if(address.length<=1 ) {
+      error.address = "ADDRESS BE GREATER THAN 1 CHARACTER";
+  }
+   if(city.length<=1 ) {
+    error.city = "CITY MUST BE GREATER THAN 1 CHARACTER";
+  }
 
-  
-
-
-
-
-  
+  if((typeof city)!=='string'){
+    error.city="City can not be a number"
+  }
+   if(description.length<30){
+    error.description="MUST BE 30 CHARACTERS OR MORE"
+   }
+   setErrors(error)
+   console.log(error)
     const formData = {
       country,
       state,
@@ -56,6 +64,7 @@ function CreateSpot() {
     
       
     };
+    console.log(formData)
 
 
     
@@ -87,10 +96,11 @@ function CreateSpot() {
       preview:false
     }
     
-  
+    try{
+    
     const createSpotResponse = await dispatch(SpotActions.createSpotThunk(formData));
     const createdSpotId = createSpotResponse.id;
-  
+    
    
     
     if (imgObj.url) {
@@ -113,7 +123,6 @@ function CreateSpot() {
     dispatch(SpotActions.postSpotImageThunk(createdSpotId,img4))
  }
 
- 
     
     
     
@@ -137,41 +146,18 @@ function CreateSpot() {
     setImage4('');
 
     history.push(`/spots/${createdSpotId}`)
+  }catch{
+
+  }
   };
 
-
-
   useEffect(()=>{
-    const error = {}
-    
-    if (country.length<2 || country===" " ) {
-      error.country = "COUNTRY BE GREATER THAN 2 CHARACTERS";
-  }
-
-   
-  if (address.length<3 || address===" " ) {
-    error.address = "ADDRESS BE GREATER THAN 10 CHARACTERS";
-}
+    if(errors){
+      setErrors({})
+    }
+  },[country,city,state,description,address])
 
 
-   if (city.length<3 || city===" " ) {
-    error.city = "MUST BE GREATER THAN 10 CHARACTERS";
-}
-
-
-  
-
-   if(description.length<30){
-    error.description="MUST BE 30 CHARACTERS OR MORE"
-   }
-
-  //  if(!previewImage.endsWith('jpg') || !previewImage.endsWith('png')){
-  //   error.previewImage="Must end in jpg or png"
-  //  }
-   setErrors(error)
-
-
-  },[country,city,state,description])
 
  
 
@@ -179,9 +165,6 @@ function CreateSpot() {
   return (
     <div className='container'>
       <form className='form-container' onSubmit={handleSubmit}>
-    <p className='error'>{errors.previewImage}</p>
-
-
         <div className='location-container'>
           <h3 className='headers1'>Create a New Spot</h3>
           <h4 className='headers'>Where's your place located?</h4>
@@ -196,7 +179,7 @@ function CreateSpot() {
             name='country'
           
           />
-     
+          <p className='error'>{errors.country && errors.country}</p>
           <label for="address">Street Address</label>
           <input
             value={address}
@@ -208,7 +191,7 @@ function CreateSpot() {
 
             
           />
-   
+          <p className='error'>{errors.address && errors.address}</p>
 
       <div className='city-state-container'>
         <div className='input-group'>
@@ -222,6 +205,7 @@ function CreateSpot() {
           placeholder='City'
           name='city'
         />
+        <p className='error'>{errors.city && errors.city}</p>
   </div>
   <div className='input-group'>
     <label className='state'>State</label>
@@ -278,6 +262,10 @@ function CreateSpot() {
           >
 
           </textarea> 
+          <p className='error'>{errors.description && errors.description}</p>
+
+
+
 
         </div>
 

@@ -17,41 +17,46 @@ function SignupFormModal() {
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
 
-  // useEffect(()=>{
-  //   const errorOBJ = {}
+  useEffect(()=>{
+    const errorOBJ = {}
 
-  //   if(!email){
-  //     errorOBJ.email = "CAN NOT BE EMPTY"
-  //   }
-
-  //   if(!username || username.length<4){
-  //     errorOBJ.username = "TO SHORT"
-  //   }
-
-  //   if(!firstName){
-  //     errorOBJ.firstName = "CAN NOT BE EMPTY"
-  //   }
+    if(errors){
+      setErrors(null)
+    }
 
 
-  //   if(!lastName){
-  //     errorOBJ.lastName = "CAN NOT BE EMPTY"
-  //   }
+    // if(!email){
+    //   errorOBJ.email = "CAN NOT BE EMPTY"
+    // }
+
+    // if(!username || username.length<4){
+    //   errorOBJ.username = "TO SHORT"
+    // }
+
+    // if(!firstName){
+    //   errorOBJ.firstName = "CAN NOT BE EMPTY"
+    // }
 
 
-  //   if(!password || password.length<6){
-  //     errorOBJ.password = "TO SHORT"
-  //   }
+    // if(!lastName){
+    //   errorOBJ.lastName = "CAN NOT BE EMPTY"
+    // }
 
 
-  //   if(!confirmPassword || password!==confirmPassword){
-  //     errorOBJ.confirmPassword = "PASSWORDS MUST MATCH"
+    // if(!password || password.length<6){
+    //   errorOBJ.password = "TO SHORT"
+    // }
+
+
+    // if(!confirmPassword || password!==confirmPassword){
+    //   errorOBJ.confirmPassword = "PASSWORDS MUST MATCH"
     
-  //   }
+    // }
  
 
-  //     setErrors(errorOBJ)
+      setErrors(errorOBJ)
     
-  // },[email,username,firstName,lastName,password,confirmPassword])
+  },[email,username,firstName,lastName,password,confirmPassword])
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -126,6 +131,7 @@ function SignupFormModal() {
     }
     return setErrors({
       confirmPassword: "Confirm Password field must be the same as the Password field"
+     
     });
   };
 
