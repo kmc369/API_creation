@@ -286,7 +286,7 @@ function CreateSpot() {
 
         <div className='price-container'>
           <h4>Set a base price for your spot</h4>
-          <p>Competitive pricing can help your listing stand out and rank higher in search results.</p>
+          <i class="fa-solid fa-dollar-sign"></i><p>Competitive pricing can help your listing stand out and rank higher in search results.</p>
           
           <input
             value={price}
