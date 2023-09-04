@@ -57,12 +57,12 @@ function LoginFormModal() {
     return (
     <div className='login-container'>
            
-           <motion.div // Wrap with motion.div for animation
+           {/* <motion.div // Wrap with motion.div for animation
                 className={`Login-form-container `} 
                 initial={{ opacity: 0, transform: "translate(-50%, -50%) scale(0.5)" }}
                 animate={{ opacity: 1, transform: "translate(-50%, -50%) scale(1)" }}
                 transition={{ duration: 0.3 }}
-              >
+              > */}
               <form  onSubmit={handleSubmit}>
                  <h1>Login</h1>
                  <label>Username or email</label>
@@ -76,7 +76,7 @@ function LoginFormModal() {
                  required
                  initial={{ opacity: 0, x: -20 }}
                  animate={{ opacity: 1, x: 0 }}
-                 transition={{ delay: 0.2, duration: 0.5 }}
+                //  transition={{ delay: 0.2, duration: 0.5 }}
                  
                  />
               <label>Password</label>
@@ -102,7 +102,7 @@ function LoginFormModal() {
 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.6, duration: 0.5 }}
+                // transition={{ delay: 0.6, duration: 0.5 }}
                 >Log In</button >
 
             <div className='demoUser' onClick={handleClick}>Demo User</div>
@@ -111,7 +111,7 @@ function LoginFormModal() {
 
               
               </form>
-            </motion.div>
+            {/* </motion.div> */}
 
             
         
