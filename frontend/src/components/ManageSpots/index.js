@@ -47,7 +47,8 @@ if (userSpots.Spots === undefined || Object.values(userSpots).length === 0 || !u
     <>
       <div className='manageSpot-entire-container'>
 
-        <div className='header'>
+
+        <div className='headerSpot'>
         <h1>Manage Your Spots</h1>
 
         <button className='createSpot' onClick={()=> history.push('/spots')}>Create a Spot</button>
@@ -66,15 +67,21 @@ if (userSpots.Spots === undefined || Object.values(userSpots).length === 0 || !u
             
               <p className='city-star' onClick={()=>{history.push(`/spots/${element.id}`)}}>{element.state}, {element.city} <i class="fa-solid fa-star"></i>{element.avgRating}</p> 
               <p>${element.price} night</p>
+
+
+
+
+              <div>
              <span> <button style={{backgroundColor:'#ff385c',border:'none',color:'white',height:'30px',width:'100px',borderRadius:'3px'}}  onClick={()=>handleUpdateSpot(element.id)}>update</button></span>
              <span> <OpenModalButton 
               modalComponent={<DeleteSpot spotId={element.id}  onCloseModal={() => setIsDeleteModalOpen(false)} />}
-        
+              
               buttonText="Delete"
               
-            /></span>
+              /></span>
+            </div>
+              </div>
 
-      </div>
       ))} 
    
    </div> 

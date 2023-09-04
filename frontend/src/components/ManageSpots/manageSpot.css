@@ -1,14 +1,17 @@
+.manageSpot-entire-containe{
+    display: flex;
+    width: 90%;
+    
+}
 
-
-.manageSpot-entire-container{
+.headerSpot{
+    border: 2px solid red;
     display: flex;
     flex-direction: column;
-
+    justify-content: flex-start;
+    
 }
+
 .managAllContainer{
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: center;
 }
