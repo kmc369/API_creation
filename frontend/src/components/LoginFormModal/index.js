@@ -57,12 +57,12 @@ function LoginFormModal() {
     return (
     <div className='login-container'>
            
-            <motion.div // Wrap with motion.div for animation 
+            {/* <motion.div // Wrap with motion.div for animation 
               className={`Login-form-container `} 
                 initial={{ opacity: 0, transform: "translate(-50%, -50%) scale(0.5)" }}
                 animate={{ opacity: 1, transform: "translate(-50%, -50%) scale(1)" }}
                 transition={{ duration: 0.3 }}
-              > 
+              >  */}
               <form  onSubmit={handleSubmit}>
                  <h1>Login</h1>
                  <label>Username or email</label>
@@ -113,7 +113,7 @@ function LoginFormModal() {
 
               
               </form>
-           </motion.div> 
+           {/* </motion.div>  */}
 
             
         
