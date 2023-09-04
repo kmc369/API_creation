@@ -95,7 +95,7 @@ function LoginFormModal() {
                 />
                         
 
-                <span>{errors.credential && errors.credential}</span>
+                {errors.credential && errors.credential}
                 <button
                 type="submit"
                 disabled={Object.keys(errors).length>0}
