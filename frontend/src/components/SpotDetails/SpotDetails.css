@@ -189,12 +189,13 @@ button{
 }
 
 .header{
-    margin-left: 87px;
+    margin-left: 100px;
 }
 .location-name{
     margin-left: 2px;
 }
 
 .reviewsContainer{
-    width:75%
+    width:75%;
+    margin-left:100px;
 }
