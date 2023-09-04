@@ -51,10 +51,12 @@ module.exports = (sequelize, DataTypes) => {
     },
     city: {
       type:DataTypes.STRING,
+    
       allowNull:false,
       validate:{
         len:[3,90],
         notEmpty:true,
+        isAlpha:true
     
       }
     },
@@ -63,6 +65,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull:false,
       validate:{
         len:[3,90],
+        isAlpha:true
         
       }
     },
@@ -70,7 +73,8 @@ module.exports = (sequelize, DataTypes) => {
       type:DataTypes.STRING,
       allowNull:false,
       validate:{
-        len:[3,90]
+        len:[3,90],
+        isAlpha:true
       }
     },
     lat: {
@@ -82,7 +86,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     name: {
       type:DataTypes.STRING,
-      allowNull:false
+      allowNull:false,
+      isAlpha:true
     },
     description: {
       type:DataTypes.TEXT,
