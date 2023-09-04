@@ -45,11 +45,17 @@ if (userSpots.Spots === undefined || Object.values(userSpots).length === 0 || !u
 
   return (
     <>
+      <div className='manageSpot-entire-container'>
+
+        <div className='header'>
         <h1>Manage Your Spots</h1>
 
         <button className='createSpot' onClick={()=> history.push('/spots')}>Create a Spot</button>
+        </div>
 
-        <div id='landingPageContainer' >
+
+
+        <div className='managAllContainer' >
       
        
       {userSpots.Spots.map((element, index) => (
@@ -72,6 +78,7 @@ if (userSpots.Spots === undefined || Object.values(userSpots).length === 0 || !u
       ))} 
    
    </div> 
+   </div>
     </>
   )
 }

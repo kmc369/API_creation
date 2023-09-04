@@ -135,22 +135,32 @@ return (
    </div>
 
 
+   <div className='detailImages'>
+  {/* First Image */}
+  <div className='first-image'>
+    <img id='s0' src={spotDetail.SpotImages[0].url} alt='img' key={0}></img>
+  </div>
 
-    <div className='detailImages'>
-      
-      {spotDetail.SpotImages.map((element, index) => (
-        // <div className={`image${index}`}> 
-        
-        <img id={`s${index}`} src={element.url} alt="img" key={index}></img>
-        // </div>
-      ))}
+  {/* Other Images */}
+  <div className='second-images'>
+  {spotDetail.SpotImages.slice(1).map((element, index) => (
+  
+    <div className={`image${index + 1}`} key={index}>
+      <img id={`s${index + 1}`} src={element.url} alt='img' key={index}></img>
     </div>
+  
+  ))}
+    </div>
+</div>
 
-    <h2 className='hostedBy'> Hosted By {spotDetail.Owner.firstName}, {spotDetail.Owner.lastName}</h2>
-    
+
+     <div className='hostedBy'>
+
+    <h3> Hosted By {spotDetail.Owner.firstName}, {spotDetail.Owner.lastName}</h3> 
+
 
    
-      <div className='callout-container'>
+       <div className='callout-container'>
      <div><p className='description'>Description: {spotDetail.description}</p></div> 
       <div className='callout'>
         <p className='calloutPrice'>
@@ -160,8 +170,10 @@ return (
         <button className='reserve' onClick={() => alert("feature coming soon")}>Reserve</button>
       </div>
       </div>  
+      </div> 
+      
    
-
+{/* 
     <div className='reviewsContainer'>
       <h1><i className="fa-solid fa-star"></i>{spotDetail.avgStarRating} {formatReviewCount(spotDetail.numReviews)}</h1>
       
@@ -170,7 +182,7 @@ return (
         {console.log("has not posted is ", !hasPostedReview)}
         {console.log("is not spot owner is  ", !isSpotOwner)} */}
         
-
+{/* 
         {currentUser && !hasPostedReview && !isSpotOwner && spotDetail.numReviews>0 && (
      
           <OpenModalButton
@@ -229,8 +241,8 @@ return (
       
         
       )}
-    </div>
-    </div>
+    </div> */}
+</div>
   </>
 )
 }
