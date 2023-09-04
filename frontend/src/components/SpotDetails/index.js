@@ -173,16 +173,14 @@ return (
       </div> 
       
    
-{/* 
+
     <div className='reviewsContainer'>
       <h1><i className="fa-solid fa-star"></i>{spotDetail.avgStarRating} {formatReviewCount(spotDetail.numReviews)}</h1>
       
       <div >
-        {/* {console.log("current user is ", currentUser)}
-        {console.log("has not posted is ", !hasPostedReview)}
-        {console.log("is not spot owner is  ", !isSpotOwner)} */}
+  
         
-{/* 
+ 
         {currentUser && !hasPostedReview && !isSpotOwner && spotDetail.numReviews>0 && (
      
           <OpenModalButton
@@ -241,7 +239,7 @@ return (
       
         
       )}
-    </div> */}
+    </div>
 </div>
   </>
 )
