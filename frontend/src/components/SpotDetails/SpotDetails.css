@@ -193,3 +193,7 @@ button{
 .location-name{
     margin-left: 2px;
 }
+
+.reviewsContainer{
+    width:75%
+}
