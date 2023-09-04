@@ -130,7 +130,7 @@ return (
     <div className='spotDetails-entire-container'>
 
     <div className='header'>
-      <h1>{spotDetail.name}</h1>
+      <h1 className='location-name'>{spotDetail.name}</h1>
       <p>{spotDetail.city}, {spotDetail.state}, {spotDetail.country}</p>
    </div>
 
@@ -150,7 +150,7 @@ return (
 
      <div className='hostedBy'>
 
-    <h3 > Hosted By {spotDetail.Owner.firstName}, {spotDetail.Owner.lastName}</h3> 
+    <h3> Hosted By {spotDetail.Owner.firstName}, {spotDetail.Owner.lastName}</h3> 
 
 
    
