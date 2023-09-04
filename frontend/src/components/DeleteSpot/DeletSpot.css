@@ -31,7 +31,7 @@ p{
 
 }
 
-#modal-content{
+.delete-spot{
     width:410px;
     height:220px;
     border:2px solid black;
