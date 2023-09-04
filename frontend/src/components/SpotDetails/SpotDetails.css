@@ -12,123 +12,28 @@
 }
 
 
+
 .detailImages {
-    display: flex;
-    justify-content: row;
-    width: 90%; 
-    height: 50%;
-   
+    display: grid;
+    grid-template-rows: 1fr 1fr; 
+    grid-template-columns: 2fr 1fr 1fr; 
+    width: 85%;
+    height: 25%;
     justify-content: center;
-   
-  }
-  
-  .first-image {
-   
-    width: 59%;
-    height: 80%; 
-   
-
-  }
-  
-  .second-images {
-
-    
-    width: 64%;
-    height: 80%;
-  
-   
-  }
-  
- 
-  
-  .image1{
-    width: 50%;
-    height: 30%; 
-    float: left;
-    box-sizing: border-box; 
-  
-    margin-top: 5px;;
-
-  }
-  .image2{
-    width: 50%;
-    height: 30%; 
-    float: left;
-    box-sizing: border-box; 
- 
-    margin-top: 5px;
-
-  }
-  .image3{
-    width: 50%;
-    height: 30%; 
-    float: left;
-    box-sizing: border-box; 
-    margin-top: 10px;
-   
-
-  
-
-  }
-  .image4 {
-    width: 50%;
-    height: 30%; 
-    float: left;
-    box-sizing: border-box; 
-    margin-top: 10px;
-  
-   
-
-    
-  }
-
-
-
-
-
- 
- #s0{
- 
-    width:  95%;
-    height: 75%;
-  
- 
-  
+    margin: 0 auto;
+    margin-bottom: 20px;
+    border: 5px solid green;
 }
-
-#s1{
-    width: 90%;
-    height: 70%;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box; 
-    float: left;
-
-} 
-#s2{
-    width: 90%;
-    height: 70%;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box; 
-    float: left;
-} 
-#s3{
-    width: 90%;
-    height: 70%;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box; 
-    float: left;
-
-} #s4 {
-    width: 90%;
+  
+.image0 {
+    grid-row: 1 / span 2; 
+    grid-column: 1; 
+    border:3px solid purple;
+  }
+#s0{
+    width: 95%;
     height: 90%;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box; 
-    float: left;
-   
+    padding: 10px;
 }
 .callout-container{
     margin-top: 10px;

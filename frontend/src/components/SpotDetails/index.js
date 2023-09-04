@@ -135,22 +135,16 @@ return (
    </div>
 
 
+  
    <div className='detailImages'>
-  {/* First Image */}
-  <div className='first-image'>
-    <img id='s0' src={spotDetail.SpotImages[0]?.url || ""} alt='img' key={0}></img>
-  </div>
-
-  {/* Other Images */}
-  <div className='second-images'>
-  {spotDetail.SpotImages.slice(1).map((element, index) => (
-  
-    <div className={`image${index + 1}`} key={index}>
-      <img id={`s${index + 1}`} src={element.url} alt='img' key={index}></img>
-    </div>
-  
-  ))}
-    </div>
+      
+      {spotDetail.SpotImages.map((element, index) => (
+        <div className={`image${index}`}> 
+        
+        <img id={`s${index}`} src={element.url} alt="img" key={index}></img>
+      </div>
+      ))}
+    
 </div>
 
 
@@ -236,10 +230,10 @@ return (
               );
             })}
         </div>
-      
+       
         
-      )}
-    </div>
+     )}
+    </div> 
 </div>
   </>
 )
